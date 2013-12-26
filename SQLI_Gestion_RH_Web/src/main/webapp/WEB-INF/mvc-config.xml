@@ -6,37 +6,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
+	
+	<context:component-scan base-package="ma.ensao.youmna.controller" />
+    <mvc:annotation-driven />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+    
+	
 	<bean id="myController" class="ma.ensao.youmna.controller.MyController">
 		<property name="main" value="main" />
 	</bean>
-
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
-	</bean>
-
-	<bean id="localeChangeInterceptor"
-		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="lang" />
-	</bean>
-
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="en" />
-	</bean>
-
-	<bean id="handlerMapping"
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-		<property name="interceptors">
-			<ref bean="localeChangeInterceptor" />
-		</property>
-	</bean>
-
-	<context:component-scan base-package="ma.ensao.youmna.controller" />
-
-	<mvc:annotation-driven />
+	
+<!-- 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> -->
+<!-- 		<property name="basename" value="messages"></property> -->
+<!-- 	</bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -45,5 +27,4 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>
