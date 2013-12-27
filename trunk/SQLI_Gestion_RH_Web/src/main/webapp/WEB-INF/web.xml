@@ -14,9 +14,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            /WEB-INF/i18n/messageContext.xml,
-      		/WEB-INF/spring-security/login-security.xml, 
-      		/WEB-INF/spring-security/login-service.xml 
+            classpath:database/dataSource.xml,
+            classpath:database/Hibernate.xml,
+            classpath:i18n/messageContext.xml,
+      		classpath:spring-security/login-security.xml, 
+      		classpath:spring-security/login-service.xml 
       	</param-value>
     </context-param>
 
