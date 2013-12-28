@@ -1,7 +1,7 @@
 
 body {
 	background: url(../images/bg.png) repeat;
-	font-family: Helvetica, sans-serif; font-size: 14px; line-height: 8px;
+	font-family: Helvetica, sans-serif; font-size: 14px;
     width : 1000px;
     margin-left : auto;
     margin-right : auto;
@@ -16,7 +16,7 @@ nav {
     padding: 15px;
     margin: 0 auto 20px auto;
     background: #f3f3f3;
-    border: 3px solid #fff;
+    border: 1px solid #fff;
 	border-radius: 5px;
 	
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -59,7 +59,7 @@ nav ul {
 	nav ul li:hover a {
 		color: #fff;
 	}
-		
+
 	nav ul li a {
 		display: block; padding: 15px 25px;
 		color: #757575; text-decoration: none;

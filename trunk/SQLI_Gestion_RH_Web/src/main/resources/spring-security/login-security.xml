@@ -14,7 +14,7 @@
        <security:intercept-url pattern="/**" access="ROLE_USER"/>
 <!--      <intercept-url pattern='/home*' access='ROLE_USER,ROLE_ADMIN' />   -->
 <!--      <intercept-url pattern='/admin*' access='ROLE_ADMIN' />   -->
-     <security:form-login login-page='/index.jsp' default-target-url='/main.htm' 
+     <security:form-login login-page='/index.jsp' default-target-url='/main' 
          authentication-failure-url='/index.jsp?error=true'/>
 <!--          login-processing-url="/rest/security/login-processing"  -->
 
