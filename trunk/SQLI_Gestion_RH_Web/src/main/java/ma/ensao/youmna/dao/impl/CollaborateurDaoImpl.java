@@ -1,0 +1,47 @@
+package ma.ensao.youmna.dao.impl;
+
+import java.util.List;
+
+import ma.ensao.youmna.dao.CollaborateurDao;
+import ma.ensao.youmna.model.Collaborateur;
+
+import org.hibernate.Query;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class CollaborateurDaoImpl implements CollaborateurDao {
+
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	public void createCollaborateur(Collaborateur collaborateur) {
+		sessionFactory.getCurrentSession().save(collaborateur);
+
+	}
+
+	public void deleteCollaborateur(String matricule) {
+        Collaborateur collaborateur = getCollaborateurById(matricule);
+        sessionFactory.getCurrentSession().delete(collaborateur);
+	}
+
+	public Collaborateur getCollaborateurById(String matricule) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Collaborateur where matricule = :matricule");
+		query.setParameter("matricule", matricule);
+		return (Collaborateur) query.uniqueResult();
+	}
+
+	public void updateCollaborateur(Collaborateur collaborateur) {
+		sessionFactory.getCurrentSession().update(collaborateur);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Collaborateur> getAllCollaborateurs() {
+		 return sessionFactory.getCurrentSession().createQuery("from Collaborateur").list();
+		
+	}
+
+}

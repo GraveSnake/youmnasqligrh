@@ -11,8 +11,14 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<ref bean="dataSource" />
 		</property>
 		<property name="annotatedClasses">
+
 			<list>
-				<value>ma.ensao.youmna.model.Admin</value>
+				<value>ma.ensao.youmna.model.Collaborateur</value>
+				<value>ma.ensao.youmna.model.Competence</value>
+				<value>ma.ensao.youmna.model.Compte</value>
+				<value>ma.ensao.youmna.model.Diplome</value>
+				<value>ma.ensao.youmna.model.Technologie</value>
+				<value>ma.ensao.youmna.model.TechnoPossed</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -41,4 +47,9 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
+	
+		<bean id="collaborateurDao"
+		class="ma.ensao.youmna.dao.impl.CollaborateurDaoImpl"
+		autowire="byName" />
+		
 </beans>
