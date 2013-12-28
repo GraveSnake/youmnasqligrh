@@ -12,7 +12,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
     
 	
-	<bean id="myController" class="ma.ensao.youmna.controller.MyController">
+	<bean id="mainController" class="ma.ensao.youmna.controller.MainController">
 		<property name="main" value="main" />
 	</bean>
 	
