@@ -13,9 +13,11 @@
     
 	
 	<bean id="mainController" class="ma.ensao.youmna.controller.MainController">
-		<property name="main" value="main" />
+		<property name="main" value="index" />
 	</bean>
 	
+	<bean id="securityContextAccessor"
+    class="ma.ensao.youmna.util.SecurityContextAccessorImpl" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
