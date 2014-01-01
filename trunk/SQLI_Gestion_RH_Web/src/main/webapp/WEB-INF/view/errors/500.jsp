@@ -34,7 +34,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td align="center"><a href="main"><spring:message code="error.back"/></a></td>
+			<td align="center"><a href="index"><spring:message code="error.back"/></a></td>
 		</tr>
 	</table>
 

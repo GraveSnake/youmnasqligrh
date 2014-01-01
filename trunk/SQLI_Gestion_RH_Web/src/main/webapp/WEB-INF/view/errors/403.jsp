@@ -26,7 +26,7 @@
 	</tr>
 	<tr>
 		<td align="center">
-			<a href="main"><spring:message code="error.back"/></a>
+			<a href="index"><spring:message code="error.back"/></a>
 		</td>
 	</tr>
 </table>

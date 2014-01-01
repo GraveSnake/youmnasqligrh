@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<li><a href="main"><spring:message code="menu.home"/></a></li>
+		<li><a href="index"><spring:message code="menu.home"/></a></li>
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
 		<li><a href="adminManagers"><spring:message code="menu.man"/></a></li>
 		</sec:authorize>
