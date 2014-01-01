@@ -19,26 +19,16 @@ public class MainController {
 
 	@RequestMapping("/main")
 	public ModelAndView main(){
-		return new ModelAndView("main");
-	}
-	
-	@RequestMapping("/home")
-	public ModelAndView home(){
-		return new ModelAndView("home");
+		return new ModelAndView(main);
 	}
 
-	@RequestMapping("/managers")
+	@RequestMapping("/adminManagers")
 	public ModelAndView managers(){
-		return new ModelAndView("managers");
+		return new ModelAndView("admin_managers");
 	}
 	@RequestMapping("/collaborators")
 	public ModelAndView collaborators(){
 		return new ModelAndView("collaborators");
-	}
-	
-	@RequestMapping("/collab_admin")
-	public ModelAndView collab_admin(){
-		return new ModelAndView("collab_admin");
 	}
 	
 	@RequestMapping("/reporting")

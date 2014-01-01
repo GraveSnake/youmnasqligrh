@@ -1,12 +1,12 @@
-package ma.youmna.ensao.service.impl;
+package ma.ensao.youmna.service.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import ma.ensa.youmna.service.CollaborateurService;
 import ma.ensao.youmna.dao.CollaborateurDao;
 import ma.ensao.youmna.model.Collaborateur;
+import ma.ensao.youmna.service.CollaborateurService;
 
 @Service
 public class CollaborateurServiceImpl implements CollaborateurService{

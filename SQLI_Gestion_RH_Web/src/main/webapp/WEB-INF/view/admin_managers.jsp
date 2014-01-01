@@ -16,20 +16,11 @@
 </head>
 <body>
 	<%@include file="header"%>
-
 	<div id="bodydiv">
-		<sec:authorize ifAllGranted='ROLE_USER'>
-			<h3>All access !</h3>
-			<br />
-    Editing Collaborators without 3 persistent fields : salary etc ...
-  </sec:authorize>
-		<br />
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-			<h3>Admin zone !</h3>
+			<h3>Admin access only to manage Managers!</h3>
 			<br />
-			<%@include file="admin_collab"%>
 		</sec:authorize>
-
 		<p>
 			<a href="j_spring_security_logout">Logout</a>
 		</p>

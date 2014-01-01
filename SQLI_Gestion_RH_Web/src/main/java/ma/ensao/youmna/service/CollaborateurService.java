@@ -1,4 +1,4 @@
-package ma.ensa.youmna.service;
+package ma.ensao.youmna.service;
 
 import java.util.List;
 

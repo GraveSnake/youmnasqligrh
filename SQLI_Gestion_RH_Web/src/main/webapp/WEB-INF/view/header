@@ -1,0 +1,14 @@
+<nav>
+	<ul>
+		<li><a href="main"><spring:message code="menu.home"/></a></li>
+		<sec:authorize ifAllGranted='ROLE_ADMIN'>
+		<li><a href="adminManagers"><spring:message code="menu.man"/></a></li>
+		</sec:authorize>
+		<li><a href="collaborators"><spring:message code="menu.collaborators"/></a></li>
+		<li><a href="reporting"><spring:message code="menu.report"/></a></li>
+		<sec:authorize ifAllGranted='ROLE_ADMIN'>
+		<li><a href="administration"><spring:message code="menu.admin"/></a></li>
+		</sec:authorize>
+		<li><a href="account"><spring:message code="menu.account"/></a></li>
+	</ul>
+</nav>
