@@ -7,8 +7,11 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<context:component-scan base-package="ma.ensao.youmna.controller" />
+    <context:component-scan base-package="ma.ensao.youmna.controller" />
+    <context:component-scan base-package="ma.ensao.youmna.service.impl" />
+    
     <mvc:annotation-driven />
+    
 	<mvc:resources mapping="/resources/**" location="/resources/" />
     
 	
@@ -17,7 +20,7 @@
 	</bean>
 	
 	<bean id="securityContextAccessor"
-    class="ma.ensao.youmna.util.SecurityContextAccessorImpl" />
+    class="ma.ensao.youmna.service.impl.SecurityContextAccessorImpl" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

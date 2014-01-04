@@ -1,4 +1,6 @@
-package ma.ensao.youmna.util;
+package ma.ensao.youmna.service.impl;
+
+import ma.ensao.youmna.service.SecurityContextAccessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;

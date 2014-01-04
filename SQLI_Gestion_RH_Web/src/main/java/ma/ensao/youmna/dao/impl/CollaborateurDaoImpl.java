@@ -4,7 +4,6 @@ import java.util.List;
 
 import ma.ensao.youmna.dao.CollaborateurDao;
 import ma.ensao.youmna.model.Collaborateur;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,12 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 	public void updateCollaborateur(Collaborateur collaborateur) {
 		sessionFactory.getCurrentSession().update(collaborateur);
 
+	}
+	
+	public Collaborateur getCollaborateurByCompte(String login){
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur where login_compte = :login");
+		query.setParameter("login", login);
+		return (Collaborateur) query.uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")

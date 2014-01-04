@@ -15,8 +15,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
             classpath:database/dataSource.xml,
             classpath:database/Hibernate.xml,
             classpath:i18n/messageContext.xml,
-      		classpath:spring-security/login-security.xml, 
-      		classpath:spring-security/login-service.xml 
+      		classpath:spring-security/login-security.xml
       	</param-value>
 	</context-param>
 
@@ -64,6 +63,11 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<error-page>
 		<error-code>404</error-code>
 		<location>/WEB-INF/view/errors/404.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>405</error-code>
+		<location>/WEB-INF/view/errors/405.jsp</location>
 	</error-page>
 	
 </web-app>

@@ -1,6 +1,6 @@
 package ma.ensao.youmna.controller;
 
-import ma.ensao.youmna.util.SecurityContextAccessor;
+import ma.ensao.youmna.service.SecurityContextAccessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

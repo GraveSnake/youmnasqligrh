@@ -41,8 +41,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		</property>
 	</bean>
 	
-		<bean id="collaborateurDao"
+	<bean id="collaborateurDao"
 		class="ma.ensao.youmna.dao.impl.CollaborateurDaoImpl"
+		autowire="byName" />
+		
+	<bean id="compteDao"
+		class="ma.ensao.youmna.dao.impl.CompteDaoImpl"
 		autowire="byName" />
 		
 </beans>

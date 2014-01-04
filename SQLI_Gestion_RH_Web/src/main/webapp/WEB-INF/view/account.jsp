@@ -18,7 +18,7 @@
 	<%@include file="header"%>
 
 	<div id="bodydiv">
-    <sec:authorize ifAllGranted='ROLE_USER'>  
+    <sec:authorize ifAnyGranted='ROLE_USER,ROLE_ADMIN'>  
     <h2>Everyone access My Account To manage their account :)</h2><br/>  
   </sec:authorize>
 <p>

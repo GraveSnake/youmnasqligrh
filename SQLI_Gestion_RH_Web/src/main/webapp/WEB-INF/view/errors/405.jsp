@@ -3,7 +3,7 @@
 <HTML>
 
 <HEAD>
-<TITLE><spring:message code="error.notfound" /></TITLE>
+<TITLE><spring:message code="error.notallow" /></TITLE>
 </HEAD>
 
 <BODY>
@@ -28,7 +28,7 @@
 		<tr>
 			<td align="center">
 			<span>
-			 <br><spring:message code="error.pagenotfound"/>
+			 <br><spring:message code="error.notallow"/>
 					<br> <br> <br>
 			</span> 
 			</td>

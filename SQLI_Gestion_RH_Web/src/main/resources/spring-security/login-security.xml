@@ -4,37 +4,59 @@
        xmlns:beans='http://www.springframework.org/schema/beans'
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-
-   <beans:import resource='login-service.xml'/>
-   <security:http>  
-       <security:intercept-url pattern="/resources/**" filters="none"/>
-       <security:intercept-url pattern="/login" access="ROLE_ANONYMOUS"/>
-       <security:intercept-url pattern='/admin*' access='ROLE_ADMIN' />
-       <security:intercept-url pattern="/**" access="ROLE_USER"/>
-<!--      <intercept-url pattern='/home*' access='ROLE_USER,ROLE_ADMIN' />   -->
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+   
+   
+   <security:http security="none" pattern="/resources/**" />
+   
+   <security:http create-session="stateless" name="restSecurity" entry-point-ref="authenticationEntryPoint"
+          authentication-manager-ref="authenticationManager" pattern="/rest/**">
+          <security:custom-filter ref="customRestSecurityFilter"
+			position="BASIC_AUTH_FILTER" />
+       <security:intercept-url pattern="/rest/login" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
+       <security:intercept-url pattern='/rest/admin*' access='ROLE_ADMIN' />
+       <security:intercept-url pattern="/rest/**" access="ROLE_USER,ROLE_ADMIN"/>
+   </security:http>
+   
+	<security:http name="defaultSecurity" authentication-manager-ref="authenticationManager">
+     <security:intercept-url pattern="/login" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
+     <security:intercept-url pattern='/admin*' access='ROLE_ADMIN' />
+     <security:intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN"/>
      <security:form-login login-page='/login' default-target-url='/index' 
          authentication-failure-url='/login?error=true'/>
-<!--          login-processing-url="/rest/security/login-processing"  -->
-
      <security:remember-me/>
      <security:logout/>
    </security:http>
-   <security:authentication-manager>  
-     <security:authentication-provider>  
-       <security:user-service>  
-         <security:user name='admin' password='admin' authorities='ROLE_ADMIN,ROLE_USER,ROLE_ANONYMOUS' />  
-         <security:user name='user' password='user' authorities='ROLE_USER,ROLE_ANONYMOUS' />  
-       </security:user-service>  
-<!--        <jdbc-user-service data-source-ref='dataSource'   -->
-<!--            users-by-username-query='select username,password, 'true' as enabled from USER_DETAILS where username=?'   -->
-<!--            authorities-by-username-query='select USER_DETAILS.username , USER_AUTH.AUTHORITY as authorities from USER_DETAILS,USER_AUTH   -->
-<!--             where USER_DETAILS.username = ? AND USER_DETAILS.username=USER_AUTH.USERNAME ' /> -->
+   
+   <security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="restAuthenticationProvider" />
+	</security:authentication-manager>
+	
+   	<bean id="customRestSecurityFilter"
+		class="ma.ensao.youmna.util.CustomRestSecurityFilter">
+		<constructor-arg name="authenticationManager" ref="authenticationManager" />
+	</bean>
+	
+   	<bean id="restAuthenticationProvider"
+		class="ma.ensao.youmna.util.RestAuthenticationProvider">
+	</bean>
+	
+   	<bean id="authenticationEntryPoint"
+		class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
+		<property name="realmName" value="Username: login Password: ****" />
+	</bean>
+	
+   <security:authentication-manager alias="default">  
+     <security:authentication-provider>
+       <security:jdbc-user-service data-source-ref='dataSource'  
+           users-by-username-query='select login as username,password, active as enabled from Compte where login=?'  
+           authorities-by-username-query='select login as username,authorities from Compte where login=?' />
      </security:authentication-provider>  
    </security:authentication-manager>  
    
    <bean id="authenticationTrustResolver"
         class="org.springframework.security.authentication.AuthenticationTrustResolverImpl" />
-	
+
 </beans>

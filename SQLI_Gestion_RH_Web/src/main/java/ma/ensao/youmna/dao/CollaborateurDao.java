@@ -14,6 +14,8 @@ public interface CollaborateurDao {
 	
 	void updateCollaborateur(Collaborateur collaborateur);
 	
+	Collaborateur getCollaborateurByCompte(String login);
+	
 	List<Collaborateur> getAllCollaborateurs();
 
 }
