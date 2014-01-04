@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="ma.ensao.youmna.Main_Loading"
+            android:name="ma.ensao.youmna.LoadingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -24,8 +24,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="Main_Login" android:label="@string/app_name"></activity>
-        
+        <activity
+            android:name="ma.ensao.youmna.LoginActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="ma.ensao.youmna.manageListActivity"
+            android:label="@string/title_manage_list" >
+        </activity>
+        <activity
+            android:name="ma.ensao.youmna.manageDetailActivity"
+            android:label="@string/title_manage_detail"
+            android:parentActivityName=".manageListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".manageListActivity" />
+        </activity>
     </application>
 
 </manifest>

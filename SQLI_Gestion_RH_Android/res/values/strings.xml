@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">SQLI RH</string>
-    <string name="dummy_content">SQLI Group\nGestion RH</string>
+    <string name="title_manage_list">manage</string>
+    <string name="title_manage_detail">manage Detail</string>
+    <string name="BaseURL">http://192.168.1.1/rest</string>
+    <string name="invalidLogin">Invalid Login !</string>
 
 </resources>

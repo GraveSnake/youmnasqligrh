@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-public class Main_Loading extends Activity {
+public class LoadingActivity extends Activity {
    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class Main_Loading extends Activity {
 
         @Override
         protected void onPostExecute( Void result ) {
-            final Intent intent = new Intent( Main_Loading.this, Main_Login.class );
+            final Intent intent = new Intent( LoadingActivity.this, LoginActivity.class );
             startActivity( intent );
             finish();
         }
