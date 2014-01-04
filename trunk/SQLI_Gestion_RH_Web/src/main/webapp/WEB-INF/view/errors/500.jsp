@@ -34,7 +34,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td align="center"><a href="index"><spring:message code="error.back"/></a></td>
+			<td align="center">
+				<a href="${pageContext.request.contextPath}/index"><spring:message code="error.back"/></a></td>
 		</tr>
 	</table>
 
