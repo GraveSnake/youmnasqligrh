@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +25,9 @@ public class Diplome {
 	private String diplomeType;
 	@Column(name = "promotion", nullable = false)
 	private Integer promotion;
+	@ManyToOne
+	@JoinColumn(name="matricule")
+	private Collaborateur collaborateur;
 	public String getId() {
 		return id;
 	}
