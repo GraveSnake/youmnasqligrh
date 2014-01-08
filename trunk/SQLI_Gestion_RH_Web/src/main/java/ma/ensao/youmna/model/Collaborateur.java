@@ -1,16 +1,17 @@
 package ma.ensao.youmna.model;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * 
+ * Modèle Collaborateur
+ *
+ */
 @Entity
 @Table(name = "collaborateur")
 public class Collaborateur {
@@ -52,155 +53,250 @@ public class Collaborateur {
 	private String posteActuel4;
 	@Column(name = "salaire_actuel", nullable = false)
 	private Double salaireActuel;
-	@OneToMany
-	@JoinColumn(name="id_matricule", referencedColumnName="matricule")
-	private List<Diplome> diplomes;
-	@OneToMany
-	@JoinColumn(name="id_matricule", referencedColumnName="matricule")
-	private List<TechnoPossed> technologies;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Compte compte;
-	@Column(name="statut_manager")
-	private boolean statutManager;
+	@Column(name="role")
+	private String role;
+	/**
+	 * @return the matricule
+	 */
 	public String getMatricule() {
 		return matricule;
 	}
+	/**
+	 * @param matricule the matricule to set
+	 */
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
+	/**
+	 * @return the nom
+	 */
 	public String getNom() {
 		return nom;
 	}
+	/**
+	 * @param nom the nom to set
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	/**
+	 * @return the prenom
+	 */
 	public String getPrenom() {
 		return prenom;
 	}
+	/**
+	 * @param prenom the prenom to set
+	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	/**
+	 * @return the abreviation
+	 */
 	public String getAbreviation() {
 		return abreviation;
 	}
+	/**
+	 * @param abreviation the abreviation to set
+	 */
 	public void setAbreviation(String abreviation) {
 		this.abreviation = abreviation;
 	}
+	/**
+	 * @return the mgrhAncien
+	 */
 	public String getMgrhAncien() {
 		return mgrhAncien;
 	}
+	/**
+	 * @param mgrhAncien the mgrhAncien to set
+	 */
 	public void setMgrhAncien(String mgrhAncien) {
 		this.mgrhAncien = mgrhAncien;
 	}
+	/**
+	 * @return the mgrhActuel
+	 */
 	public String getMgrhActuel() {
 		return mgrhActuel;
 	}
+	/**
+	 * @param mgrhActuel the mgrhActuel to set
+	 */
 	public void setMgrhActuel(String mgrhActuel) {
 		this.mgrhActuel = mgrhActuel;
 	}
+	/**
+	 * @return the sexe
+	 */
 	public char getSexe() {
 		return sexe;
 	}
+	/**
+	 * @param sexe the sexe to set
+	 */
 	public void setSexe(char sexe) {
 		this.sexe = sexe;
 	}
+	/**
+	 * @return the site
+	 */
 	public String getSite() {
 		return site;
 	}
+	/**
+	 * @param site the site to set
+	 */
 	public void setSite(String site) {
 		this.site = site;
 	}
+	/**
+	 * @return the bu
+	 */
 	public String getBu() {
 		return bu;
 	}
+	/**
+	 * @param bu the bu to set
+	 */
 	public void setBu(String bu) {
 		this.bu = bu;
 	}
+	/**
+	 * @return the dateEmbauche
+	 */
 	public String getDateEmbauche() {
 		return dateEmbauche;
 	}
+	/**
+	 * @param dateEmbauche the dateEmbauche to set
+	 */
 	public void setDateEmbauche(String dateEmbauche) {
 		this.dateEmbauche = dateEmbauche;
 	}
+	/**
+	 * @return the moisBap
+	 */
 	public String getMoisBap() {
 		return moisBap;
 	}
+	/**
+	 * @param moisBap the moisBap to set
+	 */
 	public void setMoisBap(String moisBap) {
 		this.moisBap = moisBap;
 	}
+	/**
+	 * @return the dateDepart
+	 */
 	public String getDateDepart() {
 		return dateDepart;
 	}
+	/**
+	 * @param dateDepart the dateDepart to set
+	 */
 	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
+	/**
+	 * @return the ancienColl
+	 */
 	public boolean isAncienColl() {
 		return ancienColl;
 	}
+	/**
+	 * @param ancienColl the ancienColl to set
+	 */
 	public void setAncienColl(boolean ancienColl) {
 		this.ancienColl = ancienColl;
 	}
+	/**
+	 * @return the participeSi
+	 */
 	public boolean isParticipeSi() {
 		return participeSi;
 	}
+	/**
+	 * @param participeSi the participeSi to set
+	 */
 	public void setParticipeSi(boolean participeSi) {
 		this.participeSi = participeSi;
 	}
+	/**
+	 * @return the dateSi
+	 */
 	public String getDateSi() {
 		return dateSi;
 	}
+	/**
+	 * @param dateSi the dateSi to set
+	 */
 	public void setDateSi(String dateSi) {
 		this.dateSi = dateSi;
 	}
+	/**
+	 * @return the posteActuel3
+	 */
 	public String getPosteActuel3() {
 		return posteActuel3;
 	}
+	/**
+	 * @param posteActuel3 the posteActuel3 to set
+	 */
 	public void setPosteActuel3(String posteActuel3) {
 		this.posteActuel3 = posteActuel3;
 	}
+	/**
+	 * @return the posteActuel4
+	 */
 	public String getPosteActuel4() {
 		return posteActuel4;
 	}
+	/**
+	 * @param posteActuel4 the posteActuel4 to set
+	 */
 	public void setPosteActuel4(String posteActuel4) {
 		this.posteActuel4 = posteActuel4;
 	}
+	/**
+	 * @return the salaireActuel
+	 */
 	public Double getSalaireActuel() {
 		return salaireActuel;
 	}
+	/**
+	 * @param salaireActuel the salaireActuel to set
+	 */
 	public void setSalaireActuel(Double salaireActuel) {
 		this.salaireActuel = salaireActuel;
 	}
-	public List<Diplome> getDiplomes() {
-		return diplomes;
-	}
-	public void setDiplomes(List<Diplome> diplomes) {
-		this.diplomes = diplomes;
-	}
-
-	public List<TechnoPossed> getTechnologies() {
-		return technologies;
-	}
-	public void setTechnologies(List<TechnoPossed> technologies) {
-		this.technologies = technologies;
-	}
-	public boolean isStatutManager() {
-		return statutManager;
-	}
-	public void setStatutManager(boolean statutManager) {
-		this.statutManager = statutManager;
-	}
+	/**
+	 * @return the compte
+	 */
 	public Compte getCompte() {
 		return compte;
 	}
+	/**
+	 * @param compte the compte to set
+	 */
 	public void setCompte(Compte compte) {
 		this.compte = compte;
 	}
-	public boolean isStatut() {
-		return statutManager;
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
 	}
-	public void setStatut(boolean statut) {
-		this.statutManager = statut;
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
-	
+
 	
 }

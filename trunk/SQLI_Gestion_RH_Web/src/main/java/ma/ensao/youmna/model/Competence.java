@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,5 +19,8 @@ public class Competence {
 	private String competence;
 	@Column(name = "niveau_expertise", nullable = false)
 	private Integer niveauExpertise;
+	@ManyToOne
+	@JoinColumn(name="id", referencedColumnName="id", updatable=false, insertable=false)
+	private TechnoPossed technopossed;
 
 }
