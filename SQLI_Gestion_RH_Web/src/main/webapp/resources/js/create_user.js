@@ -73,7 +73,7 @@ $(function() {
 							"Create an account" : function() {
 								var bValid = true;
 								allFields.removeClass("ui-state-error");
-								bValid = bValid
+								/*bValid = bValid
 										&& checkRegexp(matricule,
 												/^([0-9]){5}$/,
 												"matricule doit etre un entier de 5 chiffres");
@@ -109,7 +109,12 @@ $(function() {
 												"poste actuel est un champ alphanumérique composé de trois caractères");
 								bValid = bValid
 										&& checkRegexp(salaire, /^[0-9]+$/,
-												"le salaire est un entier");
+												"le salaire est un entier");*/
+								if ( bValid ) {
+									//document.forms["createCollab"].submit();
+									$("#createCollab").submit();
+									$( this ).dialog( "close" );
+								}
 							},
 							Cancel : function() {
 								$(this).dialog("close");
@@ -144,7 +149,7 @@ $(function() {
 });
 
 var rowNum = 0;
-function addRow(frm) {
+function addRow() {
 	rowNum++;
 	var row = '<p id="rowNum'
 			+ rowNum

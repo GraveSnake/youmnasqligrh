@@ -13,9 +13,9 @@ import javax.persistence.Table;
 public class Diplome {
 	
 	@Id @GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	private String id;
-	@Column(name = "nom", nullable = false)
+	@Column(name = "nom")
 	private String nom;
 	@Column(name = "ecole", nullable = false)
 	private String ecole;
@@ -63,6 +63,18 @@ public class Diplome {
 	}
 	public void setPromotion(Integer promotion) {
 		this.promotion = promotion;
+	}
+	/**
+	 * @return the collaborateur
+	 */
+	public Collaborateur getCollaborateur() {
+		return collaborateur;
+	}
+	/**
+	 * @param collaborateur the collaborateur to set
+	 */
+	public void setCollaborateur(Collaborateur collaborateur) {
+		this.collaborateur = collaborateur;
 	}
 	
 	

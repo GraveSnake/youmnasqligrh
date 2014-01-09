@@ -34,8 +34,9 @@
   </sec:authorize>
 		<br />
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-			<%@include file="admin_collab"%>
+			<%@include file="admin_collab.jsp"%>
 			<br />
+			
 			<button id="create-user">Create new collaborator</button>
 		</sec:authorize>
 
