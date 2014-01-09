@@ -18,7 +18,6 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>ma.ensao.youmna.model.Compte</value>
 				<value>ma.ensao.youmna.model.Diplome</value>
 				<value>ma.ensao.youmna.model.Technologie</value>
-				<value>ma.ensao.youmna.model.TechnoPossed</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -40,13 +39,20 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<ref local="sessionFactory" />
 		</property>
 	</bean>
-	
-	<bean id="collaborateurDao"
-		class="ma.ensao.youmna.dao.impl.CollaborateurDaoImpl"
+
+	<bean id="collaborateurDao" class="ma.ensao.youmna.dao.impl.CollaborateurDaoImpl"
 		autowire="byName" />
-		
-	<bean id="compteDao"
-		class="ma.ensao.youmna.dao.impl.CompteDaoImpl"
+
+	<bean id="compteDao" class="ma.ensao.youmna.dao.impl.CompteDaoImpl"
 		autowire="byName" />
-		
+
+	<bean id="diplomeDao" class="ma.ensao.youmna.dao.impl.DiplomeDaoImpl"
+		autowire="byName" />
+
+	<bean id="competenceDao" class="ma.ensao.youmna.dao.impl.CompetenceDaoImpl"
+		autowire="byName" />
+
+	<bean id="technologieDao" class="ma.ensao.youmna.dao.impl.TechnologieDaoImpl"
+		autowire="byName" />
+
 </beans>

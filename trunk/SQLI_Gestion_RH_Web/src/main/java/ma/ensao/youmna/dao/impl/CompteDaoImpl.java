@@ -46,4 +46,8 @@ public class CompteDaoImpl implements CompteDao {
 		}
 	}
 
+	public void saveCompte(Compte compte) {
+		sessionFactory.getCurrentSession().save(compte);		
+	}
+
 }

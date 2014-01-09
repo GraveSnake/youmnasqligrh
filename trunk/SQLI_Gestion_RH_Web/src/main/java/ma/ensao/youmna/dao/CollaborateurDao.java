@@ -17,5 +17,6 @@ public interface CollaborateurDao {
 	Collaborateur getCollaborateurByCompte(String login);
 	
 	List<Collaborateur> getAllCollaborateurs();
+	 
 
 }

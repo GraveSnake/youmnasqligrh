@@ -1,11 +1,14 @@
 package ma.ensao.youmna.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -57,6 +60,13 @@ public class Collaborateur {
 	private Compte compte;
 	@Column(name="role")
 	private String role;
+	@Transient
+	private List<Diplome> DIPLOME;
+	@Transient
+	private List<Technologie> TECHNOLOGIE;
+	@Transient
+	private List<Competence> COMPETENCE;
+	
 	/**
 	 * @return the matricule
 	 */
@@ -297,6 +307,43 @@ public class Collaborateur {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	/**
+	 * @return the dIPLOME
+	 */
+	public List<Diplome> getDIPLOME() {
+		return DIPLOME;
+	}
+	/**
+	 * @param dIPLOME the dIPLOME to set
+	 */
+	public void setDIPLOME(List<Diplome> dIPLOME) {
+		DIPLOME = dIPLOME;
+	}
+	/**
+	 * @return the tECHNOLOGIE
+	 */
+	public List<Technologie> getTECHNOLOGIE() {
+		return TECHNOLOGIE;
+	}
+	/**
+	 * @param tECHNOLOGIE the tECHNOLOGIE to set
+	 */
+	public void setTECHNOLOGIE(List<Technologie> tECHNOLOGIE) {
+		TECHNOLOGIE = tECHNOLOGIE;
+	}
+	/**
+	 * @return the cOMPETENCE
+	 */
+	public List<Competence> getCOMPETENCE() {
+		return COMPETENCE;
+	}
+	/**
+	 * @param cOMPETENCE the cOMPETENCE to set
+	 */
+	public void setCOMPETENCE(List<Competence> cOMPETENCE) {
+		COMPETENCE = cOMPETENCE;
+	}
+	
+	
 	
 }

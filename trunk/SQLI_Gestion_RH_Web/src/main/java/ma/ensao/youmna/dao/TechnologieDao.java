@@ -12,5 +12,7 @@ public interface TechnologieDao {
 	
 	List<Technologie> getAllTechnologies();
 	
+	Technologie getTechnologieById(Long id);
+	
 
 }

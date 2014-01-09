@@ -13,5 +13,7 @@ public interface CompteDao {
 	Compte loadCompteByQuery(String condition) throws HibernateException;
 	
 	boolean refresh(Compte member) throws HibernateException;
+	
+	void saveCompte(Compte compte);
 
 }
