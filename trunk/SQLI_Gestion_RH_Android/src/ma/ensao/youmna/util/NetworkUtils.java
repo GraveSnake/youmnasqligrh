@@ -1,6 +1,7 @@
 package ma.ensao.youmna.util;
 
 import java.io.Serializable;
+
 import org.springframework.http.HttpAuthentication;
 import org.springframework.http.HttpBasicAuthentication;
 import org.springframework.http.HttpEntity;
@@ -11,9 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.util.Log;
 
 public class NetworkUtils {
 	
@@ -55,9 +58,11 @@ public class NetworkUtils {
 		
 		HttpEntity request = new HttpEntity(userDto, headers);
 		try{
-			ResponseEntity result = restTemplate.exchange(Constants.BASE_URL + "/rest/login", HttpMethod.POST,
+			Log.i("CALLING REST WITH ADDRESS : ", Constants.BASE_URL + "/login");
+			ResponseEntity result = restTemplate.exchange(Constants.BASE_URL + "/login", HttpMethod.POST,
 					request, User.class);
-			
+			Log.i("Exchange Success", "-----------------");
+
 			
 			return (User) result.getBody();
 		} catch(Exception e){

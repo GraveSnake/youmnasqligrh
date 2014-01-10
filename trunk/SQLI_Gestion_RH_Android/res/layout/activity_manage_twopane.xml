@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".manageListActivity" >
+    tools:context=".ManageListActivity" >
 
     <!--
     This layout is a two-pane layout for the manage
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/manage_list"
-        android:name="ma.ensao.youmna.manageListFragment"
+        android:name="ma.ensao.youmna.ManageListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

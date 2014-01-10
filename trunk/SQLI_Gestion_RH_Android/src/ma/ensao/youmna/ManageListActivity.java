@@ -8,19 +8,19 @@ import android.support.v4.app.FragmentActivity;
  * An activity representing a list of manage. This activity has different
  * presentations for handset and tablet-size devices. On handsets, the activity
  * presents a list of items, which when touched, lead to a
- * {@link manageDetailActivity} representing item details. On tablets, the
+ * {@link ManageDetailActivity} representing item details. On tablets, the
  * activity presents the list of items and item details side-by-side using two
  * vertical panes.
  * <p>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link manageListFragment} and the item details (if present) is a
- * {@link manageDetailFragment}.
+ * {@link ManageListFragment} and the item details (if present) is a
+ * {@link ManageDetailFragment}.
  * <p>
  * This activity also implements the required
- * {@link manageListFragment.Callbacks} interface to listen for item selections.
+ * {@link ManageListFragment.Callbacks} interface to listen for item selections.
  */
-public class manageListActivity extends FragmentActivity implements
-		manageListFragment.Callbacks {
+public class ManageListActivity extends FragmentActivity implements
+		ManageListFragment.Callbacks {
 
 	/**
 	 * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -42,7 +42,7 @@ public class manageListActivity extends FragmentActivity implements
 
 			// In two-pane mode, list items should be given the
 			// 'activated' state when touched.
-			((manageListFragment) getSupportFragmentManager().findFragmentById(
+			((ManageListFragment) getSupportFragmentManager().findFragmentById(
 					R.id.manage_list)).setActivateOnItemClick(true);
 		}
 
@@ -50,7 +50,7 @@ public class manageListActivity extends FragmentActivity implements
 	}
 
 	/**
-	 * Callback method from {@link manageListFragment.Callbacks} indicating that
+	 * Callback method from {@link ManageListFragment.Callbacks} indicating that
 	 * the item with the given ID was selected.
 	 */
 	@Override
@@ -60,8 +60,8 @@ public class manageListActivity extends FragmentActivity implements
 			// adding or replacing the detail fragment using a
 			// fragment transaction.
 			Bundle arguments = new Bundle();
-			arguments.putString(manageDetailFragment.ARG_ITEM_ID, id);
-			manageDetailFragment fragment = new manageDetailFragment();
+			arguments.putString(ManageDetailFragment.ARG_ITEM_ID, id);
+			ManageDetailFragment fragment = new ManageDetailFragment();
 			fragment.setArguments(arguments);
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.manage_detail_container, fragment).commit();
@@ -69,8 +69,8 @@ public class manageListActivity extends FragmentActivity implements
 		} else {
 			// In single-pane mode, simply start the detail activity
 			// for the selected item ID.
-			Intent detailIntent = new Intent(this, manageDetailActivity.class);
-			detailIntent.putExtra(manageDetailFragment.ARG_ITEM_ID, id);
+			Intent detailIntent = new Intent(this, ManageDetailActivity.class);
+			detailIntent.putExtra(ManageDetailFragment.ARG_ITEM_ID, id);
 			startActivity(detailIntent);
 		}
 	}

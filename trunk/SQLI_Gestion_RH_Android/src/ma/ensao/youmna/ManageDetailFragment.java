@@ -11,10 +11,10 @@ import ma.ensao.youmna.dummy.DummyContent;
 
 /**
  * A fragment representing a single manage detail screen. This fragment is
- * either contained in a {@link manageListActivity} in two-pane mode (on
- * tablets) or a {@link manageDetailActivity} on handsets.
+ * either contained in a {@link ManageListActivity} in two-pane mode (on
+ * tablets) or a {@link ManageDetailActivity} on handsets.
  */
-public class manageDetailFragment extends Fragment {
+public class ManageDetailFragment extends Fragment {
 	/**
 	 * The fragment argument representing the item ID that this fragment
 	 * represents.
@@ -30,7 +30,7 @@ public class manageDetailFragment extends Fragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public manageDetailFragment() {
+	public ManageDetailFragment() {
 	}
 
 	@Override

@@ -6,7 +6,6 @@
     android:background="@color/White"
     android:orientation="vertical" >
 
-    
     <EditText
         android:id="@+id/loginEditText"
         android:layout_width="wrap_content"
@@ -15,9 +14,8 @@
         android:layout_centerVertical="true"
         android:ems="14"
         android:fontFamily="sans-serif"
-        android:hint="username"
+        android:hint="Username"
         android:inputType="text"
-        android:text="Login"
         android:textSize="16sp" />
     
       <EditText
@@ -29,9 +27,8 @@
           android:layout_below="@+id/loginEditText"
           android:layout_marginTop="20dp"
           android:ems="10"
-          android:hint="mot de passe"
-          android:inputType="textPassword"
-          android:text="password" >
+          android:hint="Password"
+          android:inputType="textPassword" >
 
     </EditText>
 
@@ -44,17 +41,6 @@
         android:layout_centerHorizontal="true"
         android:padding="20dp"
         android:src="@drawable/icon_sqli" />
-        
-    <TextView
-        android:id="@+id/appname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/loginEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/appimage"        
-        android:text="@string/app_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="26sp" />
 
     <Button
         android:id="@+id/signin"

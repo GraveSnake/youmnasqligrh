@@ -3,6 +3,6 @@
     android:id="@+id/manage_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".manageDetailActivity"
+    tools:context=".ManageDetailActivity"
     tools:ignore="MergeRootFrame" />
 
