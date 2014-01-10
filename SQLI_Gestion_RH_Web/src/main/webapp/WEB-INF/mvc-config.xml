@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="ma.ensao.youmna.controller" />
-	<context:component-scan base-package="ma.ensao.youmna.service.impl" />
 
 	<mvc:annotation-driven />
-
+	<context:annotation-config />
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 
@@ -24,16 +25,30 @@
 		class="ma.ensao.youmna.service.impl.SecurityContextAccessorImpl" />
 
 	<bean id="collaborateurService" class="ma.ensao.youmna.service.impl.CollaborateurServiceImpl" />
-
 	<bean id="competenceService" class="ma.ensao.youmna.service.impl.CompetenceServiceImpl" />
-
 	<bean id="compteService" class="ma.ensao.youmna.service.impl.CompteServiceImpl" />
-
 	<bean id="diplomeService" class="ma.ensao.youmna.service.impl.DiplomeServiceImpl" />
-
 	<bean id="technologieService" class="ma.ensao.youmna.service.impl.TechnologieServiceImpl" />
 
+	<!-- Register JSON Converter for RESTful Web Service -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	
 
+	<!-- Http Json MessageConverter -->
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
+	
+	<!-- URLs auto-mappings -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->

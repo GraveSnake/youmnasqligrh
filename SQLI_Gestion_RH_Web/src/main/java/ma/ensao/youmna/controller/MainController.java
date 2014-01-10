@@ -85,7 +85,7 @@ public class MainController {
 	//Show all collaborators
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
-		  ModelAndView mav = new ModelAndView("collaborators");  
+		ModelAndView mav = new ModelAndView("collaborators");  
 		  //List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs();  
 		  //mav.addObject("newCollab", new Collaborateur());		  
 		 // mav.addObject("listCollab", collaborateur);

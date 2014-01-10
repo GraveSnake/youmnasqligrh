@@ -18,7 +18,10 @@ public class AccountController {
 	@RequestMapping(value="/rest/login",method=RequestMethod.POST,consumes="application/json")
 	public @ResponseBody User login(@RequestBody User userDto){
 		try {
+			System.out.println("Receiving Request....");
+			System.out.println("infos : "+userDto.getUsername()+" "+userDto.getPassword());
 			User result = accountService.loginAccount(userDto);
+			System.out.println("After Logging : returning result.");
 			return result;
 		} catch (Exception e) {
 			return null;

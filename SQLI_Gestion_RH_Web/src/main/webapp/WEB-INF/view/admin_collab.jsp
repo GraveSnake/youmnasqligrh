@@ -7,13 +7,13 @@
 	<form:form action="collaborators" method="post" id="createCollab"
 		commandName="newCollab">
 		<ul>
-			<li><a href="#tabs-1">DonnÃ©es personelles</a></li>
+			<li><a href="#tabs-1">Données personelles</a></li>
 			<li><a href="#tabs-2">Diplomes</a></li>
 			<li><a href="#tabs-3">Technologies</a></li>
 			<li><a href="#tabs-4">Compte</a></li>
 		</ul>
 		<div id="tabs-1">
-			<div id="dialog-form" title="DonnÃ©es personelles">
+			<div id="dialog-form" title="Données personelles">
 				<p class="validateTips" style="color: red">All form fields are
 					required.</p>
 				<table bgcolor="lightblue" style="border-collapse: none;">
