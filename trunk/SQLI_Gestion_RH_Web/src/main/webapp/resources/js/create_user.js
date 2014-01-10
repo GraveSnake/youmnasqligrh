@@ -60,72 +60,44 @@ $(function() {
 
 			});
 
-	$("#tabs")
-			.dialog(
-					{
-						autoOpen : false,
-						height : 500,
-						width : 850,
-						modal : true,
-						resizable : false,
+	$("#tabs").dialog({
+		autoOpen : false,
+		height : 500,
+		width : 880,
+		modal : true,
+		resizable : false,
+		
+		buttons : {
+			"Create an account" : function() {
+				var bValid = true;
+				allFields.removeClass("ui-state-error");
+				
+				  bValid = bValid && checkRegexp(matricule, /^([0-9]){5}$/, "matricule doit etre un entier de 5 chiffres"); 
+				  bValid = bValid && checkRegexp(nom, /^[a-zA-Z]([a-zA-Z_])+$/, "le nom ne peut pas etre vide et commence par une lettre"); 
+				  bValid = bValid && checkRegexp(prenom, /^[a-z]([a-z_])+$/, "le prenom ne peut pas etre vide et commence par une lettre");
+				  bValid = bValid && checkRegexp(abreviation, /^[a-z]([0-9a-z_]){2}$/, "l'abreviation est un text de 3 caractères"); 
+				  bValid = bValid && checkRegexp(bu, /^[a-z]([0-9a-z]){3}$/, "bu est un champ alphanumérique composé de quatre caractères"); 
+				  bValid = bValid && checkRegexp( date_embauche,/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,"date embauche invalid : jj/mm/aaaa"); 
+				  bValid = bValid && checkRegexp( date_depart,/(^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2}))?$/,"date depart invalid : jj/mm/aaaa");
+				  bValid = bValid && checkRegexp(poste_actuel, /^[a-z]([0-9a-z]){2}$/, "poste actuel est un champ alphanumérique composé de trois caractères");
+				  bValid = bValid && checkRegexp(salaire,/^[0-9]+$/, "le salaire est un entier");
+				 
+				if (bValid) {
+					 document.forms["createCollab"].submit();
+					$(this).dialog("close");
+				}
+			},
+			Cancel : function() {
+				$(this).dialog("close");
+			}
 
-						buttons : {
-							"Create an account" : function() {
-								var bValid = true;
-								allFields.removeClass("ui-state-error");
-								/*bValid = bValid
-										&& checkRegexp(matricule,
-												/^([0-9]){5}$/,
-												"matricule doit etre un entier de 5 chiffres");
-								bValid = bValid
-										&& checkRegexp(nom,
-												/^[a-zA-Z]([a-zA-Z_])+$/,
-												"le nom ne peut pas etre vide et commence par une lettre");
-								bValid = bValid
-										&& checkRegexp(prenom,
-												/^[a-z]([a-z_])+$/,
-												"le prenom ne peut pas etre vide et commence par une lettre");
-								bValid = bValid
-										&& checkRegexp(abreviation,
-												/^[a-z]([0-9a-z_]){2}$/,
-												"l'abreviation est un text de 3 caractères");
-								bValid = bValid
-										&& checkRegexp(bu,
-												/^[a-z]([0-9a-z]){3}$/,
-												"bu est un champ alphanumérique composé de quatre caractères");
-								bValid = bValid
-										&& checkRegexp(
-												date_embauche,
-												/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/,
-												"date embauche invalid : jj/mm/aaaa");
-								bValid = bValid
-										&& checkRegexp(
-												date_depart,
-												/(^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2}))?$/,
-												"date depart invalid : jj/mm/aaaa");
-								bValid = bValid
-										&& checkRegexp(poste_actuel,
-												/^[a-z]([0-9a-z]){2}$/,
-												"poste actuel est un champ alphanumérique composé de trois caractères");
-								bValid = bValid
-										&& checkRegexp(salaire, /^[0-9]+$/,
-												"le salaire est un entier");*/
-								if ( bValid ) {
-									//document.forms["createCollab"].submit();
-									$("#createCollab").submit();
-									$( this ).dialog( "close" );
-								}
-							},
-							Cancel : function() {
-								$(this).dialog("close");
-							}
+		},
+		close : function() {
+			allFields.val("").removeClass("ui-state-error");
+		}
+		
 
-						},
-						close : function() {
-							allFields.val("").removeClass("ui-state-error");
-						}
-
-					});
+	});
 
 	$("#create-user").button().click(function() {
 		$("#tabs").dialog("open");
@@ -146,6 +118,8 @@ $(function() {
 	});
 
 	$("#date_embauche").datepicker();
+	$("#date_depart").datepicker();
+	$("#date_particp").datepicker();
 });
 
 var rowNum = 0;
