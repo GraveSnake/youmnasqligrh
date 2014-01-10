@@ -31,23 +31,25 @@ public class AccountServiceImpl implements AccountService {
 
 	@Transactional
 	public User loginAccount(User userDto) throws NoSuchAlgorithmException, HibernateException {
-
+		System.out.println("inside loginAccount()");
 		MessageDigest md = MessageDigest.getInstance("MD5");
+		System.out.println("After getting MessageDigest");
 		String hash;
 		byte[] bytehash;
-
-		Compte member = compteDao.loadCompteByQuery("from Compte where login ='" + userDto.getUsername() + "' AND password ='"
-						+ userDto.getPassword() + "'");
-		
+		System.out.println("Now loading user from database");
+		Compte member = compteDao.getCompteByLoginPassword(userDto.getUsername(), userDto.getPassword());
+		System.out.println("After Loading User member");
 		if (member != null) {
 			compteDao.refresh(member);
 			bytehash = md.digest((member.getEmail() + new Date()
 					.getTime()).getBytes());
 			hash = new String(Hex.encode(bytehash));
+			System.out.println("HASH : "+hash);
 			member.setHash(hash);
 			compteDao.updateCompte(member);
 			Collaborateur collab = collabDao.getCollaborateurByCompte(member.getLogin());
 			
+			System.out.println("Filling User Response with Collaborator infos...");
 			userDto = new User();
 			userDto.setPassword(hash);
 			userDto.setAuthority(member.getAuthorities());
@@ -55,8 +57,14 @@ public class AccountServiceImpl implements AccountService {
 			userDto.setNom(collab.getNom());
 			userDto.setPrenom(collab.getPrenom());
 			
+			System.out.println(collab.getMatricule());
+			System.out.println(member.getAuthorities());
+			System.out.println(collab.getNom());
+			System.out.println(collab.getPrenom());
+
 			return userDto;
 		} else {
+			System.out.println("Member NULL !!");
 			return null;
 		}
 		

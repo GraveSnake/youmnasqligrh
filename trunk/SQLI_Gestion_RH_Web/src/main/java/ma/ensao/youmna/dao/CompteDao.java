@@ -10,7 +10,7 @@ public interface CompteDao {
 	
 	void updateCompte(Compte compte);
 	
-	Compte loadCompteByQuery(String condition) throws HibernateException;
+	Compte getCompteByLoginPassword(String login, String passwd) throws HibernateException;
 	
 	boolean refresh(Compte member) throws HibernateException;
 	
