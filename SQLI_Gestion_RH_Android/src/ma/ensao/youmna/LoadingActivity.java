@@ -6,6 +6,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
+/**
+ * 
+ * Loading Activity
+ *
+ */
 public class LoadingActivity extends Activity {
    
     @Override
@@ -31,7 +36,6 @@ public class LoadingActivity extends Activity {
         @Override
         protected Void doInBackground( Void... arg0 ) {
 
-            // json1 = getServerData( URLCATEGORIE );
         	try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -43,8 +47,6 @@ public class LoadingActivity extends Activity {
             {
                 for ( int i = 0; i < 100; i++ ) {
                 }
-                // la méthode publishProgress met à jour l'interface en
-                // invoquant la méthode onProgressUpdate
                 publishProgress( progress );
                 progress++;
             }

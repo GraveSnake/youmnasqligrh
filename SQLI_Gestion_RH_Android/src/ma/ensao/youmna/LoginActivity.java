@@ -8,6 +8,7 @@ import android.accounts.AccountManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -18,6 +19,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * 
+ * Login Activity
+ *
+ */
 public class LoginActivity extends Activity {
 
 	private ProgressDialog progressDialog;
@@ -44,7 +50,7 @@ public class LoginActivity extends Activity {
 			NetworkUtils
 					.prepareAuthHeader(getApplicationContext(), accounts[0]);
 //			UserDataUtils.prepareUserData(getApplicationContext(), accounts[0]);
-			Intent intent = new Intent(this, manageListActivity.class);
+			Intent intent = new Intent(this, ManageListActivity.class);
 			startActivity(intent);
 			finish();
 		}
@@ -63,13 +69,13 @@ public class LoginActivity extends Activity {
 				.getText().toString();
 		
 		if (!TextUtils.isEmpty(login) && !TextUtils.isEmpty(password)) {
-			LoginThread loginThread = new LoginThread();
+			LoginThread loginThread = new LoginThread(this);
 			loginThread.execute(login, password);
 			progressDialog = ProgressDialog.show(LoginActivity.this, "",
 					"Connexion en cours...");
 
 		} else {
-			Toast.makeText(getApplicationContext(), getResources().getString(R.string.invalidLogin),
+			Toast.makeText(this, getResources().getString(R.string.invalidLogin),
 					Toast.LENGTH_SHORT);
 			Log.i("error", "validation");
 		}
@@ -78,6 +84,11 @@ public class LoginActivity extends Activity {
 	
 	private class LoginThread extends AsyncTask<String, Integer, Account> {
 
+	    private final Context context;
+
+		public LoginThread(Context context) {
+			this.context = context;
+		}
 		@Override
 		protected Account doInBackground(String... params) {
 
@@ -106,6 +117,8 @@ public class LoginActivity extends Activity {
 					userData.putString(Constants.USER_AUTHORITY,
 							userDataDto.getAuthority() + "");
 
+					Log.i("info","beforeAddAccountExplicity");
+					
 					if (accountManager.addAccountExplicitly(account, password,
 							userData)) {
 						NetworkUtils.prepareAuthHeader(getApplicationContext(),
@@ -145,8 +158,8 @@ public class LoginActivity extends Activity {
 		@Override
 		protected void onPostExecute(Account result) {
 			if (result != null) {
-				Intent intent = new Intent(getApplicationContext(),
-						manageListActivity.class);
+				Intent intent = new Intent(context,
+						ManageListActivity.class);
 				startActivity(intent);
 
 				progressDialog.dismiss();
