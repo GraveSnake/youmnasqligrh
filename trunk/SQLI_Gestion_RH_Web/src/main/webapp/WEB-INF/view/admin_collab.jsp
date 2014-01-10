@@ -1,55 +1,11 @@
 <%@include file="taglib_includes.jsp"%>
-<style>
-body {
-	font-size: 62.5%;
-}
 
-input.text {
-	margin-bottom: 14px;
-	width: 100%;
-	padding: .4em;
-}
-
-fieldset {
-	padding: 0;
-	border: 0;
-	margin-top: 25px;
-}
-
-h1 {
-	font-size: 1.2em;
-	margin: .6em 0;
-}
-
-div#users-contain {
-	width: 350px;
-	margin: 20px 0;
-}
-
-div#users-contain table {
-	margin: 1em 0;
-	border-collapse: collapse;
-	width: 100%;
-}
-
-div#users-contain table td,div#users-contain table th {
-	border: 1px solid #eee;
-	padding: .6em 10px;
-	text-align: left;
-}
-
-.ui-dialog .ui-state-error {
-	padding: .3em;
-}
-
-.validateTips {
-	border: 4px solid transparent;
-	padding: 0.3em;
-}
-</style>
-
+<link
+	href="${pageContext.request.contextPath}/resources/css/createUser_style.css"
+	rel="stylesheet" type="text/css" />
 <div id="tabs" title="Creer un nouveau collaborateur">
-	<form:form action="collaborators" method="post" id="createCollab">
+	<form:form action="collaborators" method="post" id="createCollab"
+		commandName="newCollab">
 		<ul>
 			<li><a href="#tabs-1">Données personelles</a></li>
 			<li><a href="#tabs-2">Diplomes</a></li>
@@ -58,89 +14,99 @@ div#users-contain table td,div#users-contain table th {
 		</ul>
 		<div id="tabs-1">
 			<div id="dialog-form" title="Données personelles">
-				<p class="validateTips">All form fields are required.</p>
-
-				<label for="matricule">matricule</label>
-				<form:input type="text" path="matricule"
-					class="text ui-widget-content ui-corner-all" />
-				<label for="nom">nom</label>
-				<form:input path="nom" />
-				<label for="prenom">prenom</label>
-				<form:input path="prenom"
-					class="text ui-widget-content ui-corner-all" />
-				<label for="abreviation">abreviation</label>
-				<form:input path="abreviation"
-					class="text ui-widget-content ui-corner-all" />
-				<label for="Ancien_manager">Ancien manager</label>
-				<form:input path="mgrhAncien" type="text" name="Ancien_manager"
-					id="Ancien_manager" value=""
-					class="text ui-widget-content ui-corner-all" />
-				<label for="manager_actuel">manager actuel</label>
-				<form:input path="mgrhActuel" type="text" name="manager_actuel"
-					id="manager_actuel" value=""
-					class="text ui-widget-content ui-corner-all" />
-				<label for="sexe">sexe</label>
-				<form:select path="sexe" id="combobox"
-					class="text ui-widget-content ui-corner-all">
-					<option value="">F</option>
-					<option value="">M</option>
-				</form:select>
-				<label for="site">site</label>
-				<form:input path="site" type="text" name="site" id="site"
-					value="Rabat" class="text ui-widget-content ui-corner-all" />
-				<label for="bu">bu</label>
-				<form:input path="bu" type="text" name="bu" id="bu" value=""
-					class="text ui-widget-content ui-corner-all" />
-				<label for="salaire_actuel">salaire actuel</label>
-				<form:input path="salaireActuel" type="text" name="salaire_actuel"
-					id="salaire_actuel" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="Date_embauche">Date embauche</label>
-				<form:input path="dateEmbauche" type="text" name="Date_embauche"
-					id="date_embauche" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="mois_bap">Mois bap</label>
-				<form:input path="moisBap" type="text" name="mois_bap" id="mois_bap"
-					value="" class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="date_depart">Date de depart</label>
-				<form:input path="dateDepart" type="text" name="date_depart"
-					id="date_depart" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="ac">Ancien collaborateur</label>
-				<form:checkbox path="ancienColl" checked="checked" name="bu" />
-				<label for="participe_si">Participé au séminaire
-					d'intégration</label>
-				<form:input path="participeSi" type="text" name="participe_si"
-					id="participe_si" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="date_particp">Date participation</label>
-				<form:input path="dateSi" type="text" name="date_particp"
-					id="date_particp" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
-				<label for="poste_actuel">Poste actuel</label>
-				<form:input path="posteActuel3" type="text" name="poste_actuel"
-					id="poste_actuel" value=""
-					class="text ui-widget-content ui-corner-all" size="10" />
+				<p class="validateTips" style="color: red">All form fields are
+					required.</p>
+				<table bgcolor="lightblue" style="border-collapse: none;">
+					<tr>
+						<td>matricule</td>
+						<td><form:input path="matricule" id="matricule" /></td>
+						<td>nom</td>
+						<td><form:input path="nom" id="nom" /></td>
+						<td>prenom</td>
+						<td><form:input path="prenom" id="prenom" /></td>
+					</tr>
+					<tr>
+						<td>abreviation</td>
+						<td><form:input path="abreviation" id="abreviation" /></td>
+						<td>Ancien manager</td>
+						<td><form:input path="mgrhAncien" id="Ancien_manager" /></td>
+						<td>manager actuel</td>
+						<td><form:input path="mgrhActuel" id="manager_actuel" /></td>
+					</tr>
+					<tr>
+						<td>sexe</td>
+						<td><form:select path="sexe" id="combobox">
+								<option value="">F</option>
+								<option value="">M</option>
+							</form:select></td>
+						<td>site</td>
+						<td><form:input path="site" id="site" value="Rabat" /></td>
+						<td>bu</td>
+						<td><form:input path="bu" id="bu" /></td>
+					</tr>
+					<tr>
+						<td>salaire actuel</td>
+						<td><form:input path="salaireActuel" id="salaire_actuel" /></td>
+						<td>Date embauche</td>
+						<td><form:input path="dateEmbauche" id="date_embauche" /></td>
+						<td>Mois bap</td>
+						<td><form:input path="moisBap" id="mois_bap" /></td>
+					</tr>
+					<tr>
+						<td>Date de depart</td>
+						<td><form:input path="dateDepart" id="date_depart" /></td>
+						<td>Ancien collaborateur</td>
+						<td><form:checkbox path="ancienColl" checked="checked"
+								name="bu" /></td>
+						<td>Participe si</td>
+						<td><form:checkbox path="participeSi" id="participe_si" /></td>
+					</tr>
+					<tr>
+						<td>Date participation</td>
+						<td><form:input path="dateSi" id="date_particp" /></td>
+						<td>Poste actuel</td>
+						<td><form:input path="posteActuel3" id="poste_actuel" /></td>
+						<td>Role</td>
+						<td><form:select path="role" id="combobox">
+								<option value="">Collaborateur</option>
+								<option value="">Manager</option>
+								<option value="">Ambassadeur</option>
+								<option value="">Manager de production</option>
+							</form:select></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 		<div id="tabs-2" title="Diplomes">
+		<h3>Diplomes</h3>
+			<br /> <br /> 
+			<table bgcolor="lightblue" style="border-collapse: none;"
+				align="center">
 
-			Titre:
-			<form:input path="DIPLOME[0].nom" type="text" name="add_titre"
-				size="8" />
-			Ecole:
-			<form:input path="DIPLOME[0].ecole" type="text" name="add_ecole"
-				size="6" />
-			Ecole type:
-			<form:input path="DIPLOME[0].ecoleType" type="text"
-				name="add_ecole_type" size="6" />
-			Diplome type:
-			<form:input path="DIPLOME[0].diplomeType" type="text"
-				name="add_diplome" size="6" />
-			promotion:
-			<form:input path="DIPLOME[0].promotion" type="text"
-				name="add_promotion" size="6" />
-			<input onclick="addRow();" type="button" value="Add row" />
+				<tr>
+					<td>Titre:</td>
+					<td><form:input path="DIPLOME[0].nom" /></td>
+					<td>Ecole:</td>
+					<td><form:input path="DIPLOME[0].ecole" /></td>
+					<td>Ecole type:</td>
+					<td><form:select path="DIPLOME[0].ecoleType" id="combobox">
+							<option value="">National</option>
+							<option value="">International</option>
+						</form:select></td>
+				</tr>
+				<tr>
+					<td>Diplome type:</td>
+					<td><form:select path="DIPLOME[0].diplomeType">
+							<option value="">etatique</option>
+							<option value="">prive</option>
+						</form:select></td>
+					<td>promotion:</td>
+					<td><form:input path="DIPLOME[0].promotion" /></td>
+					<td>niveau:</td>
+					<td><input/></td>
+				</tr>
+			</table>
+			<input onclick="addRow();" type="button" value="Add row" align="left" />
 		</div>
 		<div id="tabs-3">
 
@@ -163,16 +129,29 @@ div#users-contain table td,div#users-contain table th {
 
 		</div>
 		<div id="tabs-4">
-			<p>
-				<label for="Login">Login</label>
-				<form:input path="compte.login" type="text" name="Login" id="Login"
-					class="text ui-widget-content ui-corner-all" />
-				<label for="Password">Password</label>
-				<form:input path="compte.password" type="password" name="Password"
-					id="Password" class="text ui-widget-content ui-corner-all" />
-				<label for="Email">Email</label>
-				<form:input path="compte.email" type="text" name="Email" id="Email"
-					class="text ui-widget-content ui-corner-all" />
+		<h3>Compte</h3>
+			<br />
+			<br />
+			<br />
+			<table bgcolor="lightblue" style="border-collapse: none;"
+				align="center">
+				<tr>
+					<td>Login</td>
+					<td><form:input path="compte.login" id="Login" /></td>
+				</tr>
+				<tr>
+					<td>Password</td>
+					<td><form:input path="compte.password" id="Password" type="password" /></td>
+				</tr>
+				<tr>
+					<td>Confirm Password</td>
+					<td><input id="Password" /></td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td><form:input path="compte.email" id="Email" /></td>
+				</tr>
+			</table>
 		</div>
 	</form:form>
 
