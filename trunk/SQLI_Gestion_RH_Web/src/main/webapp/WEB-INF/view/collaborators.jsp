@@ -12,16 +12,20 @@
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/create_user.js">
+	
 </script>
 <title><spring:message code="menu.home" /></title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/main_style.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-	
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
 <link
 	href="${pageContext.request.contextPath}/resources/css/createUser_style.css"
 	rel="stylesheet" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
 	<%@include file="header"%>
@@ -34,12 +38,22 @@
   </sec:authorize>
 		<br />
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-		<div id=tab>
-			<%@include file="admin_collab.jsp"%>
-			<br />
-			
-			<button id="create-user">Create new collaborator</button>
-			</div>
+			<c:choose>
+				<c:when test="${VIEW=='show'}">
+					<h2>Datatable view</h2>
+					<%@include file="showCollab.jsp"%><br />
+					<input type="button" value="add new collab"
+						onclick="go('newColaborateur');" />
+				</c:when>
+				<c:when test="${VIEW=='new'}">
+					<h2>Add new collaborateur</h2>
+					<%@include file="newCollab.jsp"%><br />
+					<input type="button" value="edit new collab"
+						onclick="go('editColaborateur');" />
+				</c:when>
+				<c:when test="${VIEW=='edit'}">edit collaborateur</c:when>
+				<c:otherwise>Default</c:otherwise>
+			</c:choose>
 		</sec:authorize>
 
 		<p>
