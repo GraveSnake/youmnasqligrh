@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -81,15 +82,65 @@ public class MainController {
 		return new ModelAndView("admin_managers");
 	}
 
+	//Show all collaborators
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
-		//compteService.sendMessage("mossnaj@gmail.com", "welcome", "welcome");
-		ModelAndView mav = new ModelAndView("collaborators","newCollab",new Collaborateur());
+		  ModelAndView mav = new ModelAndView("collaborators");  
+		  //List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs();  
+		  //mav.addObject("newCollab", new Collaborateur());		  
+		 // mav.addObject("listCollab", collaborateur);
+		  mav.addObject("VIEW", "show");
 		return mav;
 	}
+	
+	//Redirecting to form newCollab
+	@RequestMapping(value = "newColaborateur", method = RequestMethod.GET)
+	public ModelAndView newcollaborators() {
+		  ModelAndView mav = new ModelAndView("collaborators");
+		 mav.addObject("newCollab", new Collaborateur());		  
+		  mav.addObject("VIEW", "new");		  
+		return mav;
+	}
+	
+	//Update collab & redirecting to show all collab
+	@RequestMapping(value = "updateCollab", method = RequestMethod.GET)
+	 public ModelAndView edit(@RequestParam("COLLAB_ID")String COLLAB_ID) {
+		 ModelAndView mav = new ModelAndView("collaborators");  
+		  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID);  
+		  mav.addObject("editCollab", collaborateur);
+		  mav.addObject("VIEW", "edit");		 
+		return mav;
+	}
+	
+	 //Update collab
+	 @RequestMapping(value="updateCollab", method=RequestMethod.POST)  
+	 public ModelAndView update(@ModelAttribute("editCollab") Collaborateur collaborateur)  
+	 {  
+	ModelAndView mav = new ModelAndView("collaborators");
+	  collaborateurService.updateCollaborateur(collaborateur); 
+	  mav.addObject("VIEW","view");
+	  return mav;  
+	 } 
+	 
+	 //view collab
+		@RequestMapping(value = "viewCollab", method = RequestMethod.GET)
+		 public ModelAndView view(@RequestParam("COLLAB_ID")String COLLAB_ID) {
+			 ModelAndView mav = new ModelAndView("collaborators");  
+			  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID);  
+			  mav.addObject("viewCollab", collaborateur);
+			  mav.addObject("VIEW", "view");		 
+			return mav;
+		}
+		
+		 
+		 @RequestMapping(value="deleteCollab", method=RequestMethod.POST)  
+		 public ModelAndView delete(@ModelAttribute("editCollab") Collaborateur collaborateur)  
+		 {  
+		  return null;  
+		 } 
 
 	@RequestMapping(value = "collaborators", method = RequestMethod.POST)
-	public ModelAndView newCollaborator(@ModelAttribute("newCollab") Collaborateur collaborateur) {
+	public ModelAndView saveCollaborator(@ModelAttribute("newCollab") Collaborateur collaborateur) {
 		System.out.println(collaborateur.getNom());
 		// saving a new account
 		Compte compte=collaborateur.getCompte();
@@ -131,7 +182,7 @@ public class MainController {
 				String to=collaborateur.getCompte().getEmail();
 				compteService.sendMessage(to, welcome, welcome);
 
-		}
+	}
 
 		return new ModelAndView("collaborators");
 	}

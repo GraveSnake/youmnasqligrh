@@ -22,44 +22,64 @@ public class Collaborateur {
 	@Id
 	@Column(name = "matricule", nullable = false)
 	private String matricule;
+	
 	@Column(name = "nom", nullable = false)
 	private String nom;
+	
 	@Column(name = "prenom", nullable = false)
 	private String prenom;
+	
 	@Column(name = "abreviation", nullable = false)
 	private String abreviation;
+	
 	@Column(name = "mgrh_ancien", nullable = false)
 	private String mgrhAncien;
+	
 	@Column(name = "mgrh_actuel", nullable = false)
 	private String mgrhActuel;
+	
 	@Column(name = "sexe", nullable = false)
 	private char sexe;
+	
 	@Column(name = "site", nullable = false)
 	private String site;
+	
 	@Column(name = "bu", nullable = false)
 	private String bu;
+	
 	@Column(name = "date_embauche", nullable = false)
 	private String dateEmbauche;
+	
 	@Column(name = "mois_bap", nullable = false)
 	private String moisBap;
+	
 	@Column(name = "date_depart", nullable = false)
 	private String dateDepart;
+	
 	@Column(name = "ancien_coll", nullable = false)
 	private boolean ancienColl;
+	
 	@Column(name = "participe_si", nullable = false)
 	private boolean participeSi;
+	
 	@Column(name = "date_si", nullable = false)
 	private String dateSi;
+	
 	@Column(name = "poste_actuel3", nullable = false)
 	private String posteActuel3;
+	
 	@Column(name = "poste_actuel4", nullable = false)
 	private String posteActuel4;
+	
 	@Column(name = "salaire_actuel", nullable = false)
 	private Double salaireActuel;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Compte compte;
+	
 	@Column(name="role")
 	private String role;
+	
 	@Transient
 	private List<Diplome> DIPLOME;
 	@Transient
