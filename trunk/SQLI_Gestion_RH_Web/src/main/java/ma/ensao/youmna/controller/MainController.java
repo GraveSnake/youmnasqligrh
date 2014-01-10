@@ -43,6 +43,16 @@ public class MainController {
 	private CompteService compteService;
 
 	private String main;
+	
+	private String welcome;
+	
+
+	/**
+	 * @param welcome the welcome to set
+	 */
+	public void setWelcome(String welcome) {
+		this.welcome = welcome;
+	}
 
 	public String getMain() {
 		return main;
@@ -73,18 +83,17 @@ public class MainController {
 
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
-		ModelAndView mav = new ModelAndView("collaborators","command",new Collaborateur());
-//		Collaborateur Collaborateur = new Collaborateur();
-//		mav.getModelMap().put("newCollaborateur", Collaborateur);
+		//compteService.sendMessage("mossnaj@gmail.com", "welcome", "welcome");
+		ModelAndView mav = new ModelAndView("collaborators","newCollab",new Collaborateur());
 		return mav;
 	}
 
 	@RequestMapping(value = "collaborators", method = RequestMethod.POST)
-	public ModelAndView newCollaborator(@ModelAttribute() Collaborateur collaborateur) {
+	public ModelAndView newCollaborator(@ModelAttribute("newCollab") Collaborateur collaborateur) {
 		System.out.println(collaborateur.getNom());
 		// saving a new account
-		//Compte compte=collaborateur.getCompte();
-		//compteService.createCompte(compte);
+		Compte compte=collaborateur.getCompte();
+		compteService.createCompte(compte);
 		
 		// saving a new collaborator
 		collaborateurService.createCollaborateur(collaborateur);
@@ -119,6 +128,8 @@ public class MainController {
 				}
 
 			}
+				String to=collaborateur.getCompte().getEmail();
+				compteService.sendMessage(to, welcome, welcome);
 
 		}
 

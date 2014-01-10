@@ -17,6 +17,7 @@
 
 	<bean id="mainController" class="ma.ensao.youmna.controller.MainController">
 		<property name="main" value="index" />
+		<property name="welcome" value="${message.welcome}" />
 	</bean>
 
 	<bean id="securityContextAccessor"
