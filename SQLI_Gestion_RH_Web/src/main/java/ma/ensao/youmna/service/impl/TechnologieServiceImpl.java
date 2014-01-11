@@ -1,15 +1,20 @@
 package ma.ensao.youmna.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.TechnologieDao;
 import ma.ensao.youmna.model.Technologie;
 import ma.ensao.youmna.service.TechnologieService;
 
 @Service
+@Transactional
 public class TechnologieServiceImpl implements TechnologieService {
+	
+	@Autowired
 	private TechnologieDao technologieDao;
 
 	/**
@@ -32,7 +37,6 @@ public class TechnologieServiceImpl implements TechnologieService {
 	}
 
 	public List<Technologie> getAll() {
-		// TODO Auto-generated method stub
 		return technologieDao.getAllTechnologies();
 	}
 

@@ -23,11 +23,11 @@
 	<bean id="securityContextAccessor"
 		class="ma.ensao.youmna.service.impl.SecurityContextAccessorImpl" />
 
-	<bean id="collaborateurService" class="ma.ensao.youmna.service.impl.CollaborateurServiceImpl" />
-	<bean id="competenceService" class="ma.ensao.youmna.service.impl.CompetenceServiceImpl" />
-	<bean id="compteService" class="ma.ensao.youmna.service.impl.CompteServiceImpl" />
-	<bean id="diplomeService" class="ma.ensao.youmna.service.impl.DiplomeServiceImpl" />
-	<bean id="technologieService" class="ma.ensao.youmna.service.impl.TechnologieServiceImpl" />
+<!-- 	<bean id="collaborateurService" class="ma.ensao.youmna.service.impl.CollaborateurServiceImpl" /> -->
+<!-- 	<bean id="competenceService" class="ma.ensao.youmna.service.impl.CompetenceServiceImpl" /> -->
+<!-- 	<bean id="compteService" class="ma.ensao.youmna.service.impl.CompteServiceImpl" /> -->
+<!-- 	<bean id="diplomeService" class="ma.ensao.youmna.service.impl.DiplomeServiceImpl" /> -->
+<!-- 	<bean id="technologieService" class="ma.ensao.youmna.service.impl.TechnologieServiceImpl" /> -->
 
 	<!-- Register JSON Converter for RESTful Web Service -->
 	<bean

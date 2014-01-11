@@ -6,11 +6,13 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.DiplomeDao;
 import ma.ensao.youmna.model.Diplome;
 
 @Repository
+@Transactional
 public class DiplomeDaoImpl implements DiplomeDao {
 	
 	@Autowired

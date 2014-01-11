@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.CompteDao;
 import ma.ensao.youmna.model.Compte;
 import ma.ensao.youmna.service.CompteService;
 
+@Service
+@Transactional
 public class CompteServiceImpl implements CompteService{
 	
+	@Autowired
 	private CompteDao compteDao;
 	
 	@Autowired
@@ -33,9 +38,6 @@ public class CompteServiceImpl implements CompteService{
 		this.compteDao = compteDao;
 	}
 
-
-
-
 	public void createCompte(Compte compte) {
 		compteDao.saveCompte(compte);		
 	}
@@ -51,13 +53,9 @@ public class CompteServiceImpl implements CompteService{
 		
 	}
 
-
 	public List<Compte> getAll() {
-		
 		return compteDao.getAllCompte();
 	}
-
-
 
 
 }

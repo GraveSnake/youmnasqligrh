@@ -1,16 +1,20 @@
 package ma.ensao.youmna.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.DiplomeDao;
 import ma.ensao.youmna.model.Diplome;
 import ma.ensao.youmna.service.DiplomeService;
 
 @Service
+@Transactional
 public class DiplomeServiceImpl implements DiplomeService {
 
+	@Autowired
 	private DiplomeDao diplomeDao;
 
 	/**
@@ -33,7 +37,6 @@ public class DiplomeServiceImpl implements DiplomeService {
 	}
 
 	public List<Diplome> getAll() {
-		// TODO Auto-generated method stub
 		return diplomeDao.getAllDiplomes();
 	}
 }

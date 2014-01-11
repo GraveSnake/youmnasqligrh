@@ -9,16 +9,17 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class CompteDaoImpl implements CompteDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
+	 * @param sessionFactory the sessionFactory to set
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -42,20 +43,15 @@ public class CompteDaoImpl implements CompteDao {
 		sessionFactory.getCurrentSession().save(compte);
 	}
 
-	public Compte getCompteByLoginPassword(String login, String pwd)
-			throws HibernateException {
+	public Compte getCompteByLoginPassword(String login, String pwd) throws HibernateException {
 		try {
 			System.out.println("Should be inside getCompteByLoginPassword");
-			String condition = "From Compte Where login ='" + login
-					+ "' AND password ='" + pwd + "'";
-			// System.out.println(sessionFactory==null);
-			// System.out.println(sessionFactory.getCurrentSession()==null);
-			// System.out.println("Session?? "+sessionFactory.toString());
-			Query query = sessionFactory.getCurrentSession().createQuery(
-					condition);
-			System.out.println("Now returning");
+			String condition = "From Compte Where login ='" + login + "' AND password ='"
+					+ pwd + "'";
+			Query query = sessionFactory.getCurrentSession().createQuery(condition);
 			return (Compte) query.uniqueResult();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new HibernateException(e);
 		}
 	}
@@ -75,6 +71,7 @@ public class CompteDaoImpl implements CompteDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Compte> getAllCompte() {
+		
 		return sessionFactory.getCurrentSession().createQuery("from Compte").list();
 	}
 }

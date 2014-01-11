@@ -22,19 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.googlecode.charts4j.AxisLabels;
-import com.googlecode.charts4j.AxisLabelsFactory;
-import com.googlecode.charts4j.AxisStyle;
-import com.googlecode.charts4j.AxisTextAlignment;
-import com.googlecode.charts4j.Color;
-import com.googlecode.charts4j.Data;
-import com.googlecode.charts4j.GCharts;
-import com.googlecode.charts4j.LineChart;
-import com.googlecode.charts4j.PieChart;
-import com.googlecode.charts4j.Plot;
-import com.googlecode.charts4j.Plots;
-import com.googlecode.charts4j.Slice;
-
 @Controller
 public class MainController {
 
@@ -99,9 +86,8 @@ public class MainController {
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
 		ModelAndView mav = new ModelAndView("collaborators");  
-		  //List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs();  
-		  //mav.addObject("newCollab", new Collaborateur());		  
-		 // mav.addObject("listCollab", collaborateur);
+		  List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs();  
+		  mav.addObject("listCollab", collaborateur);
 		  mav.addObject("VIEW", "show");
 		return mav;
 	}
@@ -157,8 +143,18 @@ public class MainController {
 		System.out.println(collaborateur.getNom());
 		// saving a new account
 		Compte compte=collaborateur.getCompte();
-		compteService.createCompte(compte);
-		
+		if(compte!=null){
+			if("Manager".equals(collaborateur.getRole())){
+				compte.setActive(true);
+				compte.setAuthorities("ROLE_USER");
+			}else if("Ambassadeur".equals(collaborateur.getRole())){
+				compte.setActive(true);
+				compte.setAuthorities("ROLE_ADMIN");
+			}else{
+				compte.setActive(false);
+			}
+			compteService.createCompte(compte);
+		}
 		// saving a new collaborator
 		collaborateurService.createCollaborateur(collaborateur);
 		
@@ -168,6 +164,7 @@ public class MainController {
 		if (diplomes != null) {
 			for (Diplome diplome : diplomes) {
 				dip = diplome;
+				dip.setCollaborateur(collaborateur);
 				diplomeService.saveDiplome(dip);
 			}
 		}
@@ -197,10 +194,14 @@ public class MainController {
 
 	}
 
-		return new ModelAndView("collaborators");
+		return new ModelAndView("redirect:/collaborators");
 	}
 
-	
+//	@RequestMapping("reporting")
+//	public ModelAndView reporting() {
+//		return new ModelAndView("reporting");
+//	}
+
 	@RequestMapping("administration")
 	public ModelAndView administration() {
 		return new ModelAndView("administration");
