@@ -39,7 +39,7 @@ public class ReportingController {
         
         //Poste
         Plot plot2 = Plots.newPlot(Data.newData(0, 66.6, 33.3, 100));
-        LineChart chart2 = GCharts.newLineChart(plot);
+        LineChart chart2 = GCharts.newLineChart(plot2);
         chart2.addYAxisLabels(AxisLabelsFactory.newNumericAxisLabels(0,33.3,66.6,100));
         chart2.addXAxisLabels(AxisLabelsFactory.newNumericAxisLabels(0,33.3,66.6,100));
         chart2.setSize(400, 200);

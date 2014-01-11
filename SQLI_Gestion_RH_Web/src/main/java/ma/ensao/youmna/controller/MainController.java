@@ -210,21 +210,4 @@ public class MainController {
 	public ModelAndView account() {
 		return new ModelAndView("account");
 	}
-	
-	@RequestMapping(value = "/export", method = RequestMethod.GET)
-	public ModelAndView getExcel() {
-		ModelAndView mav=new ModelAndView("ExportExcel");
-		List<Collaborateur> collabList = collaborateurService.getAllCollaborateurs();
-		List<Competence> competList= competenceService.getAll() ;
-		List<Compte> compteList= compteService.getAll() ;
-		List<Technologie> techList= technologieService.getAll() ;
-		List<Diplome> dipList= diplomeService.getAll() ;
-		
-		mav.addObject("collabList",collabList);
-		mav.addObject("competList",competList);
-		mav.addObject("compteList",compteList);
-		mav.addObject("techList",techList);
-		mav.addObject("dipList",dipList);
-		return new ModelAndView("ExportExcel");
-	}
 }
