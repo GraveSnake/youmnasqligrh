@@ -2,15 +2,19 @@ package ma.ensao.youmna.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.CollaborateurDao;
 import ma.ensao.youmna.model.Collaborateur;
 import ma.ensao.youmna.service.CollaborateurService;
 
 @Service
+@Transactional
 public class CollaborateurServiceImpl implements CollaborateurService{
 	
+	@Autowired
 	private CollaborateurDao collaborateurDao;
 	
 

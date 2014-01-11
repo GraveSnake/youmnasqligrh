@@ -52,7 +52,7 @@ public class AdministrationController {
 		mav.addObject("compteList",compteList);
 		mav.addObject("techList",techList);
 		mav.addObject("dipList",dipList);
-		return new ModelAndView("ExportExcel");
+		return mav;
 	}
 
 }

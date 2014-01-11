@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class AccountServiceImpl implements AccountService {
 	
 	@Autowired
@@ -29,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
 
 	}
 
-	@Transactional
+
 	public User loginAccount(User userDto) throws NoSuchAlgorithmException, HibernateException {
 		System.out.println("inside loginAccount()");
 		MessageDigest md = MessageDigest.getInstance("MD5");
@@ -71,7 +72,6 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	
-	@Transactional
 	public String authenticate(String authToken,String credentials){
 		Compte compte = compteDao.getCompteByLogin(authToken);
 		if (compte == null) {

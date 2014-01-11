@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <link
 	href="${pageContext.request.contextPath}/resources/css/createUser_style.css"
@@ -37,8 +36,8 @@
 			<tr>
 				<td>sexe</td>
 				<td><form:select path="sexe" id="combobox">
-						<option value="">F</option>
-						<option value="">M</option>
+						<form:option  value="F">F</form:option>
+						<form:option value="M">M</form:option>
 					</form:select></td>
 				<td>site</td>
 				<td><form:input path="site" id="site" value="Rabat" /></td>
@@ -58,21 +57,23 @@
 				<td><form:input path="dateDepart" id="date_depart" /></td>
 				<td>Ancien collaborateur</td>
 				<td><form:checkbox path="ancienColl" checked="checked"
-						name="bu" /></td>
+ 						name="bu" /></td>
 				<td>Participe si</td>
 				<td><form:checkbox path="participeSi" id="participe_si" /></td>
 			</tr>
 			<tr>
 				<td>Date participation</td>
 				<td><form:input path="dateSi" id="date_particp" /></td>
-				<td>Poste actuel</td>
-				<td><form:input path="posteActuel3" id="poste_actuel" /></td>
+				<td>Poste actuel (3)</td>
+				<td><form:input path="posteActuel3" id="poste_actuel3" /></td>
+				<td>Poste actuel (4)</td>
+				<td><form:input path="posteActuel4" id="poste_actuel4" /></td>
 				<td>Role</td>
 				<td><form:select path="role" id="combobox">
-						<option value="">Collaborateur</option>
-						<option value="">Manager</option>
-						<option value="">Ambassadeur</option>
-						<option value="">Manager de production</option>
+						<form:option value="Collaborateur">Collaborateur</form:option>
+						<form:option value="Manager">Manager</form:option>
+						<form:option value="Ambassadeur">Ambassadeur</form:option>
+						<form:option value="Manager de production">Manager de production</form:option>
 					</form:select></td>
 			</tr>
 		</table>
@@ -90,20 +91,20 @@
 				<td><form:input path="DIPLOME[0].ecole" /></td>
 				<td>Ecole type:</td>
 				<td><form:select path="DIPLOME[0].ecoleType" id="combobox">
-						<option value="">National</option>
-						<option value="">International</option>
+						<form:option value="National">National</form:option>
+						<form:option value="International">International</form:option>
 					</form:select></td>
 			</tr>
 			<tr>
 				<td>Diplome type:</td>
 				<td><form:select path="DIPLOME[0].diplomeType">
-						<option value="">etatique</option>
-						<option value="">prive</option>
+						<form:option value="etatique">etatique</form:option>
+						<form:option value="prive">prive</form:option>
 					</form:select></td>
 				<td>promotion:</td>
 				<td><form:input path="DIPLOME[0].promotion" /></td>
 				<td>niveau:</td>
-				<td><input /></td>
+				<td><form:input path="DIPLOME[0].niveau" id="niveau"/></td>
 			</tr>
 		</table>
 		<input onclick="addRow();" type="button" value="Add row" align="left" />
@@ -114,7 +115,7 @@
 			align="center">
 			<tr>
 				<td>technologie</td>
-				<td><form:input path="TECHNOLOGIE[0].technologie" id="Login" /></td>
+				<td><form:input path="TECHNOLOGIE[0].technologie" /></td>
 			</tr>
 			<tr>
 				<td>competence</td>
@@ -139,10 +140,10 @@
 				<td><form:input path="compte.password" id="Password"
 						type="password" /></td>
 			</tr>
-			<!--  <tr>
+			<tr>
 				<td>Confirm Password</td>
-				<td><input id="Password" /></td>
-			</tr>-->
+				<td><input id="Confirm_Password" type="password"/></td>
+			</tr>
 			<tr>
 				<td>Email</td>
 				<td><form:input path="compte.email" id="Email" /></td>

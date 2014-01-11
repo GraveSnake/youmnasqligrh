@@ -15,9 +15,8 @@ import javax.persistence.Transient;
 @Table(name = "technologie")
 public class Technologie {
 
-	@Id
-	@Column(name = "id_techno")
-	@GeneratedValue()
+	@Id @GeneratedValue
+	@Column(name = "id", nullable = false)
 	private Long id;
 	@Column(name = "technologie", nullable = false)
 	private String technologie;

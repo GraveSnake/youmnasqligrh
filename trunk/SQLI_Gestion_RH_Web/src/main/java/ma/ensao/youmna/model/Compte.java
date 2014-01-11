@@ -25,7 +25,7 @@ public class Compte {
 	@Column(name="active", nullable=false)	
 	private Boolean active;
 	
-	@Column(name="authorities", nullable=false)
+	@Column(name="authorities")
 	private String authorities;
 	
 	

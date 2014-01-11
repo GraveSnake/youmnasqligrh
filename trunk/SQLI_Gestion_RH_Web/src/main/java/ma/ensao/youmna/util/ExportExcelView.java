@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ma.ensao.youmna.dao.DiplomeDao;
 import ma.ensao.youmna.model.Collaborateur;
 import ma.ensao.youmna.model.Competence;
 import ma.ensao.youmna.model.Compte;
@@ -67,17 +66,17 @@ public class ExportExcelView extends AbstractExcelView {
 			excelRow.createCell(4).setCellValue(collab.getMgrhAncien());
 			excelRow.createCell(5).setCellValue(collab.getMgrhActuel());
 			excelRow.createCell(6).setCellValue(collab.getSexe());
-			excelRow.createCell(6).setCellValue(collab.getSite());
-			excelRow.createCell(6).setCellValue(collab.getBu());
-			excelRow.createCell(6).setCellValue(collab.getDateEmbauche());
-			excelRow.createCell(6).setCellValue(collab.getMoisBap());
-			excelRow.createCell(6).setCellValue(collab.getDateDepart());
-			excelRow.createCell(6).setCellValue(collab.isAncienColl());
-			excelRow.createCell(6).setCellValue(collab.isParticipeSi());
-			excelRow.createCell(6).setCellValue(collab.getDateSi());
-			excelRow.createCell(6).setCellValue(collab.getPosteActuel3());
-			excelRow.createCell(6).setCellValue(collab.getSalaireActuel());
-			excelRow.createCell(6).setCellValue(collab.getCompte().getLogin());
+			excelRow.createCell(7).setCellValue(collab.getSite());
+			excelRow.createCell(8).setCellValue(collab.getBu());
+			excelRow.createCell(9).setCellValue(collab.getDateEmbauche());
+			excelRow.createCell(10).setCellValue(collab.getMoisBap());
+			excelRow.createCell(11).setCellValue(collab.getDateDepart());
+			excelRow.createCell(12).setCellValue(collab.isAncienColl());
+			excelRow.createCell(13).setCellValue(collab.isParticipeSi());
+			excelRow.createCell(14).setCellValue(collab.getDateSi());
+			excelRow.createCell(15).setCellValue(collab.getPosteActuel3());
+			excelRow.createCell(16).setCellValue(collab.getSalaireActuel());
+			excelRow.createCell(17).setCellValue(collab.getCompte().getLogin());
 
 		}
 	}

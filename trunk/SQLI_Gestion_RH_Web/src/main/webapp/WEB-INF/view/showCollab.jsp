@@ -41,7 +41,7 @@
 			</thead>
 			<tbody>
 
-		<!--<c:forEach var="collabs" items="${ListCollab}">
+		<c:forEach var="collabs" items="${ListCollab}">
 			<tr>
 			<td><c:out value="${collabs.matricule}"></c:out></td>
 			<td><c:out value="${collabs.nom}"/><c:out value="${collabs.prenom}"/></td>
@@ -60,7 +60,7 @@
           <a href="deleteCollab?COLLAB_ID=${collabs.matricule}">Delete</a> 
           </td>	
 			</tr>
-		</c:forEach>-->
+		</c:forEach>
 		
 			</tbody>
 		</table>

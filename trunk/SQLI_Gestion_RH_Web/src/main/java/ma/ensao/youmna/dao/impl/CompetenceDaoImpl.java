@@ -4,15 +4,33 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ma.ensao.youmna.dao.CompetenceDao;
 import ma.ensao.youmna.model.Competence;
 
+@Repository
+@Transactional
 public class CompetenceDaoImpl implements CompetenceDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	/**
+	 * @return the sessionFactory
+	 */
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	/**
+	 * @param sessionFactory the sessionFactory to set
+	 */
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public void addCompetence(Competence competence) {
 		sessionFactory.getCurrentSession().save(competence);
 		
@@ -25,7 +43,6 @@ public class CompetenceDaoImpl implements CompetenceDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Competence> getAllCompetences() {
-		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("from Competence").list();
 	}
 

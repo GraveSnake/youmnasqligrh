@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Compte")
+@Table(name = "Archive")
 public class Archive {
 	@Id
 	@Column(name = "Id")
@@ -17,13 +17,13 @@ public class Archive {
 	@Column(name = "Matricule")
 	private String matricule;
 	
-	@Column(name = "Poste_Actuel")
+	@Column(name = "Poste_Actuel3")
 	private String posteActuel3;
 	
-	@Column(name = "Poste_Actuel2")
+	@Column(name = "Poste_Actuel4")
 	private String postActuel4;
 	
-	@Column(name = "Salire")
+	@Column(name = "Salaire")
 	private String salaire;
 	
 	@Column(name = "Annee")
@@ -112,9 +112,5 @@ public class Archive {
 	public void setAnnee(Date annee) {
 		this.annee = annee;
 	}
-	
-	
-	
-	
 
 }
