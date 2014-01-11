@@ -1,5 +1,7 @@
 package ma.ensao.youmna.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -47,6 +49,12 @@ public class CompteServiceImpl implements CompteService{
         
         mailSender.send(email);
 		
+	}
+
+
+	public List<Compte> getAll() {
+		
+		return compteDao.getAllCompte();
 	}
 
 

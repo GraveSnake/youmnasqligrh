@@ -2,13 +2,19 @@ package ma.ensao.youmna.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ma.ensao.youmna.dao.CompetenceDao;
 import ma.ensao.youmna.model.Competence;
 
 public class CompetenceDaoImpl implements CompetenceDao {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	public void addCompetence(Competence competence) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(competence);
 		
 	}
 
@@ -17,9 +23,10 @@ public class CompetenceDaoImpl implements CompetenceDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Competence> getAllCompetences() {
 		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession().createQuery("from Competence").list();
 	}
 
 	public Competence getCompetenceById(Long id) {

@@ -21,6 +21,8 @@
 
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
 			<h3>Reporting Admin access !</h3>
+			<p align="center"><%@include file="chartReporting.jsp" %> </p>
+			
 			<br />
 		</sec:authorize>
 		<sec:authorize ifAllGranted='ROLE_USER'>

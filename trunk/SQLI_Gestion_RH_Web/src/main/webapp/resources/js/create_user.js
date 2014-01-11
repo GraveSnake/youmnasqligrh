@@ -116,6 +116,7 @@ $(function() {
                   
                         if (bValid) {
                                  document.forms["createCollab"].submit();
+                                 allFields.val("").removeClass("ui-state-error");
                         }
         });
 });
