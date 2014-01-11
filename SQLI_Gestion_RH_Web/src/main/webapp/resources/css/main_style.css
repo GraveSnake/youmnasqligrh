@@ -1,4 +1,7 @@
-
+div#tabs {
+	width : 100%;
+	
+}
 body {
 	background: url(../images/bg.png) repeat;
 	font-family: Helvetica, sans-serif; font-size: 14px;

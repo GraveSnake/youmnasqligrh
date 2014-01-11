@@ -1,5 +1,7 @@
 package ma.ensao.youmna.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import ma.ensao.youmna.dao.CompetenceDao;
@@ -31,6 +33,12 @@ public class CompetenceServiceImpl implements CompetenceService {
 	public void saveCompetence(Competence competence) {
 		competenceDao.addCompetence(competence);
 		
+	}
+
+
+	public List<Competence> getAll() {
+		
+		return competenceDao.getAllCompetences();
 	}
 
 }

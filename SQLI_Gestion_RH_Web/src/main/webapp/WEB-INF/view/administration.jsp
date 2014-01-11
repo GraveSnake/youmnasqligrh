@@ -20,6 +20,7 @@
 	<div id="bodydiv">
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
 			<h2>Admin access only To administrate things around !</h2>
+			<a href="export">Export</a>
 			<br />
 		</sec:authorize>
 		<p>

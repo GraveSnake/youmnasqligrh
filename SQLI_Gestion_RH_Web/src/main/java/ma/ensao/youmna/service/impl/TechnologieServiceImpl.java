@@ -1,5 +1,7 @@
 package ma.ensao.youmna.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import ma.ensao.youmna.dao.TechnologieDao;
@@ -27,6 +29,11 @@ public class TechnologieServiceImpl implements TechnologieService {
 
 	public void saveTechnologie(Technologie technologie) {
 		technologieDao.addTechnolgie(technologie);
+	}
+
+	public List<Technologie> getAll() {
+		// TODO Auto-generated method stub
+		return technologieDao.getAllTechnologies();
 	}
 
 }

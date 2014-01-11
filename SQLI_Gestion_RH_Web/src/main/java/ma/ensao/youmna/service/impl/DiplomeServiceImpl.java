@@ -1,5 +1,7 @@
 package ma.ensao.youmna.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import ma.ensao.youmna.dao.DiplomeDao;
@@ -28,5 +30,10 @@ public class DiplomeServiceImpl implements DiplomeService {
 
 	public void saveDiplome(Diplome diplome) {
 		diplomeDao.addDiplome(diplome);
+	}
+
+	public List<Diplome> getAll() {
+		// TODO Auto-generated method stub
+		return diplomeDao.getAllDiplomes();
 	}
 }
