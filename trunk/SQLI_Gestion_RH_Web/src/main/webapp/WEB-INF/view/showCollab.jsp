@@ -7,6 +7,7 @@
 </head>
 <body>
 	<!-- Insert datatable here -->
+
 	<div id="tablewrapper">
 		<div id="tableheader">
 			<div class="search">
@@ -26,7 +27,6 @@
 		<table cellpadding="0" border="2" id="table" class="tinytable">
 			<thead>
 				<tr>
-					<!--  <th class="nosort"><h3>ID</h3></th>-->
 					<th><h3>Matricule</h3></th>
 					<th><h3>Nom&Prenom</h3></th>
 					<th><h3>Date Embauche</h3></th>
@@ -40,39 +40,50 @@
 				</tr>
 			</thead>
 			<tbody>
-
-		<c:forEach var="collabs" items="${ListCollab}">
-			<tr>
-			<td><c:out value="${collabs.matricule}"></c:out></td>
-			<td><c:out value="${collabs.nom}"/><c:out value="${collabs.prenom}"/></td>
-			<td><c:out value="${collabs.dateEmbauche}"></c:out></td>
-			<td><c:out value="${collabs.posteActuel3}"></c:out></td>
-			<td><c:out value="${collabs.salaireActuel}"></c:out></td>
-			<td><c:out value="${collabs.ancienColl}"></c:out></td>
-			<td><c:out value="${collabs.mgrhAncien}"></c:out></td>	
-			<td><c:out value="${collabs.mgrhActuel}"></c:out></td>	
-			<td><c:out value="${collabs.role}"></c:out></td>
-			<td>
-			<a href="updateCollab?COLLAB_ID=${collabs.matricule}">Edit</a>  
-     			  &nbsp;&nbsp;  
-          <a href="viewCollab?COLLAB_ID=${collabs.matricule}">View</a> 
-               	&nbsp;&nbsp;  
-          <a href="deleteCollab?COLLAB_ID=${collabs.matricule}">Delete</a> 
-          </td>	
-			</tr>
-		</c:forEach>
-		
+				<c:if test="${ empty ListCollab}">
+					<tr>
+						<td colspan="11"><h4 align="center">No Results found</h4></td>
+					</tr>
+				</c:if>
+				<c:if test="${! empty ListCollab}">
+					<c:forEach var="collabs" items="${ListCollab}">
+						<tr>
+							<td><c:out value="${collabs.matricule}"></c:out></td>
+							<td><c:out value="${collabs.nom}" /> <c:out
+									value="${collabs.prenom}" /></td>
+							<td><c:out value="${collabs.dateEmbauche}"></c:out></td>
+							<td><c:out value="${collabs.posteActuel3}"></c:out></td>
+							<td><c:out value="${collabs.salaireActuel}"></c:out></td>
+							<td><c:out value="${collabs.ancienColl}"></c:out></td>
+							<td><c:out value="${collabs.mgrhAncien}"></c:out></td>
+							<td><c:out value="${collabs.mgrhActuel}"></c:out></td>
+							<td><c:out value="${collabs.role}"></c:out></td>
+							<td><a href="updateCollab?COLLAB_ID=${collabs.matricule}">Edit</a>
+								&nbsp;&nbsp; <a href="viewCollab?COLLAB_ID=${collabs.matricule}">View</a>
+								&nbsp;&nbsp; <sec:authorize ifAnyGranted='ROLE_ADMIN'>
+									<a href="deleteCollab?COLLAB_ID=${collabs.matricule}">Delete</a>
+								</sec:authorize></td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<div id="tablefooter">
 			<div id="tablenav">
 				<div>
-					<img src="${pageContext.request.contextPath}/resources/images/first.gif" width="16" height="16" alt="First Page"
-						onclick="sorter.move(-1,true)" /> <img src="${pageContext.request.contextPath}/resources/images/previous.gif"
+					<img
+						src="${pageContext.request.contextPath}/resources/images/first.gif"
+						width="16" height="16" alt="First Page"
+						onclick="sorter.move(-1,true)" /> <img
+						src="${pageContext.request.contextPath}/resources/images/previous.gif"
 						width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
-					<img src="${pageContext.request.contextPath}/resources/images/next.gif" width="16" height="16" alt="First Page"
-						onclick="sorter.move(1)" /> <img src="${pageContext.request.contextPath}/resources/images/last.gif" width="16"
-						height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+					<img
+						src="${pageContext.request.contextPath}/resources/images/next.gif"
+						width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
+					<img
+						src="${pageContext.request.contextPath}/resources/images/last.gif"
+						width="16" height="16" alt="Last Page"
+						onclick="sorter.move(1,true)" />
 				</div>
 				<div>
 					<select id="pagedropdown"></select>
@@ -97,10 +108,9 @@
 			</div>
 		</div>
 	</div>
-	<script
-	src="${pageContext.request.contextPath}/resources/js/script.js">
-	
-</script>
+	<script src="${pageContext.request.contextPath}/resources/js/script.js">
+		
+	</script>
 	<script type="text/javascript">
 		var sorter = new TINY.table.sorter('sorter', 'table', {
 			headclass : 'head',

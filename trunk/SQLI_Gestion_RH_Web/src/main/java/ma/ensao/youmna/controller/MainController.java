@@ -1,5 +1,9 @@
 package ma.ensao.youmna.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ma.ensao.youmna.model.Collaborateur;
@@ -86,9 +90,13 @@ public class MainController {
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
 		ModelAndView mav = new ModelAndView("collaborators");  
-		  List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs();  
-		  mav.addObject("listCollab", collaborateur);
+		  List<Collaborateur> collaborateur = collaborateurService.getAllCollaborateurs(); 
+		  mav.addObject("ListCollab", collaborateur);
 		  mav.addObject("VIEW", "show");
+		   DateFormat dateFormat = new SimpleDateFormat("yyyy");
+		   //get current date time with Date()
+		   Date date = new Date();
+		   System.out.println(dateFormat.format(date));
 		return mav;
 	}
 	
@@ -96,6 +104,8 @@ public class MainController {
 	@RequestMapping(value = "newColaborateur", method = RequestMethod.GET)
 	public ModelAndView newcollaborators() {
 		  ModelAndView mav = new ModelAndView("collaborators");
+		  List<String> managers=collaborateurService.getAllCollaborateurs("Manager");
+		  mav.addObject("managers", managers);
 		 mav.addObject("newCollab", new Collaborateur());		  
 		  mav.addObject("VIEW", "new");		  
 		return mav;
@@ -105,8 +115,24 @@ public class MainController {
 	@RequestMapping(value = "updateCollab", method = RequestMethod.GET)
 	 public ModelAndView edit(@RequestParam("COLLAB_ID")String COLLAB_ID) {
 		 ModelAndView mav = new ModelAndView("collaborators");  
-		  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID);  
+		  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID);
+		  List<Diplome> diplomes=diplomeService.getAll(COLLAB_ID);
+		  List<Technologie> technologies=technologieService.getAll(COLLAB_ID);
+		  List<Competence> competences=new ArrayList<Competence>();
+		  System.out.println(diplomes.size());
+		  System.out.println(technologies.size());
+		  for(Technologie tech: technologies){
+			  competences.addAll(competenceService.getAll(tech.getId()));
+		  }
+		  System.out.println(competences.size());
+		  collaborateur.setCOMPETENCE(competences);
+		  collaborateur.setTECHNOLOGIE(technologies);
+		  collaborateur.setDIPLOME(diplomes);
+		  List<String> managers=collaborateurService.getAllCollaborateurs("Manager");
+		  mav.addObject("managers", managers);
 		  mav.addObject("editCollab", collaborateur);
+		  mav.addObject("technologiesSize", technologies.size());
+		  mav.addObject("diplomesSize", diplomes.size());
 		  mav.addObject("VIEW", "edit");		 
 		return mav;
 	}
@@ -125,7 +151,18 @@ public class MainController {
 		@RequestMapping(value = "viewCollab", method = RequestMethod.GET)
 		 public ModelAndView view(@RequestParam("COLLAB_ID")String COLLAB_ID) {
 			 ModelAndView mav = new ModelAndView("collaborators");  
-			  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID);  
+			  Collaborateur collaborateur = collaborateurService.getCollaborateurById(COLLAB_ID); 
+			  List<Diplome> diplomes=diplomeService.getAll(COLLAB_ID);
+			  List<Technologie> technologies=technologieService.getAll(COLLAB_ID);
+			  List<Competence> competences=new ArrayList<Competence>();
+			  for(Technologie tech: technologies){
+				  competences.addAll(competenceService.getAll(tech.getId()));
+			  }
+			  collaborateur.setCOMPETENCE(competences);
+			  collaborateur.setTECHNOLOGIE(technologies);
+			  collaborateur.setDIPLOME(diplomes);
+			  mav.addObject("technologiesSize", technologies.size());
+			  mav.addObject("diplomesSize", diplomes.size());
 			  mav.addObject("viewCollab", collaborateur);
 			  mav.addObject("VIEW", "view");		 
 			return mav;
@@ -211,4 +248,6 @@ public class MainController {
 	public ModelAndView account() {
 		return new ModelAndView("account");
 	}
+	
+	
 }

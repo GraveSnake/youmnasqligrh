@@ -45,4 +45,10 @@ public class CompetenceServiceImpl implements CompetenceService {
 		return competenceDao.getAllCompetences();
 	}
 
+
+	public List<Competence> getAll(Long id) {
+		
+		return competenceDao.getAllCompetences(id);
+	}
+
 }

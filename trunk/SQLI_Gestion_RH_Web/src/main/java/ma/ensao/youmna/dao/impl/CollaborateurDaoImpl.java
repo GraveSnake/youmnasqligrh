@@ -52,4 +52,12 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<String> getAllCollaborators(String role) {
+		
+		Query query = sessionFactory.getCurrentSession().createQuery("select nom from Collaborateur  where role = :role order by nom asc");
+		query.setParameter("role", role);
+		return (List<String>) query.list();
+	}
+
 }

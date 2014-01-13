@@ -2,6 +2,7 @@ package ma.ensao.youmna.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,13 @@ public class TechnologieDaoImpl implements TechnologieDao {
 	public Technologie getTechnologieById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<Technologie> getAllTechnologies(String matricule) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Technologie where matricule = :matricule");
+		query.setParameter("matricule", matricule);
+		return query.list();
 	}
 
 }

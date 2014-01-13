@@ -40,4 +40,12 @@ public class DiplomeDaoImpl implements DiplomeDao {
 		return (Diplome) query.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Diplome> getAllDiplomes(String matricule) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Diplome where matricule = :matricule");
+		query.setParameter("matricule", matricule);
+		return query.list();
+	}
+
 }
