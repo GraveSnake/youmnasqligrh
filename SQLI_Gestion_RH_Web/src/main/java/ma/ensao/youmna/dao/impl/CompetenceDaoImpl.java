@@ -2,6 +2,7 @@ package ma.ensao.youmna.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -49,6 +50,13 @@ public class CompetenceDaoImpl implements CompetenceDao {
 	public Competence getCompetenceById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public List<Competence> getAllCompetences(Long id) {
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Competence where id_techno = :id");
+		query.setParameter("id", id);
+		return query.list();
 	}
 
 }

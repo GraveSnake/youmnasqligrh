@@ -39,4 +39,9 @@ public class DiplomeServiceImpl implements DiplomeService {
 	public List<Diplome> getAll() {
 		return diplomeDao.getAllDiplomes();
 	}
+
+	public List<Diplome> getAll(String matricule) {
+		
+		return diplomeDao.getAllDiplomes(matricule);
+	}
 }

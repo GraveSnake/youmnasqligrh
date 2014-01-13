@@ -12,6 +12,8 @@ public interface DiplomeDao {
 	
 	List<Diplome> getAllDiplomes();
 	
+	List<Diplome> getAllDiplomes(String matricule);
+	
 	Diplome getDiplomeById(Long id);
 
 }

@@ -11,6 +11,7 @@ public interface TechnologieDao {
 	void deleteTechnologie(Long id);
 	
 	List<Technologie> getAllTechnologies();
+	List<Technologie> getAllTechnologies(String matricule);
 	
 	Technologie getTechnologieById(Long id);
 	

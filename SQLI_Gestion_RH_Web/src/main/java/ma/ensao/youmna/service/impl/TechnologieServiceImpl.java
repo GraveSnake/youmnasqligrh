@@ -40,4 +40,9 @@ public class TechnologieServiceImpl implements TechnologieService {
 		return technologieDao.getAllTechnologies();
 	}
 
+	public List<Technologie> getAll(String matricule) {
+		
+		return technologieDao.getAllTechnologies(matricule);
+	}
+
 }

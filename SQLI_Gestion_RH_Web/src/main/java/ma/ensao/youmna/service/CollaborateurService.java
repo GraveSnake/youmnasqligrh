@@ -15,5 +15,7 @@ public interface CollaborateurService {
 	void updateCollaborateur(Collaborateur collaborateur);
 
 	List<Collaborateur> getAllCollaborateurs();
+	
+	List<String> getAllCollaborateurs(String role);
 
 }

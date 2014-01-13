@@ -47,4 +47,8 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 		return collaborateurDao.getAllCollaborateurs();
 	}
 
+	public List<String> getAllCollaborateurs(String role) {
+		return collaborateurDao.getAllCollaborators(role);
+	}
+
 }

@@ -12,6 +12,8 @@ public interface CompetenceDao {
 	
 	List<Competence> getAllCompetences();
 	
+	List<Competence> getAllCompetences(Long id);
+	
 	Competence getCompetenceById(Long id);
 
 }
