@@ -17,17 +17,15 @@
 
 	<bean id="mainController" class="ma.ensao.youmna.controller.MainController">
 		<property name="main" value="index" />
+	</bean>
+	
+		<bean id="collaboratorController" class="ma.ensao.youmna.controller.CollaboratorController">
 		<property name="welcome" value="${message.welcome}" />
 	</bean>
 
 	<bean id="securityContextAccessor"
 		class="ma.ensao.youmna.service.impl.SecurityContextAccessorImpl" />
 
-<!-- 	<bean id="collaborateurService" class="ma.ensao.youmna.service.impl.CollaborateurServiceImpl" /> -->
-<!-- 	<bean id="competenceService" class="ma.ensao.youmna.service.impl.CompetenceServiceImpl" /> -->
-<!-- 	<bean id="compteService" class="ma.ensao.youmna.service.impl.CompteServiceImpl" /> -->
-<!-- 	<bean id="diplomeService" class="ma.ensao.youmna.service.impl.DiplomeServiceImpl" /> -->
-<!-- 	<bean id="technologieService" class="ma.ensao.youmna.service.impl.TechnologieServiceImpl" /> -->
 
 	<!-- Register JSON Converter for RESTful Web Service -->
 	<bean
@@ -47,15 +45,25 @@
 		<property name="supportedMediaTypes" value="application/json" />
 	</bean>
 
-	<!-- URLs auto-mappings -->
-
+	<!-- XML View Resolver  -->
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
 		<property name="location">
 			<value>/WEB-INF/spring-excel-views.xml</value>
 		</property>
 		<property name="order" value="0" />
 	</bean>
+	
+	<!-- Dozer Mapper -->
+<!-- 	<bean id="mapper" class="org.dozer.DozerBeanMapper"> -->
+<!-- 		<property name="mappingFiles"> -->
+<!-- 			<list> -->
+<!-- 				<value>/WEB-INF/dozer-bean-mappings.xml</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
 
+
+	<!-- URLs auto-mappings -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- Example: a logical view name of 'showMessage' is mapped to '/WEB-INF/jsp/showMessage.jsp' -->

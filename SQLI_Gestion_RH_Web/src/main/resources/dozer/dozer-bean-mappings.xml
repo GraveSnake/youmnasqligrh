@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+   "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+
+<mapping>
+	<class-a>ma.ensao.youmna.model.Collaborateur</class-a>
+	<class-b>ma.ensao.youmna.model.Archive</class-b>
+	<field>
+	    <a>salaireActuel</a>
+	    <b>salaire</b>
+	</field>
+</mapping>
+
+</mappings>

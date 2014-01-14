@@ -4,13 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Archive")
 public class Archive {
-	@Id
+	@Id @GeneratedValue
 	@Column(name = "Id")
 	private Integer id;
 	
@@ -21,13 +22,13 @@ public class Archive {
 	private String posteActuel3;
 	
 	@Column(name = "Poste_Actuel4")
-	private String postActuel4;
+	private String posteActuel4;
 	
 	@Column(name = "Salaire")
 	private String salaire;
 	
-	@Column(name = "Annee")
-	private Date annee;
+	@Column(name = "Date")
+	private Date date;
 
 	/**
 	 * @return the id
@@ -71,19 +72,6 @@ public class Archive {
 		this.posteActuel3 = posteActuel3;
 	}
 
-	/**
-	 * @return the postActuel4
-	 */
-	public String getPostActuel4() {
-		return postActuel4;
-	}
-
-	/**
-	 * @param postActuel4 the postActuel4 to set
-	 */
-	public void setPostActuel4(String postActuel4) {
-		this.postActuel4 = postActuel4;
-	}
 
 	/**
 	 * @return the salaire
@@ -98,19 +86,33 @@ public class Archive {
 	public void setSalaire(String salaire) {
 		this.salaire = salaire;
 	}
-
+	
 	/**
-	 * @return the annee
+	 * @return the posteActuel4
 	 */
-	public Date getAnnee() {
-		return annee;
+	public String getPosteActuel4() {
+		return posteActuel4;
 	}
 
 	/**
-	 * @param annee the annee to set
+	 * @param posteActuel4 the posteActuel4 to set
 	 */
-	public void setAnnee(Date annee) {
-		this.annee = annee;
+	public void setPosteActuel4(String posteActuel4) {
+		this.posteActuel4 = posteActuel4;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

@@ -52,6 +52,7 @@ public class CompetenceDaoImpl implements CompetenceDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Competence> getAllCompetences(Long id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Competence where id_techno = :id");

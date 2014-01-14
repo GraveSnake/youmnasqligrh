@@ -7,6 +7,8 @@ import ma.ensao.youmna.model.Collaborateur;
 public interface CollaborateurService {
 
 	void createCollaborateur(Collaborateur collaborateur);
+	
+	boolean requireArchive(Collaborateur collaborator);
 
 	void deleteCollaborateur(String matricule);
 

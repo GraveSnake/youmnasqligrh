@@ -50,13 +50,16 @@
 
 	<bean id="technologieDao" class="ma.ensao.youmna.dao.impl.TechnologieDaoImpl"
 		autowire="byName" />
+	
+	<bean id="archiveDao" class="ma.ensao.youmna.dao.impl.ArchiveDaoImpl"
+		autowire="byName" />
 		
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<!-- SMTP settings -->
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username"> <value>mossnaj@gmail.com</value> </property>
-		<property name="password" ><value>mosnajmed1990ensao2014</value></property>
+		<property name="username"> <value>sqli.youmna@gmail.com</value> </property>
+		<property name="password" ><value>Sqli.Rabat</value></property>
 
 		<property name="javaMailProperties">
 			<!-- additional properties specific to JavaMail -->
