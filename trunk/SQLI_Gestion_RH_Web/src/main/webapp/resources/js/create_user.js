@@ -132,7 +132,7 @@ function addRow() {
 	rowNum++;
 	var row = '<p id="rowNum'
 			+ rowNum
-			+ '"><table bgcolor="lightblue" style="border-collapse: none;" align="center"> <tr><td>Titre:</td><td><input name="DIPLOME['+rowNum+'].nom" /></td><td>Ecole:</td><td><input name="DIPLOME['+rowNum+'].ecole" /></td><td>Ecole type:</td><td><select name="DIPLOME['+rowNum+'].ecoleType" id="combobox"><option value="National">National</option><option value="International">International</option></select></td></tr><tr><td>Diplome type:</td><td><select name="DIPLOME['+rowNum+'].diplomeType"><option value="etatique">etatique</:option><option value="prive">prive</option></select></td><td>promotion:</td><td><input name="DIPLOME['+rowNum+'].promotion" /></td><td>niveau:</td><td><input name="DIPLOME['+rowNum+'].niveau" id="niveau"/></td></tr></table></p>';
+			+ '"><table id="tabcol" align="center"> <tr><td>Titre:</td><td><input name="DIPLOME['+rowNum+'].nom" /></td><td>Ecole:</td><td><input name="DIPLOME['+rowNum+'].ecole" /></td><td>Ecole type:</td><td><select name="DIPLOME['+rowNum+'].ecoleType" id="combobox"><option value="National">National</option><option value="International">International</option></select></td></tr><tr><td>Diplome type:</td><td><select name="DIPLOME['+rowNum+'].diplomeType"><option value="etatique">etatique</:option><option value="prive">prive</option></select></td><td>promotion:</td><td><input name="DIPLOME['+rowNum+'].promotion" /></td><td>niveau:</td><td><input name="DIPLOME['+rowNum+'].niveau" id="niveau"/></td></tr></table></p>';
 
 	jQuery('#itemRows').append(row);
 	$("#removeDip").removeAttr('disabled').removeClass( 'ui-state-disabled' );
@@ -152,7 +152,7 @@ function addTech() {
 	rowComp++;
 	var row = '<p id="rowTech'
 			+ rowTech
-			+ '"><table bgcolor="lightblue" style="border-collapse: none;"align="center"><tr><td>Technologie:</td><td><input name="TECHNOLOGIE['+rowTech+'].technologie" /></td><td>Competence #1</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td>Competence #2</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td>Competence #3</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr></table></p>';
+			+ '"><table id="tabcol" align="center"><tr><td>Technologie:</td><td><input name="TECHNOLOGIE['+rowTech+'].technologie" /></td><td>Competence #1</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td>Competence #2</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td>Competence #3</td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td>Niveau d\'expertise</td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr></table></p>';
 
 	jQuery('#itemTech').append(row);
 	$("#removeTech").removeAttr('disabled').removeClass( 'ui-state-disabled' );
@@ -181,6 +181,8 @@ $(document).ready(function() {
      
         $('#page' + i).hide();     
     }
+    $("#previous").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
+    
      $('#previous').click(function() {
         
         if (currentPage > 1) {
@@ -189,17 +191,35 @@ $(document).ready(function() {
             currentPage--;
             $('#page' + currentPage).show();
         }
+    	if(currentPage==numPages){
+    		$("#next").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
+    	}
+    	if(currentPage==3){
+    		$("#next").removeAttr('disabled').removeClass( 'ui-state-disabled' );
+    	}
+    	if(currentPage==1){
+    		$("#previous").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
+    	}
 
     }).appendTo($actions);
 
      $('#next').click(function() {
-
+    	 
+    	 
         if (currentPage < numPages) {
+
             
             $('#page' + currentPage).hide();
             currentPage++;
+
             $('#page' + currentPage).show();
         }
+    	if(currentPage==numPages){
+    		$("#next").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
+    	}
+    	if(currentPage==2){
+    		$("#previous").removeAttr('disabled').removeClass( 'ui-state-disabled' );
+    	}
 
     }).appendTo($actions);
 });

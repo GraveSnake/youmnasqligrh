@@ -40,28 +40,28 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:if test="${ empty ListCollab}">
+				<c:if test="${ empty ListManager}">
 					<tr>
 						<td colspan="11"><h4 align="center">No Results found</h4></td>
 					</tr>
 				</c:if>
 				<c:if test="${! empty ListCollab}">
-					<c:forEach var="collabs" items="${ListCollab}">
+					<c:forEach var="managers" items="${ListManager}">
 						<tr>
-							<td><c:out value="${collabs.matricule}"></c:out></td>
-							<td><c:out value="${collabs.nom}" /> <c:out
-									value="${collabs.prenom}" /></td>
-							<td><c:out value="${collabs.dateEmbauche}"></c:out></td>
-							<td><c:out value="${collabs.posteActuel3}"></c:out></td>
-							<td><c:out value="${collabs.salaireActuel}"></c:out></td>
-							<td><c:if test="${collabs.ancienColl=='true'}"><img src="${pageContext.request.contextPath}/resources/images/true.png" title="Ancien"></c:if></td>
-							<td><c:out value="${collabs.mgrhAncien}"></c:out></td>
-							<td><c:out value="${collabs.mgrhActuel}"></c:out></td>
-							<td><c:out value="${collabs.role}"></c:out></td>
-							<td><a href="updateCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/edit.png" alt="Edit" title="Edit"/></a>
-								&nbsp;&nbsp; <a href="viewCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/view.png" alt="View" title="View"/></a>
+							<td><c:out value="${managers.matricule}"></c:out></td>
+							<td><c:out value="${managers.nom}" /> <c:out
+									value="${managers.prenom}" /></td>
+							<td><c:out value="${managers.dateEmbauche}"></c:out></td>
+							<td><c:out value="${managers.posteActuel3}"></c:out></td>
+							<td><c:out value="${managers.salaireActuel}"></c:out></td>
+							<td><c:if test="${managers.ancienColl=='true'}"><img src="${pageContext.request.contextPath}/resources/images/true.png" title="Ancien"></c:if></td>
+							<td><c:out value="${managers.mgrhAncien}"></c:out></td>
+							<td><c:out value="${managers.mgrhActuel}"></c:out></td>
+							<td><c:out value="${managers.role}"></c:out></td>
+							<td><a href="updateCollab?COLLAB_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/edit.png" alt="Edit" title="Edit"/></a>
+								&nbsp;&nbsp; <a href="viewCollab?COLLAB_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/view.png" alt="View" title="View"/></a>
 								&nbsp;&nbsp; <sec:authorize ifAnyGranted='ROLE_ADMIN'>
-									<a href="deleteCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/del.png" alt="Delete" title="Delete"/></a>
+									<a href="deleteCollab?COLLAB_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/del.png" alt="Delete" title="Desactivate"/></a>
 								</sec:authorize></td>
 						</tr>
 					</c:forEach>

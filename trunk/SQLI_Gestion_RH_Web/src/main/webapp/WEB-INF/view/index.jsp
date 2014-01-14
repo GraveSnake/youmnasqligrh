@@ -31,9 +31,6 @@
 			<h3>Manager access !</h3>
 			<br />
 		</sec:authorize>
-		<p>
-			<a href="j_spring_security_logout">Logout</a>
-		</p>
 	</div>
 
 </body>

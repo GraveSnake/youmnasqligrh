@@ -42,9 +42,6 @@
 			<input type="button" onclick="go('export');" value="Export"/>
 			<br />
 		</sec:authorize>
-		<p>
-			<a href="j_spring_security_logout">Logout</a>
-		</p>
 	</div>
 
 </body>

@@ -10,5 +10,6 @@
 		<li><a href="administration"><spring:message code="menu.admin"/></a></li>
 		</sec:authorize>
 		<li><a href="account"><spring:message code="menu.account"/></a></li>
+		<li><a href="j_spring_security_logout">Logout</a></li>
 	</ul>
 </nav>

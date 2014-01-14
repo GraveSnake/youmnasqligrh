@@ -20,10 +20,27 @@
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
 			<h3>Admin access only to manage Managers!</h3>
 			<br />
+			<c:choose>
+				<c:when test="${VIEW=='show'}">
+					<input type="button" value="add new manager"
+						onclick="go('newManager');" />
+					<br />
+					<br />
+					<%@include file="showManager.jsp"%><br />
+
+				</c:when>
+				<c:when test="${VIEW=='new'}">
+					<%@include file="newManager.jsp"%><br />
+				</c:when>
+				<c:when test="${VIEW=='edit'}"><%@include
+						file="editManager.jsp"%><br />
+				</c:when>
+				<c:when test="${VIEW=='view'}"><%@include
+						file="viewManager.jsp"%><br />
+				</c:when>
+				<c:otherwise>Default</c:otherwise>
+			</c:choose>
 		</sec:authorize>
-		<p>
-			<a href="j_spring_security_logout">Logout</a>
-		</p>
 	</div>
 
 </body>
