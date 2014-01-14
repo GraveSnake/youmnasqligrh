@@ -21,9 +21,6 @@
     <sec:authorize ifAnyGranted='ROLE_USER,ROLE_ADMIN'>  
     <h2>Everyone access My Account To manage their account :)</h2><br/>  
   </sec:authorize>
-<p>
-	<a href="j_spring_security_logout">Logout</a>
-</p>
 	</div>
 
 </body>

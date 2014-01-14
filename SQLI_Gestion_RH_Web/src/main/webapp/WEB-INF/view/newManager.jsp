@@ -10,17 +10,17 @@
 	rel="stylesheet" type="text/css" />
 <body>
 
-	<form:form action="collaborators" method="post" id="createCollab"
-		commandName="newCollab">
+	<form:form action="managers" method="post" id="createMan"
+		commandName="newManager">
 
 		<br />
 
 
-		<input type="button" value="Save" id="enregister"  />
-		<input type="button" value="Previous" id="previous"  />
-		<input type="button" value="Next" id="next"  />
+		<input type="button" value="Save" id="enregister" />
+		<input type="button" value="Previous" id="previous" />
+		<input type="button" value="Next" id="next" />
 		<hr color="black" />
-				<p class="validateTips" style="color: red">All form fields are
+		<p class="validateTips" style="color: red">All form fields are
 			required.</p>
 		<div class="form_page" id="page1">
 			<h2>Donnees personelles</h2>
@@ -37,18 +37,6 @@
 				<tr>
 					<td>Abreviation</td>
 					<td><form:input path="abreviation" id="abreviation" /></td>
-					<td>Ancien manager</td>
-					<td><form:select path="mgrhAncien" id="Ancien_manager">
-							<form:option value="Aucun">Aucun</form:option>
-							<form:options items="${managers}" />
-						</form:select></td>
-					<td>Manager actuel</td>
-					<td><form:select path="mgrhActuel" id="manager_actuel">
-							<form:option value="Aucun">Aucun</form:option>
-							<form:options items="${managers}" />
-						</form:select></td>
-				</tr>
-				<tr>
 					<td>Sexe</td>
 					<td><form:select path="sexe" id="combobox">
 							<form:option value="F">F</form:option>
@@ -56,31 +44,36 @@
 						</form:select></td>
 					<td>Site</td>
 					<td><form:input path="site" id="site" value="Rabat" /></td>
-					<td>Bu</td>
-					<td><form:input path="bu" id="bu" /></td>
+
 				</tr>
 				<tr>
+					<td>Bu</td>
+					<td><form:input path="bu" id="bu" /></td>
 					<td>Salaire actuel</td>
 					<td><form:input path="salaireActuel" id="salaire_actuel" /></td>
 					<td>Date embauche</td>
 					<td><form:input path="dateEmbauche" id="date_embauche" /></td>
-					<td>Mois bap</td>
-					<td><form:input path="moisBap" id="mois_bap" /></td>
 				</tr>
 				<tr>
+
+					<td>Mois bap</td>
+					<td><form:input path="moisBap" id="mois_bap" /></td>
 					<td>Date de depart</td>
 					<td><form:input path="dateDepart" id="date_depart" /></td>
 					<td>Ancien collaborateur</td>
 					<td><form:checkbox path="ancienColl" checked="checked"
 							name="bu" /></td>
-					<td>Participe si</td>
-					<td><form:checkbox path="participeSi" id="participe_si" /></td>
 				</tr>
 				<tr>
+
+					<td>Participe si</td>
+					<td><form:checkbox path="participeSi" id="participe_si" /></td>
 					<td>Date participation</td>
 					<td><form:input path="dateSi" id="date_particp" /></td>
 					<td>Poste actuel (3)</td>
 					<td><form:input path="posteActuel3" id="poste_actuel3" /></td>
+				</tr>
+				<tr>
 					<td>Poste actuel (4)</td>
 					<td><form:input path="posteActuel4" id="poste_actuel4" /></td>
 				</tr>
@@ -172,19 +165,19 @@
 				<tr>
 					<td>Password</td>
 					<td><form:input path="compte.password" id="Password"
-							type="password" size="50"/></td>
+							type="password" size="50" /></td>
 				</tr>
 				<tr>
 					<td>Confirm Password</td>
-					<td><input id="Confirm_Password" type="password" size="50"/></td>
+					<td><input id="Confirm_Password" type="password" size="50" /></td>
 				</tr>
 				<tr>
 					<td>Email</td>
-					<td><form:input path="compte.email" id="Email"  size="50"/></td>
+					<td><form:input path="compte.email" id="Email" size="50" /></td>
 				</tr>
 			</table>
 		</div>
-	<hr color="black" />
+		<hr color="black" />
 	</form:form>
 	<div id="actions"></div>
 </body>

@@ -37,7 +37,7 @@
 		<sec:authorize ifAnyGranted='ROLE_USER,ROLE_ADMIN'>
 			<h3>All access !</h3>
 			<br />
-    			<c:choose>
+			<c:choose>
 				<c:when test="${VIEW=='show'}">
 					<input type="button" value="add new collab"
 						onclick="go('newColaborateur');" />
@@ -50,19 +50,20 @@
 					<h2>Add new collaborateur</h2>
 					<%@include file="newCollab.jsp"%><br />
 				</c:when>
-				<c:when test="${VIEW=='edit'}"><%@include file="editCollab.jsp"%><br /></c:when>
-				<c:when test="${VIEW=='view'}"><%@include file="viewCollab.jsp"%><br /></c:when>
+				<c:when test="${VIEW=='edit'}"><%@include
+						file="editCollab.jsp"%><br />
+				</c:when>
+				<c:when test="${VIEW=='view'}"><%@include
+						file="viewCollab.jsp"%><br />
+				</c:when>
 				<c:otherwise>Default</c:otherwise>
 			</c:choose>
-  </sec:authorize>
+		</sec:authorize>
 		<br />
 		<!-- <sec:authorize ifAllGranted='ROLE_ADMIN'>
 
 		</sec:authorize>-->
 
-		<p>
-			<a href="j_spring_security_logout">Logout</a>
-		</p>
 	</div>
 
 </body>
