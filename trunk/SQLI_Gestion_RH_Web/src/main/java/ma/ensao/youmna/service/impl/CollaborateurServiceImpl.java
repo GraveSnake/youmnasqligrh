@@ -50,5 +50,15 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 	public List<String> getAllCollaborateurs(String role) {
 		return collaborateurDao.getAllCollaborators(role);
 	}
+	
+	public boolean requireArchive(Collaborateur collaborator) {
+		Collaborateur existingCollab = collaborateurDao.getCollaborateurById(collaborator.getMatricule());
+		if(collaborator.getSalaireActuel() != existingCollab.getSalaireActuel() ||
+		collaborator.getPosteActuel3() != existingCollab.getPosteActuel3() ||
+		collaborator.getPosteActuel4() != existingCollab.getPosteActuel4())
+			return true;
+
+		return false;
+	}
 
 }

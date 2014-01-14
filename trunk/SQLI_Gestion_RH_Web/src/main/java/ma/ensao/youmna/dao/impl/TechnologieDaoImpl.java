@@ -38,6 +38,7 @@ public class TechnologieDaoImpl implements TechnologieDao {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Technologie> getAllTechnologies(String matricule) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from Technologie where matricule = :matricule");

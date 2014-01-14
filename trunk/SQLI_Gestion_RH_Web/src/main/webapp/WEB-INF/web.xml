@@ -15,7 +15,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
             classpath:database/dataSource.xml,
             classpath:database/Hibernate.xml,
             classpath:i18n/messageContext.xml,
-      		classpath:spring-security/login-security.xml
+      		classpath:spring-security/login-security.xml,
+      		classpath:dozer/dozer-bean.xml
       	</param-value>
 	</context-param>
 
