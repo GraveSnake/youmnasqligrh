@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CollaboratorController {
+public class ManagerController {
 
 	@Autowired
 	private CollaborateurService collaborateurService;
@@ -46,6 +46,11 @@ public class CollaboratorController {
 
 	private String welcome;
 
+	/*
+	 * Redirecting to form : newManager
+	 */
+	// Redirecting to form newManager
+
 	/**
 	 * @param welcome
 	 *            the welcome to set
@@ -54,72 +59,57 @@ public class CollaboratorController {
 		this.welcome = welcome;
 	}
 
-	/*
-	 * Redirecting to form : newCollab
-	 */
-	// Redirecting to form newCollab
-	@RequestMapping(value = "newColaborateur", method = RequestMethod.GET)
-	public ModelAndView newcollaborators() {
-		ModelAndView mav = new ModelAndView("collaborators");
-		List<String> managers = collaborateurService
-				.getAllCollaborateurs("Manager");
-		List<String> technologies=technologieService.technologies();
-		mav.addObject("technologies", technologies);
-		mav.addObject("managers", managers);
-		mav.addObject("newCollab", new Collaborateur());
+	@RequestMapping(value = "newManager", method = RequestMethod.GET)
+	public ModelAndView newManager() {
+		ModelAndView mav = new ModelAndView("admin_managers");
+		mav.addObject("newManager", new Collaborateur());
 		mav.addObject("VIEW", "new");
 		return mav;
 	}
 
 	/*
-	 * Save New Collaborator
+	 * Save New Manager
 	 */
-	@RequestMapping(value = "collaborators", method = RequestMethod.POST)
-	public ModelAndView saveCollaborator(
-			@ModelAttribute("newCollab") Collaborateur collaborateur) {
+	@RequestMapping(value = "newManager", method = RequestMethod.POST)
+	public ModelAndView saveManager(
+			@ModelAttribute("newManager") Collaborateur manager) {
 
 		// saving a new account
-		Compte compte = collaborateur.getCompte();
+		Compte compte = manager.getCompte();
+		manager.setRole("Manager");
 		if (compte != null) {
-			if ("Manager".equals(collaborateur.getRole())) {
-				compte.setActive(true);
-				compte.setAuthorities("ROLE_USER");
-			} else if ("Collaborateur".equals(collaborateur.getRole())) {
-				compte.setActive(false);
-			} else {
-				compte.setActive(true);
-				compte.setAuthorities("ROLE_ADMIN");
-			}
+			compte.setActive(true);
+			compte.setAuthorities("ROLE_USER");
 			compteService.createCompte(compte);
 		}
-		// saving a new collaborator
-		collaborateurService.createCollaborateur(collaborateur);
+		// saving a new Manager
+		collaborateurService.createCollaborateur(manager);
 
 		// saving an archive copy
-		archiveService.saveCollab(collaborateur);
+		archiveService.saveCollab(manager);
 
 		// saving all diplomes related to this collaborator
-		List<Diplome> diplomes = collaborateur.getDIPLOME();
+		List<Diplome> diplomes = manager.getDIPLOME();
 		Diplome dip = null;
 		if (diplomes != null) {
 			for (Diplome diplome : diplomes) {
 				dip = diplome;
-				dip.setCollaborateur(collaborateur);
+				dip.setCollaborateur(manager);
 				diplomeService.saveDiplome(dip);
 			}
 		}
 
 		// saving all technologies related to this collaborator
-		List<Technologie> technologies = collaborateur.getTECHNOLOGIE();
+		List<Technologie> technologies = manager.getTECHNOLOGIE();
 		Technologie tech = null;
 		if (technologies != null) {
 			for (Technologie technologie : technologies) {
 				tech = technologie;
-				tech.setCollaborateur(collaborateur);
+				tech.setCollaborateur(manager);
 				technologieService.saveTechnologie(tech);
 
 				// saving all competences related to this technology
-				List<Competence> competences = collaborateur.getCOMPETENCE();
+				List<Competence> competences = manager.getCOMPETENCE();
 				Competence comp = null;
 				if (competences != null) {
 					for (Competence competence : competences) {
@@ -130,20 +120,20 @@ public class CollaboratorController {
 				}
 
 			}
-			String to = collaborateur.getCompte().getEmail();
+			String to = manager.getCompte().getEmail();
 			compteService.sendMessage(to, welcome, welcome);
 
 		}
 
-		return new ModelAndView("redirect:/collaborators");
+		return new ModelAndView("redirect:/admin_managers");
 	}
 
 	/*
 	 * Redirecting to Form : Edit Collaborator
 	 */
-	@RequestMapping(value = "updateCollab", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam("COLLAB_ID") String COLLAB_ID) {
-		ModelAndView mav = new ModelAndView("collaborators");
+	@RequestMapping(value = "updateManager", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam("MANAGER_ID") String COLLAB_ID) {
+		ModelAndView mav = new ModelAndView("admin_managers");
 		Collaborateur collaborateur = collaborateurService
 				.getCollaborateurById(COLLAB_ID);
 		List<Diplome> diplomes = diplomeService.getAll(COLLAB_ID);
@@ -155,10 +145,7 @@ public class CollaboratorController {
 		collaborateur.setCOMPETENCE(competences);
 		collaborateur.setTECHNOLOGIE(technologies);
 		collaborateur.setDIPLOME(diplomes);
-		List<String> managers = collaborateurService
-				.getAllCollaborateurs("Manager");
-		mav.addObject("managers", managers);
-		mav.addObject("editCollab", collaborateur);
+		mav.addObject("editManager", collaborateur);
 		mav.addObject("technologiesSize", technologies.size());
 		mav.addObject("diplomesSize", diplomes.size());
 		mav.addObject("VIEW", "edit");
@@ -166,41 +153,46 @@ public class CollaboratorController {
 	}
 
 	/*
-	 * Updating collaborator
+	 * Updating Manager
 	 */
-	@RequestMapping(value = "updateCollab", method = RequestMethod.POST)
-	public ModelAndView update(
-			@ModelAttribute("editCollab") Collaborateur collaborateur) {
-		ModelAndView mav = new ModelAndView("collaborators");
 
-		// Updating collaborator
-		collaborateurService.updateCollaborateur(collaborateur);
-		// Archive Requirement Verification
-		if (collaborateurService.requireArchive(collaborateur)) {
-			archiveService.saveCollab(collaborateur);
+	@RequestMapping(value = "updateManager", method = RequestMethod.POST)
+	public ModelAndView update(
+			@ModelAttribute("editManager") Collaborateur manager) {
+
+		// saving a new account
+		Compte compte = manager.getCompte();
+		compteService.updateCompte(compte);
+		// updating the new Manager
+		collaborateurService.updateCollaborateur(manager);
+
+		// saving an archive copy
+		if (collaborateurService.requireArchive(manager)) {
+			archiveService.saveCollab(manager);
 		}
+
 		// updating all diplomes related to this collaborator
-		List<Diplome> diplomes = collaborateur.getDIPLOME();
+		List<Diplome> diplomes = manager.getDIPLOME();
 		Diplome dip = null;
 		if (diplomes != null) {
 			for (Diplome diplome : diplomes) {
 				dip = diplome;
-				dip.setCollaborateur(collaborateur);
+				dip.setCollaborateur(manager);
 				diplomeService.updateDiplome(dip);
 			}
 		}
 
 		// updating all technologies related to this collaborator
-		List<Technologie> technologies = collaborateur.getTECHNOLOGIE();
+		List<Technologie> technologies = manager.getTECHNOLOGIE();
 		Technologie tech = null;
 		if (technologies != null) {
 			for (Technologie technologie : technologies) {
 				tech = technologie;
-				tech.setCollaborateur(collaborateur);
+				tech.setCollaborateur(manager);
 				technologieService.updateTechnologie(tech);
 
 				// updating all competences related to this technology
-				List<Competence> competences = collaborateur.getCOMPETENCE();
+				List<Competence> competences = manager.getCOMPETENCE();
 				Competence comp = null;
 				if (competences != null) {
 					for (Competence competence : competences) {
@@ -213,16 +205,15 @@ public class CollaboratorController {
 			}
 
 		}
-		mav.addObject("VIEW", "view");
-		return mav;
+		return new ModelAndView("redirect:/admin_managers");
 	}
 
 	/*
-	 * View a Collaborator
+	 * View a Manager
 	 */
-	@RequestMapping(value = "viewCollab", method = RequestMethod.GET)
-	public ModelAndView view(@RequestParam("COLLAB_ID") String COLLAB_ID) {
-		ModelAndView mav = new ModelAndView("collaborators");
+	@RequestMapping(value = "viewManager", method = RequestMethod.GET)
+	public ModelAndView view(@RequestParam("MANAGER_ID") String COLLAB_ID) {
+		ModelAndView mav = new ModelAndView("admin_managers");
 		Collaborateur collaborateur = collaborateurService
 				.getCollaborateurById(COLLAB_ID);
 		List<Diplome> diplomes = diplomeService.getAll(COLLAB_ID);
@@ -231,6 +222,9 @@ public class CollaboratorController {
 		for (Technologie tech : technologies) {
 			competences.addAll(competenceService.getAll(tech.getId()));
 		}
+//		collaborateur.setCOMPETENCE(competences);
+//		collaborateur.setTECHNOLOGIE(technologies);
+//		collaborateur.setDIPLOME(diplomes);
 		mav.addObject("technologiesSize", technologies.size());
 		mav.addObject("diplomesSize", diplomes.size());
 		mav.addObject("DIPLOME", diplomes);
@@ -239,14 +233,5 @@ public class CollaboratorController {
 		mav.addObject("viewCollab", collaborateur);
 		mav.addObject("VIEW", "view");
 		return mav;
-	}
-
-	/*
-	 * Delete a Collaborator
-	 */
-	@RequestMapping(value = "deleteCollab", method = RequestMethod.POST)
-	public ModelAndView delete(
-			@ModelAttribute("editCollab") Collaborateur collaborateur) {
-		return null;
 	}
 }

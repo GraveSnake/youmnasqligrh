@@ -1,5 +1,8 @@
 package ma.ensao.youmna.controller;
 
+import ma.ensao.youmna.service.CollaborateurService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +22,9 @@ import com.googlecode.charts4j.Slice;
 
 @Controller
 public class ReportingController {
+	
+	@Autowired
+	private CollaborateurService collaborateurService;
 	
 	
 	@RequestMapping("reporting")
@@ -52,11 +58,14 @@ public class ReportingController {
         chart2.addXAxisLabels(year);
         
         //Ratio
-        Slice s1 = Slice.newSlice(70, Color.newColor("CACACA"), "Masculin", "Masculin");
-        Slice s2 = Slice.newSlice(30, Color.newColor("DF7417"), "Feminin", "Feminin");
-
+        int male= collaborateurService.getAllCollaborateurs('M');
+        int female=collaborateurService.getAllCollaborateurs('F');
+        float malePercent=(male*100)/(male+female);
+        float femalePercent=(female*100)/(male+female);
+        Slice s1 = Slice.newSlice((int) malePercent, Color.newColor("CACACA"), String.valueOf(malePercent+"% "), "Male");
+        Slice s2 = Slice.newSlice((int) femalePercent, Color.newColor("DF7417"), String.valueOf(femalePercent+"% "), "Female");
         PieChart chartpi = GCharts.newPieChart(s1, s2);
-        chartpi.setTitle("Ratio Feminin Masculin", Color.BLACK, 16);
+        chartpi.setTitle("Ratio Female Male", Color.BLACK, 16);
         chartpi.setSize(500, 200);
         chartpi.setThreeD(true);
         

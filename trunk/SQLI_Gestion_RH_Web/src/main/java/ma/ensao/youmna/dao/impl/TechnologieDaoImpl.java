@@ -46,4 +46,15 @@ public class TechnologieDaoImpl implements TechnologieDao {
 		return query.list();
 	}
 
+	public void updateTechnologie(Technologie technologie) {
+		sessionFactory.getCurrentSession().update(technologie);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> technologies() {
+		// TODO Auto-generated method stub
+		return sessionFactory.getCurrentSession().createQuery("select nom from TechnoExist").list();
+	}
+
 }

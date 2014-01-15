@@ -53,7 +53,6 @@
 </style>
 </head>
 <body>
-	<form:form action="managers" method="post" commandName="viewManager">
 		<div id="viewCollabTabs">
 			<ul>
 				<li><a href="#tabs-1">Donnees personelles</a></li>
@@ -62,89 +61,81 @@
 				<li><a href="#tabs-4">Reporting</a></li>
 			</ul>
 			<div id="tabs-1">
-				<h2>Donnees personelles</h2>
+				<h2 style="color: lightblue">Donnees personelles</h2>
 				<table style="border-collapse: none;"
-					background="../images/header-bg.gif" align="center" id="tabcol">
+					 align="center" id="tabcol">
 					<tr>
-						<td>matricule</td>
-						<td><form:input path="matricule" readonly="true" /></td>
-						<td>nom</td>
-						<td><form:input path="nom" readonly="true" /></td>
-						<td>prenom</td>
-						<td><form:input path="prenom" readonly="true" /></td>
+						<td><label>Matricule:</label></td>
+						<td><c:out value="${viewCollab.matricule}"/></td>
+						<td><label>Nom:</label></td>
+						<td><c:out value="${viewCollab.nom}"/></td>
+						<td><label>Prenom:</label></td>
+						<td><c:out value="${viewCollab.prenom}"/></td>
 					</tr>
 					<tr>
-						<td>abreviation</td>
-						<td><form:input path="abreviation" readonly="true" /></td>
-						<td>sexe</td>
-						<td><form:input path="sexe" readonly="true" /></td>
-						<td>site</td>
-						<td><form:input path="site" readonly="true" /></td>
-					</tr>
-					<tr>
-
-						<td>bu</td>
-						<td><form:input path="bu" /></td>
-						<td>salaire actuel</td>
-						<td><form:input path="salaireActuel" readonly="true" /></td>
-						<td>Date embauche</td>
-						<td><form:input path="dateEmbauche" readonly="true" /></td>
+						<td><label>Abreviation:</label></td>
+						<td><c:out value="${viewCollab.abreviation}" /></td>
+						<td><label>Sexe:</label></td>
+						<td><c:out value="${viewCollab.sexe}"/></td>
+						<td><label>Site:</label></td>
+						<td><c:out value="${viewCollab.site}"/></td>
 					</tr>
 					<tr>
 
-						<td>Mois bap</td>
-						<td><form:input path="moisBap" readonly="true" /></td>
-						<td>Ancien Manager</td>
-						<td><form:checkbox path="ancienColl" checked="checked"
-								name="bu" readonly="true" /></td>
-						<td>Date de depart</td>
-						<td><form:input path="dateDepart" readonly="true" /></td>
-					</tr>
-					<tr>
-						<td>Participe si</td>
-						<td><form:checkbox path="participeSi" readonly="true" /></td>
-						<td>Date participation</td>
-						<td><form:input path="dateSi" readonly="true" /></td>
-						<td>Poste actuel (3)</td>
-						<td><form:input path="posteActuel3" readonly="true" /></td>
+						<td><label>Bu:</label></td>
+						<td><c:out value="${viewCollab.bu}" /></td>
+						<td><label>Salaire actuel:</label></td>
+						<td><c:out value="${viewCollab.salaireActuel}" /></td>
+						<td><label>Date embauche:</label></td>
+						<td><c:out value="${viewCollab.dateEmbauche}"/></td>
 					</tr>
 					<tr>
 
-						<td>Poste actuel (4)</td>
-						<td><form:input path="posteActuel4" readonly="true" /></td>
-						<td>Role</td>
-						<td><form:input path="role" readonly="true" /></td>
+						<td><label>Mois bap:</label></td>
+						<td><c:out value="${viewCollab.moisBap}" /></td>
+						<td><label>Ancien Manager:</label></td>
+						<td><c:out value="${viewCollab.ancienColl}"/></td>
+						<td><label>Date de depart:</label></td>
+						<td><c:out value="${viewCollab.dateDepart}" /></td>
+					</tr>
+					<tr>
+						<td><label>Participe SI:</label></td>
+						<td><c:out value="${viewCollab.participeSi}" /></td>
+						<td><label>Date participation:</label></td>
+						<td><c:out value="${viewCollab.dateSi}" /></td>
+						<td><label>Poste actuel (3):</label></td>
+						<td><c:out value="${viewCollab.posteActuel3}" /></td>
+					</tr>
+					<tr>
+
+						<td><label>Poste actuel (4):</label></td>
+						<td><c:out value="${viewCollab.posteActuel4}" /></td>
 					</tr>
 				</table>
 			</div>
 			<div id="tabs-2">
-				<h2>Diplome:</h2>
+				<h2 style="color: lightblue">Diplome:</h2>
 				<c:if test="${diplomesSize!=0}">
 					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
-						<table background="../images/header-bg.gif"
-							style="border-collapse: none;" align="center" id="tabcol">
+						<table border="1"
+							style="border-collapse: collapse;" align="center" id="tabcol">
 
 							<tr>
-								<td>Titre:</td>
-								<td><form:input path="DIPLOME[${dipl}].nom" readonly="true" /></td>
-								<td>Ecole:</td>
-								<td><form:input path="DIPLOME[${dipl}].ecole"
-										readonly="true" /></td>
-								<td>Ecole type:</td>
-								<td><form:input path="DIPLOME[${dipl}].ecoleType"
-										id="combobox" readonly="true" /></td>
+								<td><label>Titre:</label></td>
+								<td><c:out value="${DIPLOME[dipl].nom}" /></td>
+								<td><label>Ecole:</label></td>
+								<td><c:out value="${DIPLOME[dipl].ecole}" /></td>
+								<td><label>Ecole type:</label></td>
+								<td><c:out value="${DIPLOME[dipl].ecoleType}"/></td>
 							</tr>
 							<tr>
-								<td>Diplome type:</td>
-								<td><form:input path="DIPLOME[${dipl}].diplomeType"
-										readonly="true" /></td>
-								<td>promotion:</td>
-								<td><form:input path="DIPLOME[${dipl}].promotion"
-										readonly="true" /></td>
-								<td>niveau:</td>
-								<td><form:input path="DIPLOME[${dipl}].niveau" id="niveau"
-										readonly="true" /></td>
+								<td><label>Diplome type:</label></td>
+								<td><c:out value="${DIPLOME[dipl].diplomeType}" /></td>
+								<td><label>Promotion:</label></td>
+								<td><c:out value="${DIPLOME[dipl].promotion}"/></td>
+								<td><label>Niveau:</label></td>
+								<td><c:out value="${DIPLOME[dipl].niveau}" /></td>
 							</tr>
 						</table>
 
@@ -152,49 +143,44 @@
 				</c:if>
 			</div>
 			<div id="tabs-3">
-				<h2>Technologie:</h2>
+				<h2 style="color: lightblue">Technologie:</h2>
 				<c:if test="${technologiesSize!=0}">
 					<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
 						<div id="itemTech">
-							<table background="../images/header-bg.gif"
+							<table 
 								style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
-									<td>Technologie:</td>
-									<td><form:input path="TECHNOLOGIE[${tech}].technologie"
-											readonly="true" /></td>
+									<td ><label>Technologie:</label></td>
+									<td><c:out value="${TECHNOLOGIE[tech].technologie}"/></td>
 
-									<td>Competence #1</td>
-									<td><form:input path="COMPETENCE[${tech}].competence"
-											readonly="true" /></td>
+									<td><label>Competence #1:</label></td>
+									<td><c:out value="${COMPETENCE[tech].competence}"/></td>
 
-									<td>Niveau d'expertise</td>
-									<td><form:input path="COMPETENCE[${tech}].niveauExpertise"
-											readonly="true" /></td>
+									<td><label>Niveau d'expertise:</label></td>
+									<td><c:out value="${COMPETENCE[tech].niveauExpertise}"/></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td>Competence #2</td>
-									<td><form:input path="COMPETENCE[${tech +1}].competence"
-											readonly="true" /></td>
+									<td><label>Competence #2:</label></td>
+									<td><c:out value="${COMPETENCE[tech +1].competence}" /></td>
 
-									<td>Niveau d'expertise</td>
-									<td><form:input
-											path="COMPETENCE[${tech +1}].niveauExpertise" readonly="true" /></td>
+									<td><label>Niveau d'expertise:</label></td>
+									<td><c:out value="${COMPETENCE[tech +1].niveauExpertise}" /></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td></td>
-									<td>Competence #3</td>
-									<td><form:input path="COMPETENCE[${tech +2}].competence"
-											readonly="true" /></td>
+									<td><label>Competence #3:</label></td>
+									<td><c:out value="${COMPETENCE[tech +2].competence}" /></td>
 
-									<td>Niveau d'expertise</td>
-									<td><form:input
-											path="COMPETENCE[${tech +2}].niveauExpertise" readonly="true" /></td>
+									<td><label>Niveau d'expertise:</label></td>
+									<td><c:out value="${COMPETENCE[tech +2].niveauExpertise}" /></td>
 								</tr>
+								
 							</table>
 						</div>
+						<hr>
 					</c:forEach>
 				</c:if>
 			</div>
@@ -202,8 +188,7 @@
 			<div id="tabs-4">Reporting</div>
 
 		</div>
-	</form:form>
-	<input type="button" value="Back" onclick="go('collaborators');">
+	<input type="button" value="Back" onclick="go('admin_managers');">
 </body>
 
 

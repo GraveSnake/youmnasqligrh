@@ -51,4 +51,10 @@ public class CompetenceServiceImpl implements CompetenceService {
 		return competenceDao.getAllCompetences(id);
 	}
 
+
+	public void updateCompetence(Competence competence) {
+		competenceDao.updateCompetence(competence);
+		
+	}
+
 }

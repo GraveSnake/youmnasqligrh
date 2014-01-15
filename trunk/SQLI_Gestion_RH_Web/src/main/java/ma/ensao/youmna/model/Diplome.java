@@ -19,19 +19,19 @@ public class Diplome {
 	@Column(name = "nom")
 	private String nom;
 	
-	@Column(name = "ecole", nullable = false)
+	@Column(name = "ecole")
 	private String ecole;
 	
-	@Column(name = "ecole_type", nullable = false)
+	@Column(name = "ecole_type")
 	private String ecoleType;
 	
-	@Column(name = "diplome_type", nullable = false)
+	@Column(name = "diplome_type")
 	private String diplomeType;
 	
-	@Column(name = "promotion", nullable = false)
+	@Column(name = "promotion")
 	private Integer promotion;
 
-	@Column(name = "niveau", nullable = false)
+	@Column(name = "niveau")
 	private String niveau;
 	
 	@ManyToOne

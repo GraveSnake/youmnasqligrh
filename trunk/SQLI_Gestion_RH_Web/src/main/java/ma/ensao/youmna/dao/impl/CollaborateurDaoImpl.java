@@ -47,8 +47,10 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Collaborateur> getAllCollaborateurs() {
-		 return sessionFactory.getCurrentSession().createQuery("from Collaborateur").list();
+	public List<Collaborateur> getAllCollaborateursByRole(String role) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur  where role = :role order by matricule asc");
+		query.setParameter("role", role);
+		 return query.list();
 		
 	}
 
@@ -58,6 +60,18 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		Query query = sessionFactory.getCurrentSession().createQuery("select nom from Collaborateur  where role = :role order by nom asc");
 		query.setParameter("role", role);
 		return (List<String>) query.list();
+	}
+
+	public int getAllCollaborateurs(char sexe) {
+		Query query = sessionFactory.getCurrentSession().createQuery("select nom from Collaborateur  where sexe = :sexe");
+		query.setParameter("sexe", sexe);
+		return query.list().size();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Collaborateur> getAllCollaborateurs() {
+		
+		return sessionFactory.getCurrentSession().createQuery("from Collaborateur").list();
 	}
 
 }

@@ -58,4 +58,10 @@ public class CompteServiceImpl implements CompteService{
 	}
 
 
+	public void updateCompte(Compte compte) {
+		compteDao.updateCompte(compte);
+		
+	}
+
+
 }

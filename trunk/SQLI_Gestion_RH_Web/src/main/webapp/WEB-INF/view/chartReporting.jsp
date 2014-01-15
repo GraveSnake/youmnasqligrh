@@ -22,7 +22,7 @@
 .ui-tabs-vertical .ui-tabs-nav {
 	padding: .2em .1em .2em .2em;
 	float: left;
-	width: 12em;
+	width: 19em;
 }
 
 .ui-tabs-vertical .ui-tabs-nav li {
@@ -55,9 +55,10 @@
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1">Evolution de salaire</a></li>
-			<li><a href="#tabs-2">Evolution de poste</a></li>
+			<li><a href="#tabs-1">Evolution recrutement par année</a></li>
+			<li><a href="#tabs-2">Pourcentage de chaque technologie</a></li>
 			<li><a href="#tabs-3">Ratio F/M</a></li>
+			<li><a href="#tabs-4">Pourcentage par école</a></li>
 		</ul>
 		<div id="tabs-1">
 			<h2>Content heading 1</h2>

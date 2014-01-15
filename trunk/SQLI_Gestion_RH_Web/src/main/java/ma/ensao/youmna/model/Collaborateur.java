@@ -32,10 +32,10 @@ public class Collaborateur {
 	@Column(name = "abreviation", nullable = false)
 	private String abreviation;
 	
-	@Column(name = "mgrh_ancien", nullable = false)
+	@Column(name = "mgrh_ancien")
 	private String mgrhAncien;
 	
-	@Column(name = "mgrh_actuel", nullable = false)
+	@Column(name = "mgrh_actuel")
 	private String mgrhActuel;
 	
 	@Column(name = "sexe", nullable = false)
@@ -56,13 +56,13 @@ public class Collaborateur {
 	@Column(name = "date_depart", nullable = false)
 	private String dateDepart;
 	
-	@Column(name = "ancien_coll", nullable = false)
+	@Column(name = "ancien_coll")
 	private boolean ancienColl;
 	
-	@Column(name = "participe_si", nullable = false)
+	@Column(name = "participe_si")
 	private boolean participeSi;
 	
-	@Column(name = "date_si", nullable = false)
+	@Column(name = "date_si")
 	private String dateSi;
 	
 	@Column(name = "poste_actuel3", nullable = false)

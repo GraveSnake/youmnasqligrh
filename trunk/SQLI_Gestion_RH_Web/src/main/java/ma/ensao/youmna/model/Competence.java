@@ -13,11 +13,11 @@ import javax.persistence.Table;
 public class Competence {
 	
 	@Id @GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	private Long id;
-	@Column(name = "competence", nullable = false)
+	@Column(name = "competence")
 	private String competence;
-	@Column(name = "niveau_expertise", nullable = false)
+	@Column(name = "niveau_expertise")
 	private Integer niveauExpertise;
 	@ManyToOne
 	@JoinColumn(name="id_techno")
