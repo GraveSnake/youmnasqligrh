@@ -8,6 +8,8 @@ public interface CompetenceDao {
 	
 	void addCompetence(Competence competence);
 	
+	void updateCompetence(Competence competence);
+	
 	void deleteCompetence(Long id);
 	
 	List<Competence> getAllCompetences();

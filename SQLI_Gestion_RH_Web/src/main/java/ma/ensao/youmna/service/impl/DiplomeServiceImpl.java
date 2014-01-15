@@ -44,4 +44,9 @@ public class DiplomeServiceImpl implements DiplomeService {
 		
 		return diplomeDao.getAllDiplomes(matricule);
 	}
+
+	public void updateDiplome(Diplome diplome) {
+		diplomeDao.updateDiplome(diplome);
+		
+	}
 }

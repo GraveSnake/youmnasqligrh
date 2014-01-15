@@ -14,6 +14,11 @@
 	src="${pageContext.request.contextPath}/resources/js/create_user.js">
 	
 </script>
+
+<script
+	src="${pageContext.request.contextPath}/resources/js/validationCollab.js">
+	
+</script>
 <script src="${pageContext.request.contextPath}/resources/js/button.js">
 	
 </script>

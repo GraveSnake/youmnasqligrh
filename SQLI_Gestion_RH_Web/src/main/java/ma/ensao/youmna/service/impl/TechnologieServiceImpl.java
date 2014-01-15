@@ -45,4 +45,14 @@ public class TechnologieServiceImpl implements TechnologieService {
 		return technologieDao.getAllTechnologies(matricule);
 	}
 
+	public void updateTechnologie(Technologie technologie) {
+		technologieDao.updateTechnologie(technologie);
+		
+	}
+
+	public List<String> technologies() {
+		// TODO Auto-generated method stub
+		return technologieDao.technologies();
+	}
+
 }

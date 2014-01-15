@@ -10,7 +10,7 @@
 	rel="stylesheet" type="text/css" />
 <body>
 
-	<form:form action="collaborators" method="post" id="createCollab"
+	<form:form action="collaborators" method="post" id="CollabForm"
 		commandName="newCollab">
 
 		<br />
@@ -20,98 +20,97 @@
 		<input type="button" value="Previous" id="previous"  />
 		<input type="button" value="Next" id="next"  />
 		<hr color="black" />
-				<p class="validateTips" style="color: red">All form fields are
-			required.</p>
+				<p class="validateTips" style="color: red"></p>
 		<div class="form_page" id="page1">
-			<h2>Donnees personelles</h2>
+			<h2 style="color: lightblue">Donnees personelles</h2>
 			<table style="border-collapse: none;"
-				background="../images/header-bg.gif" align="center" id="tabcol">
+				 align="center" >
 				<tr>
-					<td>Matricule</td>
+					<td><label>Matricule:</label></td>
 					<td><form:input path="matricule" id="matricule" /></td>
-					<td>Nom</td>
+					<td><label>Nom:</label></td>
 					<td><form:input path="nom" id="nom" /></td>
-					<td>Prenom</td>
+					<td><label>Prenom:</label></td>
 					<td><form:input path="prenom" id="prenom" /></td>
 				</tr>
 				<tr>
-					<td>Abreviation</td>
+					<td><label>Abreviation:</label></td>
 					<td><form:input path="abreviation" id="abreviation" /></td>
-					<td>Ancien manager</td>
-					<td><form:select path="mgrhAncien" id="Ancien_manager">
+					<td><label>Ancien manager:</label></td>
+					<td><form:select path="mgrhAncien">
 							<form:option value="Aucun">Aucun</form:option>
 							<form:options items="${managers}" />
 						</form:select></td>
-					<td>Manager actuel</td>
-					<td><form:select path="mgrhActuel" id="manager_actuel">
+					<td><label>Manager actuel:</label></td>
+					<td><form:select path="mgrhActuel">
 							<form:option value="Aucun">Aucun</form:option>
 							<form:options items="${managers}" />
 						</form:select></td>
 				</tr>
 				<tr>
-					<td>Sexe</td>
-					<td><form:select path="sexe" id="combobox">
+					<td><label>Sexe:</label></td>
+					<td><form:select path="sexe">
 							<form:option value="F">F</form:option>
 							<form:option value="M">M</form:option>
 						</form:select></td>
-					<td>Site</td>
+					<td><label>Site:</label></td>
 					<td><form:input path="site" id="site" value="Rabat" /></td>
-					<td>Bu</td>
+					<td><label>Bu:</label></td>
 					<td><form:input path="bu" id="bu" /></td>
 				</tr>
 				<tr>
-					<td>Salaire actuel</td>
+					<td><label>Salaire actuel:</label></td>
 					<td><form:input path="salaireActuel" id="salaire_actuel" /></td>
-					<td>Date embauche</td>
+					<td><label>Date embauche:</label></td>
 					<td><form:input path="dateEmbauche" id="date_embauche" /></td>
-					<td>Mois bap</td>
-					<td><form:input path="moisBap" id="mois_bap" /></td>
+					<td><label>Mois bap:</label></td>
+					<td><form:input path="moisBap" id="bap" /></td>
 				</tr>
 				<tr>
-					<td>Date de depart</td>
+					<td><label>Date de depart:</label></td>
 					<td><form:input path="dateDepart" id="date_depart" /></td>
-					<td>Ancien collaborateur</td>
-					<td><form:checkbox path="ancienColl" checked="checked"
+					<td><label>Ancien collaborateur:</label></td>
+					<td><form:checkbox path="ancienColl"
 							name="bu" /></td>
-					<td>Participe si</td>
-					<td><form:checkbox path="participeSi" id="participe_si" /></td>
+					<td><label>Participe SI:</label></td>
+					<td><form:checkbox path="participeSi" /></td>
 				</tr>
 				<tr>
-					<td>Date participation</td>
+					<td><label>Date participation</label></td>
 					<td><form:input path="dateSi" id="date_particp" /></td>
-					<td>Poste actuel (3)</td>
+					<td><label>Poste actuel (3):</label></td>
 					<td><form:input path="posteActuel3" id="poste_actuel3" /></td>
-					<td>Poste actuel (4)</td>
+					<td><label>Poste actuel (4):</label></td>
 					<td><form:input path="posteActuel4" id="poste_actuel4" /></td>
 				</tr>
 			</table>
 		</div>
 		<div class="form_page" id="page2">
-			<h2>Diplome:</h2>
+			<h2 style="color: lightblue">Diplome:</h2>
 			<div id=itemRows>
 				<table style="border-collapse: none;"
-					background="../images/header-bg.gif" align="center" id="tabcol">
+					 align="center" id="tabcol">
 
 					<tr>
-						<td>Titre:</td>
+						<td><label>Titre:</label></td>
 						<td><form:input path="DIPLOME[0].nom" /></td>
-						<td>Ecole:</td>
+						<td><label>Ecole:</label></td>
 						<td><form:input path="DIPLOME[0].ecole" /></td>
-						<td>Ecole type:</td>
+						<td><label>Ecole type:</label></td>
 						<td><form:select path="DIPLOME[0].ecoleType" id="combobox">
 								<form:option value="National">National</form:option>
 								<form:option value="International">International</form:option>
 							</form:select></td>
 					</tr>
 					<tr>
-						<td>Diplome type:</td>
+						<td><label>Diplome type:</label></td>
 						<td><form:select path="DIPLOME[0].diplomeType">
 								<form:option value="etatique">etatique</form:option>
 								<form:option value="prive">prive</form:option>
 							</form:select></td>
-						<td>Promotion:</td>
-						<td><form:input path="DIPLOME[0].promotion" /></td>
-						<td>Niveau:</td>
+						<td><label>Promotion:</label></td>
+						<td><form:input path="DIPLOME[0].promotion" id="promotion"/></td>
+						<td><label>Niveau:</label></td>
 						<td><form:input path="DIPLOME[0].niveau" id="niveau" /></td>
 					</tr>
 				</table>
@@ -122,36 +121,36 @@
 		</div>
 
 		<div class="form_page" id="page3">
-			<h2>Technologie:</h2>
+			<h2 style="color: lightblue">Technologie:</h2>
 			<div id="itemTech">
 				<table style="border-collapse: none;"
-					background="../images/header-bg.gif" align="center" id="tabcol">
+					 align="center" id="tabcol">
 					<tr>
-						<td>Technologie:</td>
-						<td><form:input path="TECHNOLOGIE[0].technologie" /></td>
+						<td><label>Technologie:</label></td>
+						<td><form:input path="TECHNOLOGIE[0].technologie" id="techno" /></td>
 
-						<td>Competence #1</td>
+						<td><label>Competence #1:</label></td>
 						<td><form:input path="COMPETENCE[0].competence" /></td>
 
-						<td>Niveau d'expertise</td>
+						<td><label>Niveau d'expertise:</label></td>
 						<td><form:input path="COMPETENCE[0].niveauExpertise" /></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
-						<td>Competence #2</td>
+						<td><label>Competence #2:</label></td>
 						<td><form:input path="COMPETENCE[1].competence" /></td>
 
-						<td>Niveau d'expertise</td>
+						<td><label>Niveau d'expertise:</label></td>
 						<td><form:input path="COMPETENCE[1].niveauExpertise" /></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td></td>
-						<td>Competence #3</td>
+						<td><label>Competence #3:</label></td>
 						<td><form:input path="COMPETENCE[2].competence" /></td>
 
-						<td>Niveau d'expertise</td>
+						<td><label>Niveau d'expertise:</label></td>
 						<td><form:input path="COMPETENCE[2].niveauExpertise" /></td>
 					</tr>
 				</table>
@@ -162,25 +161,25 @@
 		</div>
 
 		<div class="form_page" id="page4">
-			<h2>Compte:</h2>
+			<h2 style="color: lightblue">Compte:</h2>
 			<table style="border-collapse: none;"
-				background="../images/header-bg.gif" align="center" id="tabcol">
+				 align="center" id="tabcol">
 				<tr>
-					<td>Login</td>
-					<td><form:input path="compte.login" id="Login" size="50" /></td>
+					<td><label>Login:</label></td>
+					<td><form:input path="compte.login" id="login" size="50" /></td>
 				</tr>
 				<tr>
-					<td>Password</td>
-					<td><form:input path="compte.password" id="Password"
+					<td><label>Password:</label></td>
+					<td><form:input path="compte.password" id="password"
 							type="password" size="50"/></td>
 				</tr>
 				<tr>
-					<td>Confirm Password</td>
+					<td><label>Confirm Password:</label></td>
 					<td><input id="Confirm_Password" type="password" size="50"/></td>
 				</tr>
 				<tr>
-					<td>Email</td>
-					<td><form:input path="compte.email" id="Email"  size="50"/></td>
+					<td><label>Email:</label></td>
+					<td><form:input path="compte.email" id="email"  size="50"/></td>
 				</tr>
 			</table>
 		</div>

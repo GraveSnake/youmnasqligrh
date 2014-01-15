@@ -42,9 +42,9 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 		
 	}
 
-	public List<Collaborateur> getAllCollaborateurs() {
+	public List<Collaborateur> getAllCollaborateursByRole(String role) {
 
-		return collaborateurDao.getAllCollaborateurs();
+		return collaborateurDao.getAllCollaborateursByRole(role);
 	}
 
 	public List<String> getAllCollaborateurs(String role) {
@@ -59,6 +59,16 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 			return true;
 
 		return false;
+	}
+
+	public int getAllCollaborateurs(char s) {
+		
+		return collaborateurDao.getAllCollaborateurs(s);
+	}
+
+	public List<Collaborateur> getAllCollaborateurs() {
+		
+		return collaborateurDao.getAllCollaborateurs();
 	}
 
 }

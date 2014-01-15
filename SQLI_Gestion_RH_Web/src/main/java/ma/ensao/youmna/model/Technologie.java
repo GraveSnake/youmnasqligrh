@@ -16,9 +16,9 @@ import javax.persistence.Transient;
 public class Technologie {
 
 	@Id @GeneratedValue
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	private Long id;
-	@Column(name = "technologie", nullable = false)
+	@Column(name = "technologie")
 	private String technologie;
 	@ManyToOne
 	@JoinColumn(name="matricule")

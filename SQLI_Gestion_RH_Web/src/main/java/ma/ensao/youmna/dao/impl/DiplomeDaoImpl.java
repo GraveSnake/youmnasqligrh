@@ -48,4 +48,9 @@ public class DiplomeDaoImpl implements DiplomeDao {
 		return query.list();
 	}
 
+	public void updateDiplome(Diplome diplome) {
+		sessionFactory.getCurrentSession().update(diplome);
+		
+	}
+
 }

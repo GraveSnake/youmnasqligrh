@@ -16,8 +16,12 @@ public interface CollaborateurService {
 
 	void updateCollaborateur(Collaborateur collaborateur);
 
+	List<Collaborateur> getAllCollaborateursByRole(String role);
+	
 	List<Collaborateur> getAllCollaborateurs();
 	
 	List<String> getAllCollaborateurs(String role);
+	
+	int getAllCollaborateurs(char s);
 
 }

@@ -1,8 +1,100 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
-   "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
-<mappings>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 
+<!-- DTD FROM http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd -->
+<!DOCTYPE mappings [
+<!ELEMENT mappings ( configuration?, mapping* ) >
+<!ELEMENT configuration ( stop-on-errors?, date-format?, wildcard?, trim-strings?, bean-factory?, relationship-type?, custom-converters*, copy-by-references*, allowed-exceptions* ) >
+<!ELEMENT mapping ( class-a | class-b | field | field-exclude )* >
+<!ATTLIST mapping date-format CDATA #IMPLIED >
+<!ATTLIST mapping stop-on-errors CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST mapping wildcard CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST mapping trim-strings CDATA #IMPLIED> <!-- (true | false ) "false" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST mapping map-null CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST mapping map-empty-string CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST mapping bean-factory CDATA #IMPLIED>
+<!ATTLIST mapping type (one-way | bi-directional) "bi-directional" >
+<!ATTLIST mapping relationship-type CDATA #IMPLIED >
+<!ATTLIST mapping map-id CDATA #IMPLIED>
+<!ELEMENT class-a ( #PCDATA ) >
+<!ATTLIST class-a bean-factory CDATA #IMPLIED >
+<!ATTLIST class-a factory-bean-id CDATA #IMPLIED >
+<!ATTLIST class-a map-set-method CDATA #IMPLIED >
+<!ATTLIST class-a map-get-method CDATA #IMPLIED >
+<!ATTLIST class-a create-method CDATA #IMPLIED >
+<!ATTLIST class-a map-null CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST class-a map-empty-string CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ELEMENT class-b ( #PCDATA ) >
+<!ATTLIST class-b bean-factory CDATA #IMPLIED >
+<!ATTLIST class-b factory-bean-id CDATA #IMPLIED >
+<!ATTLIST class-b map-set-method CDATA #IMPLIED >
+<!ATTLIST class-b map-get-method CDATA #IMPLIED >
+<!ATTLIST class-b create-method CDATA #IMPLIED >
+<!ATTLIST class-b map-null CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST class-b map-empty-string CDATA #IMPLIED> <!-- (true | false ) "true" : if we don't make this CDATA the overidden flag is always true -->
+<!ELEMENT field ( a, b ,a-hint?, b-hint?, a-deep-index-hint?, b-deep-index-hint? ) >
+<!ATTLIST field relationship-type CDATA #IMPLIED  >
+<!ATTLIST field remove-orphans CDATA #IMPLIED>
+<!ATTLIST field type (one-way | bi-directional) "bi-directional" >
+<!ATTLIST field map-id CDATA #IMPLIED>
+<!ATTLIST field copy-by-reference CDATA #IMPLIED> <!-- (true | false ) "false" : if we don't make this CDATA the overidden flag is always true -->
+<!ATTLIST field custom-converter CDATA #IMPLIED>
+<!ATTLIST field custom-converter-id CDATA #IMPLIED>
+<!ATTLIST field custom-converter-param CDATA #IMPLIED>
+<!ELEMENT field-exclude ( a, b ) >
+<!ATTLIST field-exclude type (one-way | bi-directional) "bi-directional" >
+<!ELEMENT a ( #PCDATA ) >
+<!ATTLIST a date-format CDATA #IMPLIED >
+<!ATTLIST a type (iterate | generic ) "generic" >
+<!ATTLIST a set-method CDATA #IMPLIED >
+<!ATTLIST a get-method CDATA #IMPLIED >
+<!ATTLIST a key CDATA #IMPLIED >
+<!ATTLIST a map-set-method CDATA #IMPLIED >
+<!ATTLIST a map-get-method CDATA #IMPLIED >
+<!ATTLIST a is-accessible CDATA #IMPLIED >
+<!ATTLIST a create-method CDATA #IMPLIED>
+
+<!--
+    Specifies the other field in the field mapping definition.
+-->
+<!ELEMENT b ( #PCDATA ) >
+<!ATTLIST b date-format CDATA #IMPLIED >
+<!ATTLIST b type (iterate | generic ) "generic" >
+<!ATTLIST b set-method CDATA #IMPLIED >
+<!ATTLIST b get-method CDATA #IMPLIED >
+<!ATTLIST b key CDATA #IMPLIED >
+<!ATTLIST b map-set-method CDATA #IMPLIED >
+<!ATTLIST b map-get-method CDATA #IMPLIED >
+<!ATTLIST b is-accessible CDATA #IMPLIED >
+<!ATTLIST b create-method CDATA #IMPLIED>
+
+<!--
+    DTD element declarations
+-->
+<!ELEMENT a-hint ( #PCDATA ) >
+<!ELEMENT b-hint ( #PCDATA ) >
+<!ELEMENT a-deep-index-hint ( #PCDATA ) >
+<!ELEMENT b-deep-index-hint ( #PCDATA ) >
+<!ELEMENT stop-on-errors ( #PCDATA ) >
+<!ELEMENT date-format ( #PCDATA ) >
+<!ELEMENT map-null ( #PCDATA ) >
+<!ELEMENT map-empty-string ( #PCDATA ) >
+<!ELEMENT wildcard ( #PCDATA ) >
+<!ELEMENT trim-strings ( #PCDATA ) >
+<!ELEMENT bean-factory ( #PCDATA ) >
+<!ELEMENT relationship-type ( #PCDATA ) >
+<!ELEMENT custom-converters ( converter+ ) >
+<!ELEMENT copy-by-references ( copy-by-reference+ ) >
+<!ELEMENT copy-by-reference ( #PCDATA ) >
+<!ELEMENT is-accessible ( #PCDATA ) >
+<!ELEMENT allowed-exceptions ( exception+ ) >
+<!ELEMENT exception ( #PCDATA ) >
+
+<!ELEMENT converter ( class-a, class-b ) >
+<!ATTLIST converter type CDATA #REQUIRED >
+
+]>
+
+<mappings>
 <mapping>
 	<class-a>ma.ensao.youmna.model.Collaborateur</class-a>
 	<class-b>ma.ensao.youmna.model.Archive</class-b>

@@ -60,4 +60,9 @@ public class CompetenceDaoImpl implements CompetenceDao {
 		return query.list();
 	}
 
+	public void updateCompetence(Competence competence) {
+		sessionFactory.getCurrentSession().update(competence);
+		
+	}
+
 }
