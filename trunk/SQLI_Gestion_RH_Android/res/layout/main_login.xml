@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:ems="14"
         android:fontFamily="sans-serif"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="text"
         android:textSize="16sp" />
     
@@ -27,14 +27,14 @@
           android:layout_below="@+id/loginEditText"
           android:layout_marginTop="20dp"
           android:ems="10"
-          android:hint="Password"
+          android:hint="@string/password"
           android:inputType="textPassword" >
 
     </EditText>
 
     <ImageView
         android:id="@+id/appimage"
-        android:contentDescription="Logo"
+        android:contentDescription="@string/imageDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -51,7 +51,7 @@
         android:layout_marginTop="40dp"
         android:background="@android:drawable/btn_default"
         android:onClick="login"
-        android:text="Connexion"
+        android:text="@string/connect"
         android:textSize="16sp" />
 
 </RelativeLayout>

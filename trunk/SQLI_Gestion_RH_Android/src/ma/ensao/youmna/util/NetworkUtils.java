@@ -1,6 +1,9 @@
 package ma.ensao.youmna.util;
 
 import java.io.Serializable;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 import org.springframework.http.HttpAuthentication;
 import org.springframework.http.HttpBasicAuthentication;
@@ -22,6 +25,8 @@ public class NetworkUtils {
 	
 	private static HttpAuthentication authHeader;
 
+	public static Account account;
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> T callWebService(Class T, Serializable requestBody,
 			String url, HttpMethod method) throws Exception {
@@ -83,4 +88,34 @@ public class NetworkUtils {
 		
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> T getRestObject(Class T, String url, String param) {
+		Object result = null;
+		
+		try{
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+            result = restTemplate.getForObject(Constants.BASE_URL+url, T, param);
+		}catch(Exception e){
+			Log.e("EXCEPTION", e.getMessage());
+		}
+		return (T) result;
+
+	}
+	
+	public static boolean CheckReachability(){
+
+		try {
+		    SocketAddress sockaddr = new InetSocketAddress(Constants.HOST, Constants.PORT);
+		    // Create an unbound socket
+		    Socket sock = new Socket();
+
+		    // This method will block no more than timeoutMs.
+		    // If the timeout occurs, SocketTimeoutException is thrown.
+		    int timeoutMs = 2000;   // 2 seconds
+		    sock.connect(sockaddr, timeoutMs);
+		    return true;
+		}catch(Exception e){}
+		return false;
+	}
 }

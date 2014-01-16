@@ -1,11 +1,11 @@
 package ma.ensao.youmna;
 
+import ma.ensao.youmna.tabs.MainTabs;
 import ma.ensao.youmna.util.Constants;
 import ma.ensao.youmna.util.NetworkUtils;
 import ma.ensao.youmna.util.User;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
 	private ProgressDialog progressDialog;
 	public static final String PARAM_AUTHTOKEN_TYPE = Constants.AUTHTOKEN_TYPE;
 	public static final String PARAM_ACCOUNT_TYPE = Constants.ACCOUNT_TYPE;
-	private static AccountManager accountManager = null;
+	public static AccountManager accountManager = null;
 
 	
 	@Override
@@ -49,8 +49,9 @@ public class LoginActivity extends Activity {
 
 			NetworkUtils
 					.prepareAuthHeader(getApplicationContext(), accounts[0]);
+			NetworkUtils.account = accounts[0];
 //			UserDataUtils.prepareUserData(getApplicationContext(), accounts[0]);
-			Intent intent = new Intent(this, ManageListActivity.class);
+			Intent intent = new Intent(this, MainTabs.class);
 			startActivity(intent);
 			finish();
 		}
@@ -60,7 +61,6 @@ public class LoginActivity extends Activity {
 	}
 
 	
-	@SuppressLint("ShowToast")
 	public void login(View view) {
 
 		String login = ((EditText) findViewById(R.id.loginEditText)).getText()
@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
 
 		} else {
 			Toast.makeText(this, getResources().getString(R.string.invalidLogin),
-					Toast.LENGTH_SHORT);
+					Toast.LENGTH_SHORT).show();
 			Log.i("error", "validation");
 		}
 
@@ -159,9 +159,10 @@ public class LoginActivity extends Activity {
 		protected void onPostExecute(Account result) {
 			if (result != null) {
 				Intent intent = new Intent(context,
-						ManageListActivity.class);
+						MainTabs.class);
+				intent.putExtra("ACCOUNT", result);
+				NetworkUtils.account = result;
 				startActivity(intent);
-
 				progressDialog.dismiss();
 				finish();
 			}
