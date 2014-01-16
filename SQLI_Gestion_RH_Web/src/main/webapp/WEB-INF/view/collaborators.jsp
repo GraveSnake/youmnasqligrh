@@ -40,7 +40,6 @@
 
 	<div id="bodydiv">
 		<sec:authorize ifAnyGranted='ROLE_USER,ROLE_ADMIN'>
-			<h3>All access !</h3>
 			<br />
 			<c:choose>
 				<c:when test="${VIEW=='show'}">
@@ -52,7 +51,7 @@
 
 				</c:when>
 				<c:when test="${VIEW=='new'}">
-					<h2>Add new collaborateur</h2>
+					<h2>Ajouter un nouveau collaborateur:</h2>
 					<%@include file="newCollab.jsp"%><br />
 				</c:when>
 				<c:when test="${VIEW=='edit'}"><%@include

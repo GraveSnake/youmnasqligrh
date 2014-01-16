@@ -1,6 +1,7 @@
 package ma.ensao.youmna.service;
 
 import java.util.List;
+import java.util.Map;
 
 import ma.ensao.youmna.model.Collaborateur;
 
@@ -13,6 +14,8 @@ public interface CollaborateurService {
 	void deleteCollaborateur(String matricule);
 
 	Collaborateur getCollaborateurById(String matricule);
+	
+	Collaborateur getCollaborateurByLogin(String login);
 
 	void updateCollaborateur(Collaborateur collaborateur);
 
@@ -20,8 +23,14 @@ public interface CollaborateurService {
 	
 	List<Collaborateur> getAllCollaborateurs();
 	
+	List<Collaborateur> getAllCollaborateursByManager(String manager);
+	
 	List<String> getAllCollaborateurs(String role);
 	
 	int getAllCollaborateurs(char s);
+	
+	Map<String,String> getSalaireByYear(String matricule);
+	
+	Map<String,String> getPosteByYear(String matricule);
 
 }

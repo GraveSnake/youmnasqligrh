@@ -64,4 +64,10 @@ public class CompteServiceImpl implements CompteService{
 	}
 
 
+	public Compte getCompteByLogin(String login) {
+		
+		return compteDao.getCompteByLogin(login);
+	}
+
+
 }

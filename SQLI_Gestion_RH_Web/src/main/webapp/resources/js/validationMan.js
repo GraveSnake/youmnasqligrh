@@ -1,9 +1,9 @@
 $(function() {
-	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), date_depart = $("#date_depart"), site = $("#site"), bap = $("#bap"), date_particp = $("#date_particp"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#Password"), confirmPassword = $("#Confirm_Password"),promotion= $("#promotion"), allFields = $(
+	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), site = $("#site"), bap = $("#bap"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#password"), confirmPassword = $("#Confirm_Password"),promotion= $("#promotion"), allFields = $(
 			[]).add(matricule).add(nom).add(prenom).add(abreviation).add(bap)
-			.add(bu).add(date_embauche).add(site).add(date_depart).add(
+			.add(bu).add(date_embauche).add(site).add(
 					poste_actuel3).add(poste_actuel4).add(confirmPassword).add(
-					salaire).add(date_particp).add(niveau).add(email).add(login).add(password).add(promotion), tips = $(".validateTips");
+					salaire).add(niveau).add(email).add(login).add(password).add(promotion), tips = $(".validateTips");
 
 	function updateTips(t) {
 		tips.text(t).addClass("ui-state-highlight");
@@ -78,16 +78,7 @@ $(function() {
 										date_embauche,
 										/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
 										"Date embauche invalid : jj/mm/aaaa");
-						bValid = bValid
-								&& checkRegexp(
-										date_depart,
-									/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
-										"Date depart invalid : jj/mm/aaaa");
-						bValid = bValid
-								&& checkRegexp(
-										date_particp,
-									/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
-										"Date participation invalid : jj/mm/aaaa");
+
 						bValid = bValid
 								&& checkRegexp(poste_actuel3,
 										/^[a-zA-Z]([0-9a-zA-Z]){2}$/,

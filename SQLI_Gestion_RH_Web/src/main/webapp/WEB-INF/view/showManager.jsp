@@ -32,10 +32,7 @@
 					<th><h3>Date Embauche</h3></th>
 					<th><h3>Poste Actuel</h3></th>
 					<th><h3>Salaire actuel</h3></th>
-					<th><h3>Ancien</h3></th>
-					<th><h3>Manager Ancien</h3></th>
-					<th><h3>Manager Actuel</h3></th>
-					<th><h3>Role</h3></th>
+					<th><h3>Status</h3></th>
 					<th><h3>Actions</h3></th>
 				</tr>
 			</thead>
@@ -54,15 +51,31 @@
 							<td><c:out value="${managers.dateEmbauche}"></c:out></td>
 							<td><c:out value="${managers.posteActuel3}"></c:out></td>
 							<td><c:out value="${managers.salaireActuel}"></c:out></td>
-							<td><c:if test="${managers.ancienColl=='true'}"><img src="${pageContext.request.contextPath}/resources/images/true.png" title="Ancien"></c:if></td>
-							<td><c:out value="${managers.mgrhAncien}"></c:out></td>
-							<td><c:out value="${managers.mgrhActuel}"></c:out></td>
-							<td><c:out value="${managers.role}"></c:out></td>
-							<td><a href="updateManager?MANAGER_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/edit.png" alt="Edit" title="Edit"/></a>
-								&nbsp;&nbsp; <a href="viewManager?MANAGER_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/view.png" alt="View" title="View"/></a>
-								&nbsp;&nbsp; <sec:authorize ifAnyGranted='ROLE_ADMIN'>
-									<a href="deleteCollab?COLLAB_ID=${managers.matricule}"><img src="${pageContext.request.contextPath}/resources/images/del.png" alt="Delete" title="Desactivate"/></a>
-								</sec:authorize></td>
+							<td><c:if test="${managers.status=='false'}">
+									<img
+										src="${pageContext.request.contextPath}/resources/images/del.png"
+										title="Desactivé">
+								</c:if> <c:if test="${managers.status=='true'}">
+									<img
+										src="${pageContext.request.contextPath}/resources/images/true.png"
+										title="Activé">
+								</c:if></td>
+							<td><a href="updateManager?MANAGER_ID=${managers.matricule}"><img
+									src="${pageContext.request.contextPath}/resources/images/edit.png"
+									alt="Edit" title="Modifier" /></a> &nbsp;&nbsp; <a
+								href="viewManager?MANAGER_ID=${managers.matricule}"><img
+									src="${pageContext.request.contextPath}/resources/images/view.png"
+									alt="View" title="Afficher" /></a> &nbsp;&nbsp; <a
+								href="desactivateManager?MANAGER_ID=${managers.matricule}">
+									<c:if test="${managers.status=='false'}">
+											<img
+												src="${pageContext.request.contextPath}/resources/images/del.png"
+												title="Desactiver">
+										</c:if> <c:if test="${managers.status=='true'}">
+											<img
+												src="${pageContext.request.contextPath}/resources/images/true.png"
+												title="Activer"></c:if>
+							</a></td>
 						</tr>
 					</c:forEach>
 				</c:if>

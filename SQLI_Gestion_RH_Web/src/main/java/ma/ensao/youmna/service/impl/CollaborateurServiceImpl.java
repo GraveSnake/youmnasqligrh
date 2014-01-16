@@ -1,6 +1,7 @@
 package ma.ensao.youmna.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,25 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 	public List<Collaborateur> getAllCollaborateurs() {
 		
 		return collaborateurDao.getAllCollaborateurs();
+	}
+
+	public Collaborateur getCollaborateurByLogin(String login) {
+		
+		return collaborateurDao.getCollaborateurByCompte(login);
+	}
+
+	public List<Collaborateur> getAllCollaborateursByManager(String manager) {
+		
+		return collaborateurDao.getAllCollaborateursByManager(manager);
+	}
+
+	public Map<String, String> getSalaireByYear(String matricule) {
+		
+		return collaborateurDao.getSalaireByYear(matricule);
+	}
+
+	public Map<String, String> getPosteByYear(String matricule) {
+		return collaborateurDao.getPosteByYear(matricule);
 	}
 
 }

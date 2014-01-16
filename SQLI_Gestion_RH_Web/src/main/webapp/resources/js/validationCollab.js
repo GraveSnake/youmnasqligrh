@@ -1,9 +1,9 @@
 $(function() {
-	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), date_depart = $("#date_depart"), site = $("#site"), bap = $("#bap"), date_particp = $("#date_particp"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#password"), confirmPassword = $("#Confirm_Password"),promotion= $("#promotion"), allFields = $(
+	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), site = $("#site"), bap = $("#bap"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#password"),promotion= $("#promotion"), allFields = $(
 			[]).add(matricule).add(nom).add(prenom).add(abreviation).add(bap)
-			.add(bu).add(date_embauche).add(site).add(date_depart).add(
-					poste_actuel3).add(poste_actuel4).add(confirmPassword).add(
-					salaire).add(date_particp).add(niveau).add(email).add(login).add(password).add(promotion), tips = $(".validateTips");
+			.add(bu).add(date_embauche).add(site).add(
+					poste_actuel3).add(poste_actuel4).add(
+					salaire).add(niveau).add(email).add(login).add(password).add(promotion), tips = $(".validateTips");
 
 	function updateTips(t) {
 		tips.text(t).addClass("ui-state-highlight");
@@ -42,9 +42,9 @@ $(function() {
 						.floor((d.getTime() - d1.getTime()) / 86400000);
 
 				if (diff < 15) {
-					$("#bap").val(d1.getMonth() + 1);
+					$("#mois_bap").val(d1.getMonth() + 1);
 				} else {
-					$("#bap").val((d1.getMonth() + 2) % 12);
+					$("#mois_bap").val((d1.getMonth() + 2) % 12);
 				}
 				;
 
@@ -56,7 +56,7 @@ $(function() {
 					function() {
 						var bValid = true;
 						allFields.removeClass("ui-state-error");
-						
+
 						bValid = bValid
 								&& checkRegexp(matricule, /^([0-9]){5}$/,
 										"Matricule doit etre un entier de 5 chiffres");
@@ -78,16 +78,7 @@ $(function() {
 										date_embauche,
 										/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
 										"Date embauche invalid : jj/mm/aaaa");
-						bValid = bValid
-								&& checkRegexp(
-										date_depart,
-									/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
-										"Date depart invalid : jj/mm/aaaa");
-						bValid = bValid
-								&& checkRegexp(
-										date_particp,
-									/^(((0[1-9])|(1\d)|(2\d)|(3[0-1]))\/((0[1-9])|(1[0-2]))\/(\d{4}))$/,
-										"Date participation invalid : jj/mm/aaaa");
+
 						bValid = bValid
 								&& checkRegexp(poste_actuel3,
 										/^[a-zA-Z]([0-9a-zA-Z]){2}$/,
@@ -97,7 +88,7 @@ $(function() {
 										/^[a-zA-Z]([0-9a-zA-Z]){3}$/,
 										"Poste actuel est un champ alphanumérique composé de quatre caractères");
 						bValid = bValid
-								&& checkRegexp(salaire, /^[0-9]+$/,
+								&& checkRegexp(salaire, /^[0-9]+[\.,]+[0-9]+$/,
 										"Salaire est un entier");
 						bValid = bValid
 								&& checkRegexp(site, /^[a-zA-Z]+$/,
@@ -118,20 +109,16 @@ $(function() {
 								&& checkRegexp(login, /^[a-zA-Z0-9]+$/,
 										"Login invalide !");	
 						bValid = bValid
-						&& checkRegexp(promotion, /^[0-9]{4}$/,
-								"Promotion est une année !");	
-						bValid = bValid
-								&& checkRegexp(password, /^([a-zA-Z0-9]){4,}$/,
+								&& checkRegexp(password, /^([a-zA-Z0-9]){4}$/,
 										"Password doit contenir au moins 4 caractères !");
-									
+						bValid = bValid
+								&& checkRegexp(promotion, /^([0-9]){4}$/,
+										"Promotion est une année !");										
 										
-						confirm = (password.val() == confirmPassword.val());
-						if (!confirm) {
-							o.addClass("ui-state-error");
-							updateTips("Confirmation du Password incorrecte");
-						}
+
 						bValid = bValid && confirm;
 						if (bValid) {
+							updateTips("Enregistrement en cours ..");
 							document.forms["CollabForm"].submit();
 							allFields.val( "" ).removeClass( "ui-state-error" );
 							}

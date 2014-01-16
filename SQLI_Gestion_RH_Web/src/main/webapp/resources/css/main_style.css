@@ -52,18 +52,19 @@ nav ul {
 	}
 	
 	nav ul li:hover {
-		background: #4b545f;
-		background: linear-gradient(top, #4f5964 0%, #5f6975 50%);
-		background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 50%);
-		background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 50%);
+		background: #D4EFFC;
+		background: linear-gradient(top, #D4EFFC 0%, #D4EFFC 50%);
+		background: -moz-linear-gradient(top, #D4EFFC 0%, #D4EFFC 50%);
+		background: -webkit-linear-gradient(top, #4f5964 0%,#5D4EFFC 50%);
 	}
 	
 	nav ul li:hover a {
-		color: #fff;
+		color: #13CBB9;
 	}
 
 	nav ul li a {
 		display: block; padding: 15px 25px;
 		color: #757575; text-decoration: none;
+		font-family:"console",Georgia,Serif;
 	}
 		

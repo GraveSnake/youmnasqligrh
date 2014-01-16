@@ -1,6 +1,7 @@
 package ma.ensao.youmna.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import ma.ensao.youmna.model.TechnoExist;
 import ma.ensao.youmna.model.Technologie;
@@ -19,6 +20,8 @@ public interface TechnologieDao {
 	Technologie getTechnologieById(Long id);
 	
 	List<String> technologies();
+	
+	Map<String , Integer> getCountTechnologie();
 	
 
 }

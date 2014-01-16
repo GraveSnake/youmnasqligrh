@@ -1,6 +1,14 @@
 package ma.ensao.youmna.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import ma.ensao.youmna.service.CollaborateurService;
+import ma.ensao.youmna.service.TechnologieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,19 +34,38 @@ public class ReportingController {
 	@Autowired
 	private CollaborateurService collaborateurService;
 	
+	@Autowired
+	private TechnologieService technologieService;
+	
 	
 	@RequestMapping("reporting")
 	public ModelAndView reporting() {
+		List<Double> salaire= new ArrayList<Double>();
+		salaire.add((double) 0);
+		List<String> date=new ArrayList<String>();
+		date.add("0");
+		Map<String, String> map=collaborateurService.getSalaireByYear("22222");
+		Set set = map.entrySet();
+	      Iterator i = set.iterator();
+	      // Display elements
+	      while(i.hasNext()) {
+	         Map.Entry me = (Map.Entry)i.next();
+	         salaire.add(Double.valueOf((String) me.getValue())/100);
+	         date.add(String.valueOf(me.getKey()).substring(0, 10));
+
+	      }
+		
+		
 		//Salaire
-        Plot plot = Plots.newPlot(Data.newData(0, 66.6, 33.3, 100));
+        Plot plot = Plots.newPlot(Data.newData(salaire));
         LineChart chart = GCharts.newLineChart(plot);
-        chart.addYAxisLabels(AxisLabelsFactory.newNumericAxisLabels(0,33.3,66.6,100));
-        chart.addXAxisLabels(AxisLabelsFactory.newNumericAxisLabels(0,33.3,66.6,100));
-        chart.setSize(400, 200);
+        chart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, 10000));
+        chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(date));
+        chart.setSize(600, 300);
         AxisStyle axisStyle = AxisStyle.newAxisStyle(Color.BLACK, 13, AxisTextAlignment.CENTER);
-        AxisLabels score = AxisLabelsFactory.newAxisLabels("Salaire", 50.0);
+        AxisLabels score = AxisLabelsFactory.newAxisLabels("Salaire (Dh)", 50.0);
         score.setAxisStyle(axisStyle);
-        AxisLabels year = AxisLabelsFactory.newAxisLabels("Year", 50.0);
+        AxisLabels year = AxisLabelsFactory.newAxisLabels("Anneé", 50.0);
         year.setAxisStyle(axisStyle);
         chart.addYAxisLabels(score);
         chart.addXAxisLabels(year);

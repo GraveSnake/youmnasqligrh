@@ -205,7 +205,7 @@ public class ManagerController {
 			}
 
 		}
-		return new ModelAndView("redirect:/admin_managers");
+		return new ModelAndView("redirect:/adminManagers");
 	}
 
 	/*
@@ -232,6 +232,17 @@ public class ManagerController {
 		mav.addObject("TECHNOLOGIE", technologies);
 		mav.addObject("viewCollab", collaborateur);
 		mav.addObject("VIEW", "view");
+		return mav;
+	}
+	
+	@RequestMapping(value = "desactivateManager", method = RequestMethod.GET)
+	public ModelAndView desactivateManager(@RequestParam("MANAGER_ID") String COLLAB_ID) {
+		Compte compte=compteService.getCompteByLogin(COLLAB_ID);
+		compte.setActive(false);
+		compteService.updateCompte(compte);
+		ModelAndView mav = new ModelAndView("admin_managers");
+		mav.addObject("newManager", new Collaborateur());
+		mav.addObject("VIEW", "new");
 		return mav;
 	}
 }

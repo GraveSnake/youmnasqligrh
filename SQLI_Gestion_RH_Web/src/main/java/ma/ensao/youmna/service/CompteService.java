@@ -9,4 +9,5 @@ public interface CompteService {
 	void updateCompte(Compte compte);
 	void sendMessage(String to, String subject, String message);
 	List<Compte> getAll();
+	Compte getCompteByLogin(String login);
 }

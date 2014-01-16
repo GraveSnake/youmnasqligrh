@@ -44,16 +44,16 @@ public class Collaborateur {
 	@Column(name = "site", nullable = false)
 	private String site;
 	
-	@Column(name = "bu", nullable = false)
+	@Column(name = "bu")
 	private String bu;
 	
 	@Column(name = "date_embauche", nullable = false)
 	private String dateEmbauche;
 	
-	@Column(name = "mois_bap", nullable = false)
+	@Column(name = "mois_bap")
 	private String moisBap;
 	
-	@Column(name = "date_depart", nullable = false)
+	@Column(name = "date_depart")
 	private String dateDepart;
 	
 	@Column(name = "ancien_coll")
@@ -87,6 +87,21 @@ public class Collaborateur {
 	@Transient
 	private List<Competence> COMPETENCE;
 	
+	@Transient
+	Boolean status;
+	
+	/**
+	 * @return the status
+	 */
+	public Boolean getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	/**
 	 * @return the matricule
 	 */

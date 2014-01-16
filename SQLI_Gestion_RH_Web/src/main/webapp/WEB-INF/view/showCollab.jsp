@@ -60,9 +60,7 @@
 							<td><c:out value="${collabs.role}"></c:out></td>
 							<td><a href="updateCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/edit.png" alt="Edit" title="Edit"/></a>
 								&nbsp;&nbsp; <a href="viewCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/view.png" alt="View" title="View"/></a>
-								&nbsp;&nbsp; <sec:authorize ifAnyGranted='ROLE_ADMIN'>
-									<a href="deleteCollab?COLLAB_ID=${collabs.matricule}"><img src="${pageContext.request.contextPath}/resources/images/del.png" alt="Delete" title="Delete"/></a>
-								</sec:authorize></td>
+								&nbsp;&nbsp;
 						</tr>
 					</c:forEach>
 				</c:if>
