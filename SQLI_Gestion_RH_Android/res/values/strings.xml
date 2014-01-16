@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SQLI RH</string>
-    <string name="title_manage_list">manage</string>
-    <string name="title_manage_detail">manage Detail</string>
     <string name="BaseURL">http://192.168.1.1/rest</string>
-    <string name="invalidLogin">Invalid Login !</string>
-
+    <string name="invalidLogin">Login invalid !</string>
+    <string name="settings">Paramètres</string>
+    <string name="disconnect">Se déconnecter</string>
+    <string name="connect">Connexion</string>
+    <string name="home">Accueil</string>
+    <string name="collaborators">Collaborateurs</string>
+    <string name="reporting">Reporting</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="imageDesc">Logo</string>
+    <string name="search">Rechercher</string>
 </resources>

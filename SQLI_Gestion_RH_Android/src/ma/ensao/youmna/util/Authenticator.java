@@ -48,7 +48,8 @@ class Authenticator extends AbstractAccountAuthenticator {
     private static final String TAG = "Authenticator";
 
     // Authentication Service context
-    private final Context mContext;
+    @SuppressWarnings("unused")
+	private final Context mContext;
 
     public Authenticator(Context context) {
         super(context);
@@ -58,12 +59,6 @@ class Authenticator extends AbstractAccountAuthenticator {
     @Override
     public Bundle addAccount(AccountAuthenticatorResponse response, String accountType,
             String authTokenType, String[] requiredFeatures, Bundle options) {
-        /*Log.v(TAG, "addAccount()");
-        final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
-        intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-        final Bundle bundle = new Bundle();
-        bundle.putParcelable(AccountManager.KEY_INTENT, intent);
-        return bundle;*/
     	return null;
     }
 
@@ -84,40 +79,6 @@ class Authenticator extends AbstractAccountAuthenticator {
     public Bundle getAuthToken(AccountAuthenticatorResponse response, Account account,
             String authTokenType, Bundle loginOptions) throws NetworkErrorException {
         Log.v(TAG, "getAuthToken()");
-        /*
-        // If the caller requested an authToken type we don't support, then
-        // return an error
-        if (!authTokenType.equals(Constants.AUTHTOKEN_TYPE)) {
-            final Bundle result = new Bundle();
-            result.putString(AccountManager.KEY_ERROR_MESSAGE, "invalid authTokenType");
-            return result;
-        }
-
-        // Extract the username and password from the Account Manager, and ask
-        // the server for an appropriate AuthToken.
-        final AccountManager am = AccountManager.get(mContext);
-        final String password = am.getPassword(account);
-        if (password != null) {
-            final String authToken = NetworkUtilities.authenticate(account.name, password);
-            if (!TextUtils.isEmpty(authToken)) {
-                final Bundle result = new Bundle();
-                result.putString(AccountManager.KEY_ACCOUNT_NAME, account.name);
-                result.putString(AccountManager.KEY_ACCOUNT_TYPE, Constants.ACCOUNT_TYPE);
-                result.putString(AccountManager.KEY_AUTHTOKEN, authToken);
-                return result;
-            }
-        }
-
-        // If we get here, then we couldn't access the user's password - so we
-        // need to re-prompt them for their credentials. We do that by creating
-        // an intent to display our AuthenticatorActivity panel.
-        final Intent intent = new Intent(mContext, AuthenticatorActivity.class);
-        intent.putExtra(AuthenticatorActivity.PARAM_USERNAME, account.name);
-        intent.putExtra(AuthenticatorActivity.PARAM_AUTHTOKEN_TYPE, authTokenType);
-        intent.putExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE, response);
-        final Bundle bundle = new Bundle();
-        bundle.putParcelable(AccountManager.KEY_INTENT, intent);
-        return bundle;*/
         return null;
     }
 
