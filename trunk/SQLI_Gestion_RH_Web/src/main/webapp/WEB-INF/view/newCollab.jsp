@@ -19,10 +19,11 @@
 		<input type="button" value="Save" id="enregister"  />
 		<input type="button" value="Previous" id="previous"  />
 		<input type="button" value="Next" id="next"  />
+		<input type="button" value="Back" onclick="go('collaborators');">
 		<hr color="black" />
 				<p class="validateTips" style="color: red"></p>
 		<div class="form_page" id="page1">
-			<h2 style="color: lightblue">Donnees personelles</h2>
+			<h2 style="color: maroon;">Données personelles:</h2>
 			<table style="border-collapse: none;"
 				 align="center" >
 				<tr>
@@ -59,7 +60,7 @@
 					<td><form:input path="bu" id="bu" /></td>
 				</tr>
 				<tr>
-					<td><label>Salaire actuel:</label></td>
+					<td><label>Salaire actuel (DH):</label></td>
 					<td><form:input path="salaireActuel" id="salaire_actuel" /></td>
 					<td><label>Date embauche:</label></td>
 					<td><form:input path="dateEmbauche" id="date_embauche" /></td>
@@ -86,7 +87,7 @@
 			</table>
 		</div>
 		<div class="form_page" id="page2">
-			<h2 style="color: lightblue">Diplome:</h2>
+			<h2 style="color: maroon;">Diplome:</h2>
 			<div id=itemRows>
 				<table style="border-collapse: none;"
 					 align="center" id="tabcol">
@@ -121,7 +122,7 @@
 		</div>
 
 		<div class="form_page" id="page3">
-			<h2 style="color: lightblue">Technologie:</h2>
+			<h2 style="color: maroon">Technologie:</h2>
 			<div id="itemTech">
 				<table style="border-collapse: none;"
 					 align="center" id="tabcol">
@@ -135,24 +136,6 @@
 						<td><label>Niveau d'expertise:</label></td>
 						<td><form:input path="COMPETENCE[0].niveauExpertise" /></td>
 					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td><label>Competence #2:</label></td>
-						<td><form:input path="COMPETENCE[1].competence" /></td>
-
-						<td><label>Niveau d'expertise:</label></td>
-						<td><form:input path="COMPETENCE[1].niveauExpertise" /></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td><label>Competence #3:</label></td>
-						<td><form:input path="COMPETENCE[2].competence" /></td>
-
-						<td><label>Niveau d'expertise:</label></td>
-						<td><form:input path="COMPETENCE[2].niveauExpertise" /></td>
-					</tr>
 				</table>
 				<input onclick="addTech();" type="button" value="Add row"
 					align="left" /> <input onclick="remove2();" type="button"
@@ -161,7 +144,7 @@
 		</div>
 
 		<div class="form_page" id="page4">
-			<h2 style="color: lightblue">Compte:</h2>
+			<h2 style="color: maroon">Compte:</h2>
 			<table style="border-collapse: none;"
 				 align="center" id="tabcol">
 				<tr>

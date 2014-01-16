@@ -58,6 +58,9 @@
 </head>
 <body>
 	<p class="validateTips" style="color: red"></p>
+	<input type="button" value="Save" id="enregister">
+	<input type="button" value="Back" onclick="go('adminManagers');">
+	<br/><br/>
 	<form:form action="updateManager" method="post" id="ManagerForm"
 		commandName="editManager">
 		<div id="editCollabTabs">
@@ -68,9 +71,8 @@
 				<li><a href="#tabs-4">Compte</a></li>
 			</ul>
 			<div id="tabs-1">
-				<h2 style="color: lightblue">Donnees personelles</h2>
-				<table style="border-collapse: none;"
-					 align="center" id="tabcol">
+				<h2 style="color: maroon">Données personelles:</h2>
+				<table style="border-collapse: none;" align="center" id="tabcol">
 					<tr>
 						<td><label>Matricule:</label></td>
 						<td><form:input path="matricule" id="matricule"
@@ -126,11 +128,11 @@
 				</table>
 			</div>
 			<div id="tabs-2">
-				<h2 style="color: lightblue">Diplome:</h2>
+				<h2 style="color: maroon">Diplome:</h2>
 				<c:if test="${diplomesSize!=0}">
 					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
-						<table background="../images/header-bg.gif"
+						<table 
 							style="border-collapse: none;" align="center" id="tabcol">
 
 							<tr>
@@ -152,21 +154,22 @@
 										<form:option value="prive">prive</form:option>
 									</form:select></td>
 								<td><label>Promotion:</label></td>
-								<td><form:input path="DIPLOME[${dipl}].promotion" id="promotion" /></td>
+								<td><form:input path="DIPLOME[${dipl}].promotion"
+										id="promotion" /></td>
 								<td><label>Niveau:</label></td>
 								<td><form:input path="DIPLOME[${dipl}].niveau" id="niveau" /></td>
 							</tr>
 						</table>
-
+					<hr width="200"/>
 					</c:forEach>
 				</c:if>
 			</div>
 			<div id="tabs-3">
-				<h2 style="color: lightblue">Technologie:</h2>
+				<h2 style="color: maroon">Technologie:</h2>
 				<c:if test="${technologiesSize!=0}">
 					<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
 						<div id="itemTech">
-							<table background="../images/header-bg.gif"
+							<table 
 								style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
 									<td><label>Technologie:</label></td>
@@ -176,59 +179,18 @@
 									<td><form:input path="COMPETENCE[${tech}].competence" /></td>
 
 									<td><label>Niveau d'expertise:</label></td>
-									<td><form:select
-											path="COMPETENCE[${tech}].niveauExpertise">
-											<form:option value=""></form:option>
-											<form:option value="1">1</form:option>
-											<form:option value="2">2</form:option>
-											<form:option value="3">3</form:option>
-											<form:option value="4">4</form:option>
-											<form:option value="5">5</form:option>
-										</form:select></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td><label>Competence #2:</label></td>
-									<td><form:input path="COMPETENCE[${tech +1}].competence" /></td>
-
-									<td><label>Niveau d'expertise:</label></td>
-									<td><form:select
-											path="COMPETENCE[${tech +1}].niveauExpertise">
-											<form:option value=""></form:option>
-											<form:option value="1">1</form:option>
-											<form:option value="2">2</form:option>
-											<form:option value="3">3</form:option>
-											<form:option value="4">4</form:option>
-											<form:option value="5">5</form:option>
-										</form:select></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td><label>Competence #3:</label></td>
-									<td><form:input path="COMPETENCE[${tech +2}].competence" /></td>
-
-									<td><label>Niveau d'expertise:</label></td>
-									<td><form:select
-											path="COMPETENCE[${tech +2}].niveauExpertise">
-											<form:option value=""></form:option>
-											<form:option value="1">1</form:option>
-											<form:option value="2">2</form:option>
-											<form:option value="3">3</form:option>
-											<form:option value="4">4</form:option>
-											<form:option value="5">5</form:option>
-											</form:select></td>
+									<td><form:input
+											path="COMPETENCE[${tech}].niveauExpertise"/></td>
 								</tr>
 							</table>
 						</div>
+						<hr width="200"/>
 					</c:forEach>
 				</c:if>
 			</div>
 			<div id="tabs-4">
-				<h2 style="color: lightblue">Compte:</h2>
-				<table background="../images/header-bg.gif"
-					style="border-collapse: none;" align="center" id="tabcol">
+				<h2 style="color: maroon">Compte:</h2>
+				<table style="border-collapse: none;" align="center" id="tabcol">
 					<tr>
 						<td><label>Login</label></td>
 						<td><form:input path="compte.login" id="login"
@@ -244,8 +206,7 @@
 					</tr>
 				</table>
 			</div>
-			<input type="button" value="Save" id="enregister"> <input
-				type="button" value="Back" onclick="go('admin_managers');">
+
 		</div>
 	</form:form>
 </body>

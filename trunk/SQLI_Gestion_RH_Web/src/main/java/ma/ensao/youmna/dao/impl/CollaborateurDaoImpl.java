@@ -1,6 +1,9 @@
 package ma.ensao.youmna.dao.impl;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import ma.ensao.youmna.dao.CollaborateurDao;
 import ma.ensao.youmna.model.Collaborateur;
@@ -72,6 +75,48 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 	public List<Collaborateur> getAllCollaborateurs() {
 		
 		return sessionFactory.getCurrentSession().createQuery("from Collaborateur").list();
+	}
+
+	public Collaborateur getCollaborateurByIdLogin(String login) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur  where compte = :login");
+		query.setParameter("login", login);
+		return (Collaborateur) query.uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Collaborateur> getAllCollaborateursByManager(String manager) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur  where mgrhActuel = :manager");
+		query.setParameter("manager", manager);
+		return query.list();
+	}
+
+	public Map<String, String> getSalaireByYear(String matricule) {
+		Map<String, String> map= new HashMap<String, String>() ;
+		String SQL_QUERY = "select date, salaire from Archive where matricule = :matricule";
+		Query query = sessionFactory.getCurrentSession().createQuery(SQL_QUERY);
+		query.setParameter("matricule", matricule);
+		 for (Iterator it = 
+				 query.iterate(); it.hasNext();) {
+				  Object[] row = (Object[]) it.next();
+				  map.put(String.valueOf(row[0]), String.valueOf(row[1]));
+
+				   }
+		return map;
+	}
+
+	public Map<String, String> getPosteByYear(String matricule) {
+		
+		Map<String, String> map= new HashMap<String, String>() ;
+		String SQL_QUERY = "select date, posteActuel3 from Archive where matricule = :matricule order by date asc";
+		Query query = sessionFactory.getCurrentSession().createQuery(SQL_QUERY);
+		query.setParameter("matricule", matricule);
+		 for (Iterator it = 
+				 query.iterate(); it.hasNext();) {
+				  Object[] row = (Object[]) it.next();
+				  map.put(String.valueOf(row[0]), String.valueOf(row[1]));
+
+				   }
+		return map;
 	}
 
 }

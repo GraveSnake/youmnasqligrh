@@ -2,6 +2,7 @@ package ma.ensao.youmna.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +54,11 @@ public class TechnologieServiceImpl implements TechnologieService {
 	public List<String> technologies() {
 		// TODO Auto-generated method stub
 		return technologieDao.technologies();
+	}
+
+	public Map<String, Integer> getCountTechnologie() {
+		// TODO Auto-generated method stub
+		return technologieDao.getCountTechnologie();
 	}
 
 }

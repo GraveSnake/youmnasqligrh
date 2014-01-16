@@ -1,7 +1,11 @@
 package ma.ensao.youmna.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import ma.ensao.youmna.model.Collaborateur;
 import ma.ensao.youmna.model.Competence;
@@ -22,6 +26,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.googlecode.charts4j.AxisLabels;
+import com.googlecode.charts4j.AxisLabelsFactory;
+import com.googlecode.charts4j.AxisStyle;
+import com.googlecode.charts4j.AxisTextAlignment;
+import com.googlecode.charts4j.Color;
+import com.googlecode.charts4j.Data;
+import com.googlecode.charts4j.GCharts;
+import com.googlecode.charts4j.LineChart;
+import com.googlecode.charts4j.Plot;
+import com.googlecode.charts4j.Plots;
 
 @Controller
 public class CollaboratorController {
@@ -80,16 +95,9 @@ public class CollaboratorController {
 
 		// saving a new account
 		Compte compte = collaborateur.getCompte();
+		collaborateur.setRole("Collaborateur");
 		if (compte != null) {
-			if ("Manager".equals(collaborateur.getRole())) {
-				compte.setActive(true);
-				compte.setAuthorities("ROLE_USER");
-			} else if ("Collaborateur".equals(collaborateur.getRole())) {
 				compte.setActive(false);
-			} else {
-				compte.setActive(true);
-				compte.setAuthorities("ROLE_ADMIN");
-			}
 			compteService.createCompte(compte);
 		}
 		// saving a new collaborator
@@ -171,8 +179,10 @@ public class CollaboratorController {
 	@RequestMapping(value = "updateCollab", method = RequestMethod.POST)
 	public ModelAndView update(
 			@ModelAttribute("editCollab") Collaborateur collaborateur) {
-		ModelAndView mav = new ModelAndView("collaborators");
-
+		ModelAndView mav = new ModelAndView("redirect:/collaborators");
+		Compte compte = collaborateur.getCompte();
+		compte.setActive(false);
+		compteService.updateCompte(compte);
 		// Updating collaborator
 		collaborateurService.updateCollaborateur(collaborateur);
 		// Archive Requirement Verification
@@ -199,21 +209,22 @@ public class CollaboratorController {
 				tech.setCollaborateur(collaborateur);
 				technologieService.updateTechnologie(tech);
 
+				
 				// updating all competences related to this technology
 				List<Competence> competences = collaborateur.getCOMPETENCE();
 				Competence comp = null;
 				if (competences != null) {
 					for (Competence competence : competences) {
 						comp = competence;
-						comp.setTechnologie(tech);
-						competenceService.updateCompetence(comp);
+//						comp.setTechnologie(tech);
+//						competenceService.updateCompetence(comp);
 					}
 				}
 
 			}
 
 		}
-		mav.addObject("VIEW", "view");
+		mav.addObject("VIEW", "show");
 		return mav;
 	}
 
@@ -238,6 +249,37 @@ public class CollaboratorController {
 		mav.addObject("TECHNOLOGIE", technologies);
 		mav.addObject("viewCollab", collaborateur);
 		mav.addObject("VIEW", "view");
+		
+		// Salaire reporting
+		List<Double> salaire= new ArrayList<Double>();
+		salaire.add((double) 0);
+		List<String> date=new ArrayList<String>();
+		date.add("0");
+		Map<String, String> map=collaborateurService.getSalaireByYear(COLLAB_ID);
+		Set set = map.entrySet();
+	      Iterator i = set.iterator();
+	      while(i.hasNext()) {
+	         Map.Entry me = (Map.Entry)i.next();
+	         salaire.add(Double.valueOf((String) me.getValue())/100);
+	         date.add(String.valueOf(me.getKey()).substring(0, 10));   
+	      }
+	      
+        Plot plot = Plots.newPlot(Data.newData(salaire));
+        LineChart chart = GCharts.newLineChart(plot);
+        chart.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0, 10000));
+        chart.addXAxisLabels(AxisLabelsFactory.newAxisLabels(date));
+        chart.setSize(500, 300);
+        AxisStyle axisStyle = AxisStyle.newAxisStyle(Color.BLACK, 13, AxisTextAlignment.CENTER);
+        AxisLabels score = AxisLabelsFactory.newAxisLabels("Salaire (Dh)", 50.0);
+        score.setAxisStyle(axisStyle);
+        AxisLabels year = AxisLabelsFactory.newAxisLabels("Année", 50.0);
+        year.setAxisStyle(axisStyle);
+        chart.addYAxisLabels(score);
+        chart.addXAxisLabels(year);
+        mav.addObject("chartSalaireUrl", chart.toURLString());
+        mav.addObject("map", map);
+        
+        
 		return mav;
 	}
 

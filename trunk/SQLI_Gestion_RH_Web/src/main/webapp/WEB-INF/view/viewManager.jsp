@@ -55,13 +55,13 @@
 <body>
 		<div id="viewCollabTabs">
 			<ul>
-				<li><a href="#tabs-1">Donnees personelles</a></li>
+				<li><a href="#tabs-1">Données personelles</a></li>
 				<li><a href="#tabs-2">Diplomes</a></li>
 				<li><a href="#tabs-3">Technologies</a></li>
 				<li><a href="#tabs-4">Reporting</a></li>
 			</ul>
 			<div id="tabs-1">
-				<h2 style="color: lightblue">Donnees personelles</h2>
+				<h2 style="color: maroon">Données personelles:</h2>
 				<table style="border-collapse: none;"
 					 align="center" id="tabcol">
 					<tr>
@@ -114,11 +114,11 @@
 				</table>
 			</div>
 			<div id="tabs-2">
-				<h2 style="color: lightblue">Diplome:</h2>
+				<h2 style="color: maroon">Diplome:</h2>
 				<c:if test="${diplomesSize!=0}">
 					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
-						<table border="1"
+						<table 
 							style="border-collapse: collapse;" align="center" id="tabcol">
 
 							<tr>
@@ -138,12 +138,12 @@
 								<td><c:out value="${DIPLOME[dipl].niveau}" /></td>
 							</tr>
 						</table>
-
+						<hr width="200" />
 					</c:forEach>
 				</c:if>
 			</div>
 			<div id="tabs-3">
-				<h2 style="color: lightblue">Technologie:</h2>
+				<h2 style="color: maroon">Technologie:</h2>
 				<c:if test="${technologiesSize!=0}">
 					<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
 						<div id="itemTech">
@@ -180,7 +180,7 @@
 								
 							</table>
 						</div>
-						<hr>
+						<hr width="200"/>
 					</c:forEach>
 				</c:if>
 			</div>
@@ -188,7 +188,7 @@
 			<div id="tabs-4">Reporting</div>
 
 		</div>
-	<input type="button" value="Back" onclick="go('admin_managers');">
+	<input type="button" value="Back" onclick="go('adminManagers');">
 </body>
 
 

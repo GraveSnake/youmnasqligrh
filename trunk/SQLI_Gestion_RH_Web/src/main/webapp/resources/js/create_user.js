@@ -9,13 +9,13 @@ $(function() {
 	$("#date_particp").datepicker();
 });
 var rowTech= 0;
-var rowComp= 2;
+var rowComp= 0;
 var rowNum = 0;
 function addRow() {
 	rowNum++;
 	var row = '<p id="rowNum'
 			+ rowNum
-			+ '"><table id="tabcol" align="center"><hr> <tr><td><label>Titre:</label></td><td><input name="DIPLOME['+rowNum+'].nom" /></td><td><label>Ecole:</label></td><td><input name="DIPLOME['+rowNum+'].ecole" /></td><td><label>Ecole type:</label></td><td><select name="DIPLOME['+rowNum+'].ecoleType" id="combobox"><option value="National">National</option><option value="International">International</option></select></td></tr><tr><td><label>Diplome type:</label></td><td><select name="DIPLOME['+rowNum+'].diplomeType"><option value="etatique">etatique</:option><option value="prive">prive</option></select></td><td><label>Promotion:</label></td><td><input name="DIPLOME['+rowNum+'].promotion" /></td><td><label>Niveau:</label></td><td><input name="DIPLOME['+rowNum+'].niveau" id="niveau"/></td></tr></table></p>';
+			+ '"><table id="tabcol" align="center"><hr width="200"/> <tr><td><label>Titre:</label></td><td><input name="DIPLOME['+rowNum+'].nom" /></td><td><label>Ecole:</label></td><td><input name="DIPLOME['+rowNum+'].ecole" /></td><td><label>Ecole type:</label></td><td><select name="DIPLOME['+rowNum+'].ecoleType" id="combobox"><option value="National">National</option><option value="International">International</option></select></td></tr><tr><td><label>Diplome type:</label></td><td><select name="DIPLOME['+rowNum+'].diplomeType"><option value="etatique">etatique</:option><option value="prive">prive</option></select></td><td><label>Promotion:</label></td><td><input name="DIPLOME['+rowNum+'].promotion" /></td><td><label>Niveau:</label></td><td><input name="DIPLOME['+rowNum+'].niveau" id="niveau"/></td></tr></table></p>';
 
 	jQuery('#itemRows').append(row);
 	$("#removeDip").removeAttr('disabled').removeClass( 'ui-state-disabled' );
@@ -35,7 +35,7 @@ function addTech() {
 	rowComp++;
 	var row = '<p id="rowTech'
 			+ rowTech
-			+ '"><table align="center"><hr><tr><td><label>Technologie:</label></td><td><input name="TECHNOLOGIE['+rowTech+'].technologie" id="techno" /></td><td><label>Competence #1:</label></td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td><label>Niveau d\'expertise:</label></td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td><label>Competence #2:</label></td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td><label>Niveau d\'expertise:</label></td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr><tr><td></td><td></td><td><label>Competence #3:</label></td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td><label>Niveau d\'expertise:</label></td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr></table></p>';
+			+ '"><table align="center"><hr width="200"/><tr><td><label>Technologie:</label></td><td><input name="TECHNOLOGIE['+rowTech+'].technologie" id="techno" /></td><td><label>Competence #1:</label></td><td><input name="COMPETENCE['+rowComp+'].competence" /></td><td><label>Niveau d\'expertise:</label></td><td><input name="COMPETENCE['+rowComp+'].niveauExpertise" /></td></tr></table></p>';
 
 	jQuery('#itemTech').append(row);
 	$("#removeTech").removeAttr('disabled').removeClass( 'ui-state-disabled' );

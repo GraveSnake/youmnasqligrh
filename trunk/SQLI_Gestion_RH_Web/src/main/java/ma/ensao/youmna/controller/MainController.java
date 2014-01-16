@@ -1,9 +1,11 @@
 package ma.ensao.youmna.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ma.ensao.youmna.model.Collaborateur;
 import ma.ensao.youmna.service.CollaborateurService;
+import ma.ensao.youmna.service.CompteService;
 import ma.ensao.youmna.service.SecurityContextAccessor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,14 @@ public class MainController {
 
 	@Autowired
 	private CollaborateurService collaborateurService;
+	
+	@Autowired
+	private CompteService compteService;
 
 	private String main;
+	
+	private static Collaborateur currentCollab;
+	
 
 	/**
 	 * @return the main
@@ -56,9 +64,7 @@ public class MainController {
 		if (securityContextAccessor.isCurrentAuthenticationAnonymous()) {
 			return new ModelAndView("login");
 		} else {
-			 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			 auth.getName();
-//			 collaborateurService.get
+			getCurrent();
 			return new ModelAndView("redirect:" + main);
 		}
 	}
@@ -71,6 +77,9 @@ public class MainController {
 		ModelAndView mav = new ModelAndView("admin_managers");
 		List<Collaborateur> managers = collaborateurService
 				.getAllCollaborateursByRole("Manager");
+		for(int i=0;i<managers.size();i++){
+			managers.get(i).setStatus(compteService.getCompteByLogin(managers.get(i).getCompte().getLogin()).getActive());	
+		}
 		mav.addObject("ListManager", managers);
 		mav.addObject("VIEW", "show");
 
@@ -83,13 +92,21 @@ public class MainController {
 	@RequestMapping(value = "collaborators", method = RequestMethod.GET)
 	public ModelAndView collaborators() {
 		ModelAndView mav = new ModelAndView("collaborators");
-		List<Collaborateur> collaborateur = collaborateurService
-				.getAllCollaborateursByRole("Collaborateur");
+		List<Collaborateur> collaborateur =new ArrayList<Collaborateur>();
+		getCurrent();
+		if("Manager".equals(currentCollab.getRole()))
+			collaborateur =collaborateurService.getAllCollaborateursByManager(currentCollab.getNom());
+		else collaborateur =collaborateurService.getAllCollaborateursByRole("Collaborateur");
 		mav.addObject("ListCollab", collaborateur);
 		mav.addObject("VIEW", "show");
 		return mav;
 	}
 
+	private void getCurrent() {
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 currentCollab=collaborateurService.getCollaborateurByLogin(auth.getName());
+	}
+	
 	/*
 	 * Administration View
 	 */

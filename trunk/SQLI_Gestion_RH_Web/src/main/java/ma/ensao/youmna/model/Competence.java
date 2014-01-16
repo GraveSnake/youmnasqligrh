@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "compentence")
+@Table(name = "competence")
 public class Competence {
 	
 	@Id @GeneratedValue
