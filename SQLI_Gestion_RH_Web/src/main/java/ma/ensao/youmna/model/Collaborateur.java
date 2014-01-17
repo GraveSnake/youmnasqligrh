@@ -23,46 +23,46 @@ public class Collaborateur {
 	@Column(name = "matricule", nullable = false)
 	private String matricule;
 	
-	@Column(name = "nom", nullable = false)
+	@Column(name = "nom")
 	private String nom;
 	
-	@Column(name = "prenom", nullable = false)
+	@Column(name = "prenom")
 	private String prenom;
 	
 	@Column(name = "abreviation", nullable = false)
 	private String abreviation;
 	
-	@Column(name = "mgrh_ancien")
+	@Column(name = "mgrh_ancien",nullable = true)
 	private String mgrhAncien;
 	
-	@Column(name = "mgrh_actuel")
+	@Column(name = "mgrh_actuel",nullable = true)
 	private String mgrhActuel;
 	
-	@Column(name = "sexe", nullable = false)
+	@Column(name = "sexe")
 	private char sexe;
 	
-	@Column(name = "site", nullable = false)
+	@Column(name = "site")
 	private String site;
 	
 	@Column(name = "bu")
 	private String bu;
 	
-	@Column(name = "date_embauche", nullable = false)
+	@Column(name = "date_embauche")
 	private String dateEmbauche;
 	
 	@Column(name = "mois_bap")
 	private String moisBap;
 	
-	@Column(name = "date_depart")
+	@Column(name = "date_depart",nullable = true)
 	private String dateDepart;
 	
-	@Column(name = "ancien_coll")
+	@Column(name = "ancien_coll",nullable = true)
 	private boolean ancienColl;
 	
-	@Column(name = "participe_si")
+	@Column(name = "participe_si",nullable = true)
 	private boolean participeSi;
 	
-	@Column(name = "date_si")
+	@Column(name = "date_si",nullable = true)
 	private String dateSi;
 	
 	@Column(name = "poste_actuel3", nullable = false)
@@ -71,7 +71,7 @@ public class Collaborateur {
 	@Column(name = "poste_actuel4", nullable = false)
 	private String posteActuel4;
 	
-	@Column(name = "salaire_actuel", nullable = false)
+	@Column(name = "salaire_actuel", nullable = true)
 	private Double salaireActuel;
 	
 	@OneToOne(cascade = CascadeType.ALL)

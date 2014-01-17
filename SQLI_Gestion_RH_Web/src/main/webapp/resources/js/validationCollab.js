@@ -1,9 +1,9 @@
 $(function() {
-	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), site = $("#site"), bap = $("#bap"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#password"),promotion= $("#promotion"), allFields = $(
+	var matricule = $("#matricule"), nom = $("#nom"), prenom = $("#prenom"), abreviation = $("#abreviation"), bu = $("#bu"), date_embauche = $("#date_embauche"), site = $("#site"), bap = $("#bap"), poste_actuel3 = $("#poste_actuel3"), poste_actuel4 = $("#poste_actuel4"), salaire = $("#salaire_actuel"), niveau = $("#niveau"), email = $("#email"), login = $("#login"), password = $("#password"), allFields = $(
 			[]).add(matricule).add(nom).add(prenom).add(abreviation).add(bap)
 			.add(bu).add(date_embauche).add(site).add(
 					poste_actuel3).add(poste_actuel4).add(
-					salaire).add(niveau).add(email).add(login).add(password).add(promotion), tips = $(".validateTips");
+					salaire).add(niveau).add(email).add(login).add(password), tips = $(".validateTips");
 
 	function updateTips(t) {
 		tips.text(t).addClass("ui-state-highlight");
@@ -88,7 +88,7 @@ $(function() {
 										/^[a-zA-Z]([0-9a-zA-Z]){3}$/,
 										"Poste actuel est un champ alphanumérique composé de quatre caractères");
 						bValid = bValid
-								&& checkRegexp(salaire, /^[0-9]+[\.,]+[0-9]+$/,
+								&& checkRegexp(salaire, /^[0-9]+[\.,]?[0-9]*$/,
 										"Salaire est un entier");
 						bValid = bValid
 								&& checkRegexp(site, /^[a-zA-Z]+$/,
@@ -98,7 +98,7 @@ $(function() {
 										"Mois bap est un text");
 										
 						bValid = bValid
-								&& checkRegexp(niveau, /^BAC\s\+[0-9]+$/,
+								&& checkRegexp(niveau, /^(BAC\s\+[0-9])?$/,
 										"Niveau commence par BAC +");
 										
 						bValid = bValid
@@ -109,11 +109,8 @@ $(function() {
 								&& checkRegexp(login, /^[a-zA-Z0-9]+$/,
 										"Login invalide !");	
 						bValid = bValid
-								&& checkRegexp(password, /^([a-zA-Z0-9]){4}$/,
-										"Password doit contenir au moins 4 caractères !");
-						bValid = bValid
-								&& checkRegexp(promotion, /^([0-9]){4}$/,
-										"Promotion est une année !");										
+								&& checkRegexp(password, /^([a-zA-Z0-9]){4,}$/,
+										"Password doit contenir au moins 4 caractères !");										
 										
 
 						bValid = bValid && confirm;

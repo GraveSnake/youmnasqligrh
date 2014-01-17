@@ -38,7 +38,7 @@
 
 	<div id="bodydiv">
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-			<h2>Admin access only To administrate things around !</h2>
+	
 			<input type="button" onclick="go('export');" value="Export"/>
 			<br />
 		</sec:authorize>

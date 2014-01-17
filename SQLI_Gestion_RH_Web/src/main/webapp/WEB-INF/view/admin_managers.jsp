@@ -16,7 +16,7 @@
 </script>
 
 <script
-	src="${pageContext.request.contextPath}/resources/js/validationCollab.js">
+	src="${pageContext.request.contextPath}/resources/js/validationMan.js">
 	
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/button.js">
@@ -39,7 +39,6 @@
 	<%@include file="header"%>
 	<div id="bodydiv">
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-			<h3>Admin access only to manage Managers!</h3>
 			<br />
 			<c:choose>
 				<c:when test="${VIEW=='show'}">
