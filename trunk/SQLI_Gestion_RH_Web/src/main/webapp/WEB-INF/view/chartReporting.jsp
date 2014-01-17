@@ -55,23 +55,12 @@
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1">Evolution recrutement par année</a></li>
-			<li><a href="#tabs-2">Pourcentage de chaque technologie</a></li>
-			<li><a href="#tabs-3">Ratio F/M</a></li>
-			<li><a href="#tabs-4">Pourcentage par école</a></li>
+			<li><a href="#tabs-1">Ratio F/M</a></li>
 		</ul>
 		<div id="tabs-1">
-			<h2>Content heading 1</h2>
-			<img alt="Evolution salaire" src=${chartSalaireUrl } align="left" />
+		<img alt="Evolution salaire" src=${chartRatioUrl } align="center" />
 		</div>
-		<div id="tabs-2">
-			<h2>Content heading 2</h2>
-			<img alt="Evolution salaire" src=${chartPosteUrl } align="center" />
-		</div>
-		<div id="tabs-3">
-			<h2>Content heading 3</h2>
-			<img alt="Evolution salaire" src=${chartRatioUrl } align="center" />
-		</div>
+
 	</div>
 
 

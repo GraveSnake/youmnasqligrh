@@ -44,7 +44,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 	}
 	
 	public Collaborateur getCollaborateurByCompte(String login){
-		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur where compte_login = :login");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur where matricule = :login");
 		query.setParameter("login", login);
 		return (Collaborateur) query.uniqueResult();
 	}

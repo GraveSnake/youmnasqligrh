@@ -100,7 +100,7 @@
 								<form:option value="prive">prive</form:option>
 							</form:select></td>
 						<td><label>Promotion:</label></td>
-						<td><form:input path="DIPLOME[0].promotion" id="niveau" /></td>
+						<td><form:input path="DIPLOME[0].promotion" /></td>
 						<td><label>Niveau:</label></td>
 						<td><form:input path="DIPLOME[0].niveau" id="niveau" /></td>
 					</tr>

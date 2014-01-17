@@ -65,17 +65,16 @@
 									alt="Edit" title="Modifier" /></a> &nbsp;&nbsp; <a
 								href="viewManager?MANAGER_ID=${managers.matricule}"><img
 									src="${pageContext.request.contextPath}/resources/images/view.png"
-									alt="View" title="Afficher" /></a> &nbsp;&nbsp; <a
-								href="desactivateManager?MANAGER_ID=${managers.matricule}">
-									<c:if test="${managers.status=='false'}">
-											<img
+									alt="View" title="Afficher" /></a> &nbsp;&nbsp; 
+									<c:if test="${managers.status=='true'}">
+											<a href="desactivateManager?MANAGER_ID=${managers.matricule}"><img
 												src="${pageContext.request.contextPath}/resources/images/del.png"
-												title="Desactiver">
-										</c:if> <c:if test="${managers.status=='true'}">
-											<img
+												title="Desactiver"></a>
+										</c:if> <c:if test="${managers.status=='false'}">
+											<a href="activateManager?MANAGER_ID=${managers.matricule}"><img
 												src="${pageContext.request.contextPath}/resources/images/true.png"
-												title="Activer"></c:if>
-							</a></td>
+												title="Activer"></a></c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</c:if>

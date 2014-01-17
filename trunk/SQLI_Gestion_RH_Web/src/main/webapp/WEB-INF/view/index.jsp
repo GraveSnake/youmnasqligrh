@@ -24,11 +24,9 @@
 		</h2>
 		<br />
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-			<h3>Admin access !</h3>
 			<br />
 		</sec:authorize>
 		<sec:authorize ifAllGranted='ROLE_USER'>
-			<h3>Manager access !</h3>
 			<br />
 		</sec:authorize>
 	</div>

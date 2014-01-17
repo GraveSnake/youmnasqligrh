@@ -14,8 +14,7 @@
 		</ul>
 		<div id="tabs-1">
 			<div id="dialog-form" title="Données personelles">
-				<p class="validateTips" style="color: red">All form fields are
-					required.</p>
+				<p class="validateTips" style="color: red"></p>
 				<table bgcolor="lightblue" style="border-collapse: none;">
 					<tr>
 						<td>matricule</td>
