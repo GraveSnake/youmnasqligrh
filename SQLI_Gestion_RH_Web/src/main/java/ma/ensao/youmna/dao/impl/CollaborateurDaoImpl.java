@@ -90,6 +90,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return query.list();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Map<String, String> getSalaireByYear(String matricule) {
 		Map<String, String> map= new HashMap<String, String>() ;
 		String SQL_QUERY = "select date, salaire from Archive where matricule = :matricule";
@@ -104,6 +105,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return map;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Map<String, String> getPosteByYear(String matricule) {
 		
 		Map<String, String> map= new HashMap<String, String>() ;

@@ -1,7 +1,6 @@
 package ma.ensao.youmna.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +37,7 @@ public class ReportingController {
 	private TechnologieService technologieService;
 	
 	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("reporting")
 	public ModelAndView reporting() {
 		List<Double> salaire= new ArrayList<Double>();
