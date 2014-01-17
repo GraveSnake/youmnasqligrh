@@ -16,7 +16,7 @@
 			position="BASIC_AUTH_FILTER" />
        <security:intercept-url pattern="/rest/login" access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER"/>
        <security:intercept-url pattern='/rest/admin*' access='ROLE_ADMIN' />
-       <security:intercept-url pattern="/rest/**" access="ROLE_USER,ROLE_ADMIN"/>
+       <security:intercept-url pattern="/rest/**" access="ROLE_ANONYMOUS,ROLE_USER,ROLE_ADMIN"/>
    </security:http>
    
 	<security:http name="defaultSecurity" authentication-manager-ref="authenticationManager">
