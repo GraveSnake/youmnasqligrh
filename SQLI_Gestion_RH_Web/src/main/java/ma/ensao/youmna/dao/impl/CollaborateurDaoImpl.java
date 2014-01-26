@@ -44,7 +44,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 	}
 	
 	public Collaborateur getCollaborateurByCompte(String login){
-		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur where matricule = :login");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Collaborateur where compte.login = :login");
 		query.setParameter("login", login);
 		return (Collaborateur) query.uniqueResult();
 	}
@@ -90,10 +90,9 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return query.list();
 	}
 
-	@SuppressWarnings("rawtypes")
 	public Map<String, String> getSalaireByYear(String matricule) {
 		Map<String, String> map= new HashMap<String, String>() ;
-		String SQL_QUERY = "select date, salaire from Archive where matricule = :matricule";
+		String SQL_QUERY = "select date, salaire from Archive where matricule = :matricule order by date asc";
 		Query query = sessionFactory.getCurrentSession().createQuery(SQL_QUERY);
 		query.setParameter("matricule", matricule);
 		 for (Iterator it = 
@@ -105,7 +104,6 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return map;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public Map<String, String> getPosteByYear(String matricule) {
 		
 		Map<String, String> map= new HashMap<String, String>() ;
