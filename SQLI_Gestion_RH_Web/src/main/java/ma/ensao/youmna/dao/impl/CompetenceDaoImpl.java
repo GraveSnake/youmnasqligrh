@@ -61,7 +61,7 @@ public class CompetenceDaoImpl implements CompetenceDao {
 	}
 
 	public void updateCompetence(Competence competence) {
-		sessionFactory.getCurrentSession().merge(competence);
+		sessionFactory.getCurrentSession().update(competence);
 		
 	}
 

@@ -40,7 +40,7 @@ public class CompteDaoImpl implements CompteDao {
 	}
 
 	public void updateCompte(Compte compte) {
-		sessionFactory.getCurrentSession().merge(compte);
+		sessionFactory.getCurrentSession().update(compte);
 	}
 
 	public Compte getCompteByLoginPassword(String login, String pwd) throws HibernateException {

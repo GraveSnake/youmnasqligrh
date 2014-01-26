@@ -72,8 +72,8 @@ public class ExportExcelView extends AbstractExcelView {
 			excelRow.createCell(9).setCellValue(collab.getDateEmbauche());
 			excelRow.createCell(10).setCellValue(collab.getMoisBap());
 			excelRow.createCell(11).setCellValue(collab.getDateDepart());
-			excelRow.createCell(12).setCellValue(collab.isAncienColl());
-			excelRow.createCell(13).setCellValue(collab.isParticipeSi());
+			excelRow.createCell(12).setCellValue(collab.getAncienColl());
+			excelRow.createCell(13).setCellValue(collab.getParticipeSi());
 			excelRow.createCell(14).setCellValue(collab.getDateSi());
 			excelRow.createCell(15).setCellValue(collab.getPosteActuel3());
 			excelRow.createCell(16).setCellValue(collab.getSalaireActuel());

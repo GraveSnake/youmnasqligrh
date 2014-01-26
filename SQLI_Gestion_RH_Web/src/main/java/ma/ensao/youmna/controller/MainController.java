@@ -105,6 +105,7 @@ public class MainController {
 	private void getCurrent() {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 currentCollab=collaborateurService.getCollaborateurByLogin(auth.getName());
+		 System.out.println(auth.getName());
 	}
 	
 	/*

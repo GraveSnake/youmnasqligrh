@@ -136,6 +136,7 @@
 							<td><label>Poste actuel (4):</label></td>
 							<td><form:input path="posteActuel4" id="poste_actuel4" /></td>
 						</sec:authorize>
+						<td><form:hidden path="role" /></td>
 					</tr>
 				</table>
 			</div>
@@ -145,7 +146,9 @@
 					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
 						<table style="border-collapse: none;" align="center" id="tabcol">
-
+							<tr>
+								<form:hidden path="DIPLOME[${dipl}].id" />
+							</tr>
 							<tr>
 								<td><label>Titre:</label></td>
 								<td><form:input path="DIPLOME[${dipl}].nom" /></td>
@@ -182,15 +185,16 @@
 						<div id="itemTech">
 							<table style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
+									<td><form:hidden path="TECHNOLOGIE[${tech}].id" /></td>
 									<td><label>Technologie:</label></td>
 									<td><form:input path="TECHNOLOGIE[${tech}].technologie" /></td>
 
+									<td><form:hidden path="COMPETENCE[${tech}].id" /></td>
 									<td><label>Competence #1:</label></td>
 									<td><form:input path="COMPETENCE[${tech}].competence" /></td>
 
 									<td><label>Niveau d'expertise:</label></td>
-									<td><form:input
-											path="COMPETENCE[${tech}].niveauExpertise"/></td>
+									<td><form:input path="COMPETENCE[${tech}].niveauExpertise" /></td>
 								</tr>
 							</table>
 						</div>
@@ -212,6 +216,9 @@
 					<tr>
 						<td><label>Email:</label></td>
 						<td><form:input path="compte.email" id="email" /></td>
+					</tr>
+					<tr>
+						<form:hidden path="compte.active" />
 					</tr>
 				</table>
 			</div>

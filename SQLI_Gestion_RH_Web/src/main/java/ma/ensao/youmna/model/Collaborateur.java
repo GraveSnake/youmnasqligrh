@@ -17,6 +17,8 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "collaborateur")
+@org.hibernate.annotations.Entity(
+dynamicUpdate = true)
 public class Collaborateur {
 	
 	@Id
@@ -39,7 +41,7 @@ public class Collaborateur {
 	private String mgrhActuel;
 	
 	@Column(name = "sexe")
-	private char sexe;
+	private Character sexe;
 	
 	@Column(name = "site")
 	private String site;
@@ -57,10 +59,10 @@ public class Collaborateur {
 	private String dateDepart;
 	
 	@Column(name = "ancien_coll",nullable = true)
-	private boolean ancienColl;
+	private Boolean ancienColl;
 	
 	@Column(name = "participe_si",nullable = true)
-	private boolean participeSi;
+	private Boolean participeSi;
 	
 	@Column(name = "date_si",nullable = true)
 	private String dateSi;
@@ -87,7 +89,7 @@ public class Collaborateur {
 	@Transient
 	private List<Competence> COMPETENCE;
 	
-	@Transient
+	
 	Boolean status;
 	
 	/**
@@ -177,13 +179,13 @@ public class Collaborateur {
 	/**
 	 * @return the sexe
 	 */
-	public char getSexe() {
+	public Character getSexe() {
 		return sexe;
 	}
 	/**
 	 * @param sexe the sexe to set
 	 */
-	public void setSexe(char sexe) {
+	public void setSexe(Character sexe) {
 		this.sexe = sexe;
 	}
 	/**
@@ -246,28 +248,30 @@ public class Collaborateur {
 	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
+	
 	/**
 	 * @return the ancienColl
 	 */
-	public boolean isAncienColl() {
+	public Boolean getAncienColl() {
 		return ancienColl;
 	}
 	/**
 	 * @param ancienColl the ancienColl to set
 	 */
-	public void setAncienColl(boolean ancienColl) {
+	public void setAncienColl(Boolean ancienColl) {
 		this.ancienColl = ancienColl;
 	}
+
 	/**
 	 * @return the participeSi
 	 */
-	public boolean isParticipeSi() {
+	public Boolean getParticipeSi() {
 		return participeSi;
 	}
 	/**
 	 * @param participeSi the participeSi to set
 	 */
-	public void setParticipeSi(boolean participeSi) {
+	public void setParticipeSi(Boolean participeSi) {
 		this.participeSi = participeSi;
 	}
 	/**

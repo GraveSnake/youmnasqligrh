@@ -20,7 +20,7 @@
 	</bean>
 
 	<bean id="collaboratorController" class="ma.ensao.youmna.controller.CollaboratorController">
-		<property name="welcome" value="${message.welcome}" />
+		<property name="welcome" value="classpath:${message.welcome}" />
 	</bean>
 
 	<bean id="managerController" class="ma.ensao.youmna.controller.ManagerController">
