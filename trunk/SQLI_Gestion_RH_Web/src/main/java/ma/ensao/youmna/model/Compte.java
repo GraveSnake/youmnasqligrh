@@ -7,6 +7,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Compte")
+@org.hibernate.annotations.Entity(
+dynamicUpdate = true)
 public class Compte {
 	
 	@Id

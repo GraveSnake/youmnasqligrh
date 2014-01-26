@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import ma.ensao.youmna.model.Collaborateur;
@@ -180,9 +181,12 @@ public class CollaboratorController {
 			@ModelAttribute("editCollab") Collaborateur collaborateur) {
 		ModelAndView mav = new ModelAndView("redirect:/collaborators");
 		Compte compte = collaborateur.getCompte();
-		compte.setActive(false);
+		//compte.setActive(false);
 		compteService.updateCompte(compte);
+		
+		System.out.println(collaborateur.getRole());
 		// Updating collaborator
+		collaborateur.setRole("Collaborateur");
 		collaborateurService.updateCollaborateur(collaborateur);
 		// Archive Requirement Verification
 		if (collaborateurService.requireArchive(collaborateur)) {
@@ -210,15 +214,15 @@ public class CollaboratorController {
 
 				
 				// updating all competences related to this technology
-//				List<Competence> competences = collaborateur.getCOMPETENCE();
-//				Competence comp = null;
-//				if (competences != null) {
-//					for (Competence competence : competences) {
-//						comp = competence;
-//						comp.setTechnologie(tech);
-//						competenceService.updateCompetence(comp);
-//					}
-//				}
+				List<Competence> competences = collaborateur.getCOMPETENCE();
+				Competence comp = null;
+				if (competences != null) {
+					for (Competence competence : competences) {
+						comp = competence;
+					comp.setTechnologie(tech);
+						competenceService.updateCompetence(comp);
+					}
+				}
 
 			}
 
@@ -230,7 +234,6 @@ public class CollaboratorController {
 	/*
 	 * View a Collaborator
 	 */
-	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "viewCollab", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam("COLLAB_ID") String COLLAB_ID) {
 		ModelAndView mav = new ModelAndView("collaborators");

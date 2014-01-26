@@ -163,8 +163,8 @@ public class ManagerController {
 			@ModelAttribute("editManager") Collaborateur manager) {
 
 		// saving a new account
-		Compte compte = manager.getCompte();
-		compteService.updateCompte(compte);
+		//Compte compte = manager.getCompte();
+		//compteService.updateCompte(compte);
 		// updating the new Manager
 		collaborateurService.updateCollaborateur(manager);
 
