@@ -5,14 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import ma.ensao.youmna.dao.TechnologieDao;
-import ma.ensao.youmna.model.Technologie;
-
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import ma.ensao.youmna.dao.TechnologieDao;
+import ma.ensao.youmna.model.Technologie;
+
 @Repository
 @Transactional
 public class TechnologieDaoImpl implements TechnologieDao {
@@ -49,17 +51,16 @@ public class TechnologieDaoImpl implements TechnologieDao {
 	}
 
 	public void updateTechnologie(Technologie technologie) {
-		sessionFactory.getCurrentSession().merge(technologie);
-		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().update(technologie);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<String> technologies() {
+		// TODO Auto-generated method stub
 		return sessionFactory.getCurrentSession().createQuery("select nom from TechnoExist").list();
 	}
 
-	@SuppressWarnings("rawtypes")
 	public Map<String, Integer> getCountTechnologie() {
 		Map<String, Integer> map= new HashMap<String, Integer>() ;
 		String SQL_QUERY = "select tech.technologie, count(tech.technologie) from Technologie tech, Collaborateur col group by tech.technologie";
