@@ -190,8 +190,7 @@ public class CollaboratorController {
 		Compte compte = collaborateur.getCompte();
 		//compte.setActive(false);
 		compteService.updateCompte(compte);
-		
-		System.out.println(collaborateur.getRole());
+
 		// Updating collaborator
 		collaborateur.setRole("Collaborateur");
 		collaborateurService.updateCollaborateur(collaborateur);
@@ -241,6 +240,7 @@ public class CollaboratorController {
 	/*
 	 * View a Collaborator
 	 */
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "viewCollab", method = RequestMethod.GET)
 	public ModelAndView view(@RequestParam("COLLAB_ID") String COLLAB_ID) {
 		ModelAndView mav = new ModelAndView("collaborators");
