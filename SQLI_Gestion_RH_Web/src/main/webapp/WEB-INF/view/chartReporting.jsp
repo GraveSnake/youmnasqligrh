@@ -56,9 +56,26 @@
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Ratio F/M</a></li>
+			<li><a href="#tabs-2">Ratio recrus par année</a></li>
 		</ul>
 		<div id="tabs-1">
-		<img alt="Evolution salaire" src=${chartRatioUrl } align="center" />
+			<img alt="Ration F/M" src=${chartRatioUrl } align="top" />
+		</div>
+		<div id="tabs-2">
+			<img alt="Ratio recrus par année" src=${chartRatioRecrusUrl }
+				align="top" />
+			<table border="1" style="border-collapse: collapse;" align="right">
+				<tr>
+					<td style="color: grey">Année</td>
+					<td style="color: grey">Nombre de recrutement</td>
+				</tr>
+				<c:forEach var="entry" items="${mapRec}">
+					<tr>
+						<td style="color: black"><c:out value="${entry.key}" />
+						<td style="color: black"><c:out value="${entry.value}" />
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 
 	</div>
