@@ -2,7 +2,6 @@ package ma.ensao.youmna.service.impl;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import ma.ensao.youmna.dao.CollaborateurDao;
 import ma.ensao.youmna.model.Collaborateur;
@@ -55,11 +54,11 @@ public class CollaborateurServiceImpl implements CollaborateurService{
 	
 	public boolean requireArchive(Collaborateur collaborator) {
 		Collaborateur existingCollab = collaborateurDao.getCollaborateurById(collaborator.getMatricule());
-		if(collaborator.getSalaireActuel() != existingCollab.getSalaireActuel() ||
-		collaborator.getPosteActuel3() != existingCollab.getPosteActuel3() ||
-		collaborator.getPosteActuel4() != existingCollab.getPosteActuel4())
+		if(collaborator.getSalaireActuel().compareTo(existingCollab.getSalaireActuel()) !=0 ||
+		!(collaborator.getPosteActuel3().equals(existingCollab.getPosteActuel3())) ||
+		!(collaborator.getPosteActuel4().equals(existingCollab.getPosteActuel4()))){
 			return true;
-
+		}
 		return false;
 	}
 
