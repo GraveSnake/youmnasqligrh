@@ -136,6 +136,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return map;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Map<String, Integer> getComByExpert(Long tech) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String SQL_QUERY = "select competence, niveauExpertise from Competence where technologie.id = :tech order by niveauExpertise asc";
@@ -149,6 +150,7 @@ public class CollaborateurDaoImpl implements CollaborateurDao {
 		return map;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Map<String, Long> getRecrByYear() {
 		Map<String, Long> map = new HashMap<String, Long>();
 		String SQL_QUERY = "select dateEmbauche, count(matricule) from Collaborateur group by dateEmbauche";

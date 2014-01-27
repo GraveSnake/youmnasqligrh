@@ -1,12 +1,8 @@
 package ma.ensao.youmna.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 import ma.ensao.youmna.service.CollaborateurService;
@@ -27,10 +23,8 @@ import com.googlecode.charts4j.Color;
 import com.googlecode.charts4j.Data;
 import com.googlecode.charts4j.Fills;
 import com.googlecode.charts4j.GCharts;
-import com.googlecode.charts4j.LineChart;
 import com.googlecode.charts4j.LinearGradientFill;
 import com.googlecode.charts4j.PieChart;
-import com.googlecode.charts4j.Plot;
 import com.googlecode.charts4j.Plots;
 import com.googlecode.charts4j.Slice;
 
@@ -43,6 +37,7 @@ public class ReportingController {
 	@Autowired
 	private TechnologieService technologieService;
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("reporting")
 	public ModelAndView reporting() {
 		// Ratio F/M
