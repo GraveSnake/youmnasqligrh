@@ -17,8 +17,6 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "collaborateur")
-@org.hibernate.annotations.Entity(
-dynamicUpdate = true)
 public class Collaborateur {
 	
 	@Id

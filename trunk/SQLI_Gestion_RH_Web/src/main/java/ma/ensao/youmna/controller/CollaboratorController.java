@@ -1,8 +1,6 @@
 package ma.ensao.youmna.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -188,16 +186,19 @@ public class CollaboratorController {
 			@ModelAttribute("editCollab") Collaborateur collaborateur) {
 		ModelAndView mav = new ModelAndView("redirect:/collaborators");
 		Compte compte = collaborateur.getCompte();
-		//compte.setActive(false);
 		compteService.updateCompte(compte);
 
-		// Updating collaborator
+		// Setting Role
 		collaborateur.setRole("Collaborateur");
-		collaborateurService.updateCollaborateur(collaborateur);
+
 		// Archive Requirement Verification
 		if (collaborateurService.requireArchive(collaborateur)) {
 			archiveService.saveCollab(collaborateur);
 		}
+		
+		// Updating collaborator
+		collaborateurService.updateCollaborateur(collaborateur);
+
 		// updating all diplomes related to this collaborator
 		List<Diplome> diplomes = collaborateur.getDIPLOME();
 		Diplome dip = null;
