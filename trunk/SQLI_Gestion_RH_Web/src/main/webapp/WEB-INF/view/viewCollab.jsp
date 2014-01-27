@@ -140,7 +140,7 @@
 								<td><c:out value="${DIPLOME[dipl].niveau}" /></td>
 							</tr>
 						</table>
-					<hr width="300"/>
+						<hr width="300" />
 					</c:forEach>
 				</c:if>
 			</div>
@@ -160,27 +160,9 @@
 									<td><label>Niveau d'expertise:</label></td>
 									<td><c:out value="${COMPETENCE[tech].niveauExpertise}" /></td>
 								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td><label>Competence #2:</label></td>
-									<td><c:out value="${COMPETENCE[tech +1].competence}" /></td>
-
-									<td><label>Niveau d'expertise:</label></td>
-									<td><c:out value="${COMPETENCE[tech +1].niveauExpertise}" /></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td><label>Competence #3:</label></td>
-									<td><c:out value="${COMPETENCE[tech +2].competence}" /></td>
-
-									<td><label>Niveau d'expertise:</label></td>
-									<td><c:out value="${COMPETENCE[tech +2].niveauExpertise}" /></td>
-								</tr>
 							</table>
 						</div>
-						<hr width="300"/>
+						<hr width="300" />
 					</c:forEach>
 				</c:if>
 			</div>
@@ -189,14 +171,43 @@
 				<h2>Evolution du salaire par année</h2>
 				<img alt="Evolution salaire" src=${chartSalaireUrl } align="top" />
 				<table border="1" style="border-collapse: collapse;" align="right">
-						<tr>
-							<td style="color: black">Salaire</td>
-							<td style="color: black">Date de changement</td>
-						</tr>
+					<tr>
+						<td style="color: grey">Salaire</td>
+						<td style="color: grey">Date de changement</td>
+					</tr>
 					<c:forEach var="entry" items="${map}">
 						<tr>
-							<td style="color: black"><c:out value="${entry.value}"/>
-							<td style="color: black"><c:out value="${entry.key}" /> 
+							<td style="color: black"><c:out value="${entry.value}" />
+							<td style="color: black"><c:out value="${entry.key}" />
+						</tr>
+					</c:forEach>
+				</table>
+
+				<h2>Evolution des competences par niveau d'expertise</h2>
+				<img alt="Evolution comp" src=${chartCompetUrl } align="bottom" />
+				<table border="1" style="border-collapse: collapse;" align="right">
+					<tr>
+						<td style="color: grey">Competence</td>
+						<td style="color: grey">Niveau d'expertise</td>
+					</tr>
+					<c:forEach var="entry" items="${mapExeprt}">
+						<tr>
+							<td style="color: black"><c:out value="${entry.key}" />
+							<td style="color: black"><c:out value="${entry.value}" />
+						</tr>
+					</c:forEach>
+				</table>
+				<h2>Evolution du Poste par année</h2>
+				<img alt="Evolution salaire" src=${chartPosteUrl } align="top" />
+				<table border="1" style="border-collapse: collapse;" align="right">
+					<tr>
+						<td style="color: grey">Poste</td>
+						<td style="color: grey">Année</td>
+					</tr>
+					<c:forEach var="entry" items="${mapPoste}">
+						<tr>
+							<td style="color: black"><c:out value="${entry.value}" />
+							<td style="color: black"><c:out value="${entry.key}" />
 						</tr>
 					</c:forEach>
 				</table>

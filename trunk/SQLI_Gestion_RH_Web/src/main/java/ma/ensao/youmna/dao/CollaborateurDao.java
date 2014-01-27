@@ -2,6 +2,7 @@ package ma.ensao.youmna.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import ma.ensao.youmna.model.Collaborateur;
 
@@ -32,6 +33,10 @@ public interface CollaborateurDao {
 	Map<String,String> getSalaireByYear(String matricule);
 	
 	Map<String,String> getPosteByYear(String matricule);
+	
+	Map<String,Integer> getComByExpert(Long tech);
+	
+	Map<String,Long> getRecrByYear();
 	 
 
 }
