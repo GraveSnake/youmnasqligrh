@@ -30,7 +30,7 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
 		String credentials = restToken.getCredentials();
 
 		try {
-			
+
 			String authority = accountService.authenticate(key, credentials);
 			return getAuthenticatedUser(key, credentials, authority);
 			
@@ -44,6 +44,7 @@ public class RestAuthenticationProvider implements AuthenticationProvider {
 
 	private Authentication getAuthenticatedUser(String key, String credentials,
 			String authority) {
+		
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority(authority));
 

@@ -57,11 +57,6 @@ public class AccountServiceImpl implements AccountService {
 			userDto.setId(collab.getMatricule());
 			userDto.setNom(collab.getNom());
 			userDto.setPrenom(collab.getPrenom());
-			
-			System.out.println(collab.getMatricule());
-			System.out.println(member.getAuthorities());
-			System.out.println(collab.getNom());
-			System.out.println(collab.getPrenom());
 
 			return userDto;
 		} else {
