@@ -23,6 +23,7 @@ import org.springframework.web.filter.GenericFilterBean;
 public class CustomRestSecurityFilter extends GenericFilterBean {
 
 	private AuthenticationManager authManager;	
+	
     private AuthenticationEntryPoint authenticationEntryPoint;
 
     public CustomRestSecurityFilter(AuthenticationManager authenticationManager) {
@@ -31,14 +32,14 @@ public class CustomRestSecurityFilter extends GenericFilterBean {
     }
 
     public CustomRestSecurityFilter(AuthenticationManager authenticationManager, AuthenticationEntryPoint authenticationEntryPoint) {
-        this.authManager = authenticationManager;
+    	this.authManager = authenticationManager;
         this.authenticationEntryPoint = authenticationEntryPoint;
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-
+        
         //Pull out the Authorization header
         String authorization = request.getHeader("Authorization");
 
@@ -56,11 +57,14 @@ public class CustomRestSecurityFilter extends GenericFilterBean {
         try {
             //Request the authentication manager to authenticate the token
             Authentication successfulAuthentication = authManager.authenticate(authentication);
+            
             //Pass the successful token to the SecurityHolder where it can be retrieved by this thread at any stage.
             SecurityContextHolder.getContext().setAuthentication(successfulAuthentication);
+            
             //Continue with the Filters
             chain.doFilter(request, response);
         } catch (AuthenticationException authenticationException) {
+        	System.out.println(authenticationException.getMessage());
             //If it fails clear this threads context and kick off the authentication entry point process.
             SecurityContextHolder.clearContext();
             authenticationEntryPoint.commence(request, response, authenticationException);
@@ -70,8 +74,9 @@ public class CustomRestSecurityFilter extends GenericFilterBean {
     public String[] decodeHeader(String authorization) {
         //Decode the Auth Header to get the username and password
         try {
-            byte[] decoded = Base64.decode(authorization.substring(6).getBytes("UTF-8"));
+            byte[] decoded = Base64.decode(authorization.getBytes("UTF-8"));
             String credentials = new String(decoded);
+            System.out.println(credentials);
             return credentials.split(":");
         } catch (UnsupportedEncodingException e) {
             throw new UnsupportedOperationException(e);

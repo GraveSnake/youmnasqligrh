@@ -18,9 +18,8 @@ public class HomeServiceImpl implements HomeService{
 		return collaborateurDao.getAllCollaborateurs().size();
 	}
 
-	public Integer CountManagedCollabs(String matricule) {
-		
-		return 0;
+	public Integer CountManagedCollabs(String name) {
+		return collaborateurDao.getAllCollaborateursByManager(name).size();
 	}
 
 	public Integer CountAllManagers() {
