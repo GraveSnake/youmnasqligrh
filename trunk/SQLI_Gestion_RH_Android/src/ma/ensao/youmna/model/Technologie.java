@@ -5,11 +5,8 @@ import java.util.List;
 public class Technologie {
 
 	private Long id;
-	
 	private String technologie;
-	
 	private Collaborateur collaborateur;
-	
 	private List<Competence> competence;
 
 	public Long getId() {

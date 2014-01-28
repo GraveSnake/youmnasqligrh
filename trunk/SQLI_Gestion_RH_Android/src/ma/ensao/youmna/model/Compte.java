@@ -2,7 +2,7 @@ package ma.ensao.youmna.model;
 
 
 public class Compte {
-
+	
 	private String login;
 	
 	private String password;

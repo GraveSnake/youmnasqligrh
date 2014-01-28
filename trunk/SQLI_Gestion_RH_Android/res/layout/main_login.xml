@@ -12,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:ems="14"
+        android:ems="16"
         android:fontFamily="sans-serif"
         android:hint="@string/username"
-        android:inputType="text"
-        android:textSize="16sp" />
+        android:inputType="text" />
     
       <EditText
           android:id="@+id/passwordEditText"
@@ -25,8 +24,9 @@
           android:layout_alignLeft="@+id/loginEditText"
           android:layout_alignRight="@+id/loginEditText"
           android:layout_below="@+id/loginEditText"
+          android:fontFamily="sans-serif"
+          android:ems="16"
           android:layout_marginTop="20dp"
-          android:ems="10"
           android:hint="@string/password"
           android:inputType="textPassword" >
 
@@ -51,7 +51,6 @@
         android:layout_marginTop="40dp"
         android:background="@android:drawable/btn_default"
         android:onClick="login"
-        android:text="@string/connect"
-        android:textSize="16sp" />
+        android:text="@string/connect" />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public class Collaborateur {
-
+	
 	private String matricule;
 	
 	private String nom;
@@ -22,7 +22,7 @@ public class Collaborateur {
 	
 	private String mgrhActuel;
 	
-	private char sexe;
+	private Character sexe;
 	
 	private String site;
 	
@@ -34,9 +34,9 @@ public class Collaborateur {
 	
 	private String dateDepart;
 	
-	private boolean ancienColl;
+	private Boolean ancienColl;
 	
-	private boolean participeSi;
+	private Boolean participeSi;
 	
 	private String dateSi;
 	
@@ -54,6 +54,21 @@ public class Collaborateur {
 	private List<Technologie> TECHNOLOGIE;
 	private List<Competence> COMPETENCE;
 	
+	
+	Boolean status;
+	
+	/**
+	 * @return the status
+	 */
+	public Boolean getStatus() {
+		return status;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
 	/**
 	 * @return the matricule
 	 */
@@ -129,13 +144,13 @@ public class Collaborateur {
 	/**
 	 * @return the sexe
 	 */
-	public char getSexe() {
+	public Character getSexe() {
 		return sexe;
 	}
 	/**
 	 * @param sexe the sexe to set
 	 */
-	public void setSexe(char sexe) {
+	public void setSexe(Character sexe) {
 		this.sexe = sexe;
 	}
 	/**
@@ -198,28 +213,30 @@ public class Collaborateur {
 	public void setDateDepart(String dateDepart) {
 		this.dateDepart = dateDepart;
 	}
+	
 	/**
 	 * @return the ancienColl
 	 */
-	public boolean isAncienColl() {
+	public Boolean getAncienColl() {
 		return ancienColl;
 	}
 	/**
 	 * @param ancienColl the ancienColl to set
 	 */
-	public void setAncienColl(boolean ancienColl) {
+	public void setAncienColl(Boolean ancienColl) {
 		this.ancienColl = ancienColl;
 	}
+
 	/**
 	 * @return the participeSi
 	 */
-	public boolean isParticipeSi() {
+	public Boolean getParticipeSi() {
 		return participeSi;
 	}
 	/**
 	 * @param participeSi the participeSi to set
 	 */
-	public void setParticipeSi(boolean participeSi) {
+	public void setParticipeSi(Boolean participeSi) {
 		this.participeSi = participeSi;
 	}
 	/**

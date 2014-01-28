@@ -5,9 +5,9 @@ public class Constants {
 	public static final int TABS_COUNT = 3;
 	public static final String ACCOUNT_TYPE = "ma.ensao.youmna.AccountType";
 	public static final String AUTHTOKEN_TYPE = "ma.ensao.youmna.AuthTokenType";
-	public static final String HOST = "http://192.168.173.161";
+	public static final String HOST = "http://192.168.1.10";
 	public static final int PORT = 8082;
-	public static final String BASE_URL = "http://192.168.173.161:8082/SQLI_Gestion_RH_Web/rest";
+	public static final String BASE_URL = "http://192.168.1.10:8082/SQLI_Gestion_RH_Web/rest";
 	public static final String AUTH_TOKEN_KEY = "authToken";
 	public static final String FIRST_NAME_KEY = "first_name";
 	public static final String LAST_NAME_KEY = "last_name";
@@ -30,4 +30,12 @@ public class Constants {
 	public static final String COLLABORATORS = "Collaborateurs";
 	public static final String REPORTING = "Reporting";
 
+//	Status
+	public static final int SUCCESS = 0;
+	public static final int FAIL = 1;
+	public static final int LOGIN_INCORRECT = 2;
+	public static final int TIMEOUT = 3;
+	public static final int EXCEPTION = 4;
+	
+	
 }

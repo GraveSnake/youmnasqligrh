@@ -3,9 +3,7 @@ package ma.ensao.youmna.model;
 
 public class Competence {
 	
-
 	private Long id;
-
 	private String competence;
 	private Integer niveauExpertise;
 	private Technologie technologie;

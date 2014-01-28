@@ -1,5 +1,7 @@
 package ma.ensao.youmna;
 
+import org.springframework.web.client.ResourceAccessException;
+
 import ma.ensao.youmna.tabs.MainTabs;
 import ma.ensao.youmna.util.Constants;
 import ma.ensao.youmna.util.NetworkUtils;
@@ -27,6 +29,7 @@ import android.widget.Toast;
 public class LoginActivity extends Activity {
 
 	private ProgressDialog progressDialog;
+	public Account account;
 	public static final String PARAM_AUTHTOKEN_TYPE = Constants.AUTHTOKEN_TYPE;
 	public static final String PARAM_ACCOUNT_TYPE = Constants.ACCOUNT_TYPE;
 	public static AccountManager accountManager = null;
@@ -50,7 +53,6 @@ public class LoginActivity extends Activity {
 			NetworkUtils
 					.prepareAuthHeader(getApplicationContext(), accounts[0]);
 			NetworkUtils.account = accounts[0];
-//			UserDataUtils.prepareUserData(getApplicationContext(), accounts[0]);
 			Intent intent = new Intent(this, MainTabs.class);
 			startActivity(intent);
 			finish();
@@ -71,9 +73,10 @@ public class LoginActivity extends Activity {
 		if (!TextUtils.isEmpty(login) && !TextUtils.isEmpty(password)) {
 			LoginThread loginThread = new LoginThread(this);
 			loginThread.execute(login, password);
+			
 			progressDialog = ProgressDialog.show(LoginActivity.this, "",
 					"Connexion en cours...");
-
+		
 		} else {
 			Toast.makeText(this, getResources().getString(R.string.invalidLogin),
 					Toast.LENGTH_SHORT).show();
@@ -82,7 +85,7 @@ public class LoginActivity extends Activity {
 
 	}
 	
-	private class LoginThread extends AsyncTask<String, Integer, Account> {
+	private class LoginThread extends AsyncTask<String, Integer, Integer> {
 
 	    private final Context context;
 
@@ -90,7 +93,7 @@ public class LoginActivity extends Activity {
 			this.context = context;
 		}
 		@Override
-		protected Account doInBackground(String... params) {
+		protected Integer doInBackground(String... params) {
 
 			String login = params[0];
 			String password = params[1];
@@ -104,12 +107,12 @@ public class LoginActivity extends Activity {
 				User userDataDto = NetworkUtils.authenticate(userDto);
 
 				if (userDataDto != null) {
-					Account account = new Account(login, PARAM_ACCOUNT_TYPE);
+					account = new Account(login, PARAM_ACCOUNT_TYPE);
 					Bundle userData = new Bundle();
 					userData.putString(Constants.FIRST_NAME_KEY,
-							userDataDto.getNom());
-					userData.putString(Constants.LAST_NAME_KEY,
 							userDataDto.getPrenom());
+					userData.putString(Constants.LAST_NAME_KEY,
+							userDataDto.getNom());
 					userData.putString(Constants.AUTH_TOKEN_KEY,
 							userDataDto.getPassword());
 					userData.putString(Constants.USER_ID_KEY,
@@ -123,29 +126,28 @@ public class LoginActivity extends Activity {
 							userData)) {
 						NetworkUtils.prepareAuthHeader(getApplicationContext(),
 								account);
-//						UserDataUtils.prepareUserData(getApplicationContext(),
-//								account);
 
 						Log.i("add account", "success");
-
-						return account;
+						return Constants.SUCCESS;
 					} else {
 						progressDialog.dismiss();
 						Log.i("add account", "fail");
-						return null;
+						return Constants.FAIL;
 					}
 
 				} else {
 					progressDialog.dismiss();
 					Log.i("error", "login");
-					return null;
-
+					return Constants.LOGIN_INCORRECT;
 				}
 
-			} catch (Exception e) {
+			}catch(ResourceAccessException exc){
+				progressDialog.dismiss();
+				return Constants.TIMEOUT;
+			}catch (Exception e) {
 				Log.i("error", "connexion :" + e.getMessage());
 				progressDialog.dismiss();
-				return null;
+				return Constants.EXCEPTION;
 			}
 
 		}
@@ -156,17 +158,33 @@ public class LoginActivity extends Activity {
 		}
 
 		@Override
-		protected void onPostExecute(Account result) {
-			if (result != null) {
+		protected void onPostExecute(Integer status) {
+			switch (status) {
+			case Constants.SUCCESS:
 				Intent intent = new Intent(context,
 						MainTabs.class);
-				intent.putExtra("ACCOUNT", result);
-				NetworkUtils.account = result;
+				intent.putExtra("ACCOUNT", account);
+				NetworkUtils.account = account;
 				startActivity(intent);
 				progressDialog.dismiss();
 				finish();
+				break;
+			case Constants.FAIL:
+				Toast.makeText(context, "Erreur d'enregistrement du compte !", Toast.LENGTH_SHORT).show();
+				break;
+			case Constants.TIMEOUT:
+				Toast.makeText(context, R.string.serverError, Toast.LENGTH_SHORT).show();
+				break;
+			case Constants.LOGIN_INCORRECT:
+				Toast.makeText(context, R.string.invalidLogin, Toast.LENGTH_SHORT).show();
+				break;
+			case Constants.EXCEPTION:
+				Toast.makeText(context, "Une Erreur est survenue !", Toast.LENGTH_SHORT).show();
+				break;
+			default:
+				progressDialog.dismiss();
+				break;
 			}
-			progressDialog.dismiss();
 		}
 
 	}

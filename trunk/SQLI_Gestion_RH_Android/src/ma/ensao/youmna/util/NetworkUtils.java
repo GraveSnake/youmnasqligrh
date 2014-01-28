@@ -1,12 +1,7 @@
 package ma.ensao.youmna.util;
 
-import java.io.Serializable;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.net.SocketAddress;
+import java.io.UnsupportedEncodingException;
 
-import org.springframework.http.HttpAuthentication;
-import org.springframework.http.HttpBasicAuthentication;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.util.support.Base64;
 import org.springframework.web.client.RestTemplate;
 
 import android.accounts.Account;
@@ -23,27 +19,23 @@ import android.util.Log;
 
 public class NetworkUtils {
 	
-	private static HttpAuthentication authHeader;
-
+	private static HttpHeaders headers;
 	public static Account account;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static <T> T callWebService(Class T, Serializable requestBody,
-			String url, HttpMethod method) throws Exception {
+	public static <T> T callWebService(Class T,
+			String url, String param) throws Exception {
 
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(
 				new MappingJacksonHttpMessageConverter());
-		restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+		HttpComponentsClientHttpRequestFactory rf = new HttpComponentsClientHttpRequestFactory();
+		rf.setReadTimeout(1 * 10000);
+		rf.setConnectTimeout(1 * 5000);
+		restTemplate.setRequestFactory(rf);
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAuthorization(authHeader);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		HttpEntity<Serializable> request = new HttpEntity<Serializable> (requestBody, headers);
-
-		ResponseEntity<?> result = restTemplate.exchange(Constants.BASE_URL + url, method,
-				request, T);
+		ResponseEntity<?> result = restTemplate.exchange(Constants.BASE_URL + url, HttpMethod.GET,
+				new HttpEntity<Object>(headers), T, param);
 
 		return (T) result.getBody();
 
@@ -55,9 +47,14 @@ public class NetworkUtils {
 		
 		
 		RestTemplate restTemplate = new RestTemplate();
+		HttpComponentsClientHttpRequestFactory rf = new HttpComponentsClientHttpRequestFactory();
+			rf.setReadTimeout(1 * 5000);
+			rf.setConnectTimeout(1 * 5000);
+			
 		restTemplate.getMessageConverters().add(
 				new MappingJacksonHttpMessageConverter());
-		restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+		
+		restTemplate.setRequestFactory(rf);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
@@ -67,7 +64,6 @@ public class NetworkUtils {
 			ResponseEntity result = restTemplate.exchange(Constants.BASE_URL + "/login", HttpMethod.POST,
 					request, User.class);
 			Log.i("Exchange Success", "-----------------");
-
 			
 			return (User) result.getBody();
 		} catch(Exception e){
@@ -79,9 +75,24 @@ public class NetworkUtils {
 	public static void prepareAuthHeader(Context context,Account account) {
 		
 		if(account != null){
-			String login = account.name;
-			String hashCode = AccountManager.get(context).getUserData(account, Constants.AUTH_TOKEN_KEY);
-			authHeader = new HttpBasicAuthentication(login, hashCode);
+			final String login = account.name;
+			final String hashCode = AccountManager.get(context).getUserData(account, Constants.AUTH_TOKEN_KEY);
+			try {
+				headers =  new HttpHeaders(){
+				      {
+				         String auth = login + ":" + hashCode;
+				         byte[] encodedAuth = Base64.encodeBytesToBytes(
+				            auth.getBytes("UTF-8"));
+				         String authHeader = new String( encodedAuth );
+				         Log.i("AUTHENTICATION", authHeader);
+				         set( "Authorization", authHeader );
+				      }
+				   };
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+				headers.setContentType(MediaType.APPLICATION_JSON);
+
 		} else {
 			throw new IllegalAccessError();
 		}
@@ -95,6 +106,10 @@ public class NetworkUtils {
 		try{
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+    		HttpComponentsClientHttpRequestFactory rf = new HttpComponentsClientHttpRequestFactory();
+    		rf.setReadTimeout(1 * 10000);
+    		rf.setConnectTimeout(1 * 5000);
+    		restTemplate.setRequestFactory(rf);
             result = restTemplate.getForObject(Constants.BASE_URL+url, T, param);
 		}catch(Exception e){
 			Log.e("EXCEPTION", e.getMessage());
@@ -103,19 +118,22 @@ public class NetworkUtils {
 
 	}
 	
-	public static boolean CheckReachability(){
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static <T> T[] getRestObjects(Class T, String url, String param) {
+		Object[] result = null;
+		
+		try{
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+    		HttpComponentsClientHttpRequestFactory rf = new HttpComponentsClientHttpRequestFactory();
+    		rf.setReadTimeout(1 * 10000);
+    		rf.setConnectTimeout(1 * 5000);
+    		restTemplate.setRequestFactory(rf);
+            result = restTemplate.getForObject(Constants.BASE_URL+url, T, param);
+		}catch(Exception e){
+			Log.e("EXCEPTION", e.getMessage());
+		}
+		return (T[]) result;
 
-		try {
-		    SocketAddress sockaddr = new InetSocketAddress(Constants.HOST, Constants.PORT);
-		    // Create an unbound socket
-		    Socket sock = new Socket();
-
-		    // This method will block no more than timeoutMs.
-		    // If the timeout occurs, SocketTimeoutException is thrown.
-		    int timeoutMs = 2000;   // 2 seconds
-		    sock.connect(sockaddr, timeoutMs);
-		    return true;
-		}catch(Exception e){}
-		return false;
 	}
 }
