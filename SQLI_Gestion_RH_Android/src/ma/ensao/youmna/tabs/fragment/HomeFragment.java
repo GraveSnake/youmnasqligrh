@@ -1,107 +1,122 @@
 package ma.ensao.youmna.tabs.fragment;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import ma.ensao.youmna.R;
 import ma.ensao.youmna.util.Constants;
 import ma.ensao.youmna.util.NetworkUtils;
+
+import org.springframework.web.client.ResourceAccessException;
+
 import android.accounts.AccountManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Home Fragment
  */
 public class HomeFragment extends Fragment {
-	
-	ProgressDialog progressDialog;
-	private Integer number = 0; 
+
+	private Integer number = 0;
 	private Integer numberMgrs = 0;
 	private String Nom;
 	private String Prenom;
 	private String Role;
-	private String ID;
 	private TextView stats;
-	
-//	@Override
-//	public void onActivityCreated(Bundle savedInstanceState) {
-//		super.onActivityCreated(savedInstanceState);
-//		
-////		if(NetworkUtils.CheckReachability()){
-//        CountThread count = new CountThread(getActivity());
-//        count.execute();
-////		}
-//	}
-	
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        TextView bienvenue = (TextView) rootView.findViewById(R.id.bienvenue);
-        stats = (TextView) rootView.findViewById(R.id.stats);
-        
-        Nom = AccountManager.get(getActivity()).getUserData(NetworkUtils.account, Constants.LAST_NAME_KEY);
-        Prenom = AccountManager.get(getActivity()).getUserData(NetworkUtils.account, Constants.FIRST_NAME_KEY);
-        Role = AccountManager.get(getActivity()).getUserData(NetworkUtils.account, Constants.USER_AUTHORITY);
-        ID = AccountManager.get(getActivity()).getUserData(NetworkUtils.account, Constants.USER_ID_KEY);
-        
-		progressDialog = ProgressDialog.show(getActivity(), "", "Chargement...", true, true);
-        
-        bienvenue.setText("Bienvenue : "+Nom+" "+Prenom);
-        if((Constants.ROLE_MAN).equals(Role))
-		{
-          CountThread count = new CountThread(getActivity(), ID);
-          count.execute();
-//			number = NetworkUtils.getRestObject(Integer.class, "/count?mode={query}", ID);
-//			stats.setText("");
-			stats.append("Nombre des Collaborateurs gérés : "+number);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.fragment_home, container,
+				false);
+		TextView bienvenue = (TextView) rootView.findViewById(R.id.bienvenue);
+		stats = (TextView) rootView.findViewById(R.id.stats);
+
+		Nom = AccountManager.get(getActivity()).getUserData(
+				NetworkUtils.account, Constants.LAST_NAME_KEY);
+		Prenom = AccountManager.get(getActivity()).getUserData(
+				NetworkUtils.account, Constants.FIRST_NAME_KEY);
+		Role = AccountManager.get(getActivity()).getUserData(
+				NetworkUtils.account, Constants.USER_AUTHORITY);
+		
+		bienvenue.setText("Bienvenue : " + Prenom + " " +Nom );
+		if ((Constants.ROLE_MAN).equals(Role)) {
+
+			CountThread count = new CountThread(getActivity(), Nom);
+			count.execute();
+			try {
+				count.get(10, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			} catch (TimeoutException e) {
+				e.printStackTrace();
+			}
+			if(number!=null) stats.setText("Nombre des Collaborateurs gérés : " + number);
+			
+		} else if ((Constants.ROLE_ADMIN).equals(Role)) {
+
+			CountThread count = new CountThread(getActivity(), "ALL");
+			count.execute();
+			try {
+				count.get(10, TimeUnit.SECONDS);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			} catch (TimeoutException e) {
+				e.printStackTrace();
+			}
+			if(number!=null) stats.setText("Nombre Total des Collaborateurs : " + number);
+			if(numberMgrs!=null) stats.append("\nNombre Total des Managers : " + numberMgrs);
+			
 		}
-		else if((Constants.ROLE_ADMIN).equals(Role)){
-//			stats.setText("");
-	        CountThread count = new CountThread(getActivity(), "ALL");
-	        count.execute();
-	        stats.append("Nombre Total des Collaborateurs : "+number);
-			stats.append("\nNombre Total des Managers : "+numberMgrs);
-		}
-//        CountThread count = new CountThread(getActivity());
-//        count.execute();
-        return rootView;
-    }
-    
-    
+
+		return rootView;
+	}
+
 	private class CountThread extends AsyncTask<String, Integer, Integer> {
 
-	    private final Context context;
-	    private String mode;
-	    
+		private final Context context;
+		private String mode;
+
 		public CountThread(Context context, String mode) {
 			this.context = context;
 			this.mode = mode;
 		}
-
 		
 		@Override
 		protected Integer doInBackground(String... params) {
-			
+
 			try {
-				if("ALL".equals(mode))
-				{
-					numberMgrs = NetworkUtils.getRestObject(Integer.class, "/count?mode={query}", "MAN");
-					number = NetworkUtils.getRestObject(Integer.class, "/count?mode={query}", "ALL");
+				if ("ALL".equals(mode)) {
+					numberMgrs = NetworkUtils.callWebService(Integer.class, "/count?mode={query}", "MAN");
+
+					number = NetworkUtils.callWebService(Integer.class,
+							"/count?mode={query}", "ALL");
+				} else {
+					number = NetworkUtils.callWebService(Integer.class,
+							"/count?mode={query}", mode);
 				}
-				else
-					number = NetworkUtils.getRestObject(Integer.class, "/count?mode={query}", mode);
+			} catch (ResourceAccessException exc) {
+				return Constants.TIMEOUT;
 			} catch (Exception e) {
-//				Toast.makeText(context, "Connexion au serveur échouée", Toast.LENGTH_SHORT).show();
-				return 1;
+				Log.i("error", "connexion :" + e.getMessage());
+				return Constants.EXCEPTION;
 			}
-			return 0;
+			return Constants.SUCCESS;
 		}
 
 		@Override
@@ -110,8 +125,21 @@ public class HomeFragment extends Fragment {
 		}
 
 		@Override
-		protected void onPostExecute(Integer number) {
-			progressDialog.dismiss();
+		protected void onPostExecute(Integer status) {
+			switch (status) {
+			case Constants.SUCCESS:
+				break;
+			case Constants.TIMEOUT:
+				Toast.makeText(context, R.string.serverError,
+						Toast.LENGTH_SHORT).show();
+				break;
+			case Constants.EXCEPTION:
+				Toast.makeText(context, R.string.serverError,
+						Toast.LENGTH_SHORT).show();
+				break;
+			default:
+				break;
+			}
 		}
 
 	}

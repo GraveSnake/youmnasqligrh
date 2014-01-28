@@ -1,7 +1,6 @@
 package ma.ensao.youmna.model;
 
 
-
 public class Diplome {
 	
 	private Long id;
