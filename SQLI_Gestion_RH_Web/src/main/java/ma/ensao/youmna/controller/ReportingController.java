@@ -80,7 +80,7 @@ public class ReportingController {
 
 		chartComp.addXAxisLabels(AxisLabelsFactory.newAxisLabels(date));
 		chartComp.addYAxisLabels(AxisLabelsFactory.newNumericRangeAxisLabels(0,
-				500));
+				100));
 		chartComp.addYAxisLabels(number);
 		chartComp.addXAxisLabels(year);
 		chartComp.setSize(550, 350);

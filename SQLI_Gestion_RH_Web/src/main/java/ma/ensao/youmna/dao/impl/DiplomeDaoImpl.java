@@ -49,7 +49,7 @@ public class DiplomeDaoImpl implements DiplomeDao {
 	}
 
 	public void updateDiplome(Diplome diplome) {
-		sessionFactory.getCurrentSession().update(diplome);
+		sessionFactory.getCurrentSession().saveOrUpdate(diplome);
 		
 	}
 

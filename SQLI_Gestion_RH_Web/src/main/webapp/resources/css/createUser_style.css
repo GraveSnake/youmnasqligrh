@@ -1,3 +1,22 @@
+fieldset {
+border: 2px solid #000000 ;
+padding:2px;
+margin:2px;
+}
+legend {
+font-weight:bold;
+color:#FF0096;
+}
+input:focus { 
+background : #FFFDEA; 
+}
+option,select {
+background-color:#C1DAFE;
+}
+option,select:hover{
+background-color:#75AFFF;
+}
+
 #tabcol td{
 	color: lightblue;
 }
@@ -10,9 +29,6 @@ td{
 	padding: 7px 0 7px 0;
 	margin: 0;
 	font: bold 12px console !important;
-}
-form fieldset p {
-   margin-top:5px;
 }
 #tab {
 	font-size: 70.5%;
