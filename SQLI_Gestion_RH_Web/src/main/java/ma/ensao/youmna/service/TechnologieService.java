@@ -14,6 +14,6 @@ public interface TechnologieService {
 	
 	List<String> technologies();
 	
-	Map<String, Integer> getCountTechnologie();
+	Map<String, Long> getCountTechnologie();
 
 }

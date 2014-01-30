@@ -2,12 +2,14 @@ package ma.ensao.youmna.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -18,8 +20,10 @@ public class Technologie {
 	@Id @GeneratedValue
 	@Column(name = "id")
 	private Long id;
-	@Column(name = "technologie")
-	private String technologie;
+//	@Column(name = "technologie")
+//	private String technologie;
+	@OneToOne(cascade = CascadeType.ALL)
+	private TechnoExist technologie;
 	@ManyToOne
 	@JoinColumn(name="matricule")
 	private Collaborateur collaborateur;
@@ -34,11 +38,19 @@ public class Technologie {
 		this.id = id;
 	}
 
-	public String getTechnologie() {
+	
+
+	/**
+	 * @return the technologie
+	 */
+	public TechnoExist getTechnologie() {
 		return technologie;
 	}
 
-	public void setTechnologie(String technologie) {
+	/**
+	 * @param technologie the technologie to set
+	 */
+	public void setTechnologie(TechnoExist technologie) {
 		this.technologie = technologie;
 	}
 

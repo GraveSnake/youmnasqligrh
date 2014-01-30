@@ -55,7 +55,7 @@ public class TechnologieServiceImpl implements TechnologieService {
 		return technologieDao.technologies();
 	}
 
-	public Map<String, Integer> getCountTechnologie() {
+	public Map<String, Long> getCountTechnologie() {
 		return technologieDao.getCountTechnologie();
 	}
 }

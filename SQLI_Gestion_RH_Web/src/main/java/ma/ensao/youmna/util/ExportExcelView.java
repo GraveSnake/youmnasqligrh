@@ -118,7 +118,7 @@ public class ExportExcelView extends AbstractExcelView {
 			HSSFRow excelRow = techSheet.createRow(record++);
 			excelRow.createCell(0).setCellValue(technologie.getId());
 			excelRow.createCell(1).setCellValue(technologie.getCollaborateur().getMatricule());
-			excelRow.createCell(2).setCellValue(technologie.getTechnologie());
+			excelRow.createCell(2).setCellValue(technologie.getTechnologie().getNom());
 
 	}
 

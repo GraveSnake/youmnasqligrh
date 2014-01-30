@@ -16,9 +16,9 @@
 		<br />
 
 
-		<input type="button" value="Save" id="enregister" />
-		<input type="button" value="Previous" id="previous" />
-		<input type="button" value="Next" id="next" />
+		<input type="button" value="Enregistrer" id="enregister" />
+		<input type="button" value="Précedent" id="previous" />
+		<input type="button" value="Suivant" id="next" />
 		<input type="button" value="Back" onclick="go('collaborators');">
 		<hr color="black" />
 		<p class="validateTips" style="color: red"></p>
@@ -94,7 +94,6 @@
 			</fieldset>
 		</div>
 		<div class="form_page" id="page2">
-			<h2 style="color: maroon;">Diplome:</h2>
 			<div id=itemRows>
 
 				<fieldset>
@@ -127,65 +126,71 @@
 						</tr>
 					</table>
 				</fieldset>
-				<input onclick="addRow();" type="button" value="Add row"
+				<input onclick="addRow();" type="button" value="Nouveau"
 					align="left" /> <input onclick="removeRow();" type="button"
-					value="Remove" align="left" id="removeDip" disabled="disabled" />
+					value="Annuler" align="left" id="removeDip" disabled="disabled" />
 			</div>
 		</div>
 
 		<div class="form_page" id="page3">
-			<h2 style="color: maroon">Technologie:</h2>
-			<div id="itemTech">
-				<table style="border-collapse: none;" align="center" id="tabcol">
-					<tr>
-						<td><label>Technologie:</label></td>
-						<!--  <td><form:input path="TECHNOLOGIE[0].technologie" id="techno" /></td>-->
-						<td><form:select path="TECHNOLOGIE[0].technologie"
-								id="techno">
-								<form:option value=""></form:option>
-								<form:options items="${technologies}" />
-							</form:select></td>
-						<td><label>Competence #1:</label></td>
-						<td><form:input path="COMPETENCE[0].competence" /></td>
 
-						<td><label>Niveau d'expertise:</label></td>
-						<td><form:select path="COMPETENCE[0].niveauExpertise" id="nivExp">
-								<form:option value=""></form:option>
-								<form:option value="1">1</form:option>
-								<form:option value="2">2</form:option>
-								<form:option value="3">3</form:option>
-								<form:option value="4">4</form:option>
-								<form:option value="5">5</form:option>
-							</form:select></td>
-					</tr>
-				</table>
-				<input onclick="addTech();" type="button" value="Add row"
-					align="left" /> <input onclick="remove2();" type="button"
-					value="Remove" align="left" id="removeTech" disabled="disabled" />
-			</div>
+			<fieldset>
+				<legend>Technologie: </legend>
+				<div id="itemTech">
+					<table style="border-collapse: none;" align="center" id="tabcol">
+						<tr>
+							<td><label>Technologie:</label></td>
+							<!--  <td><form:input path="TECHNOLOGIE[0].technologie" id="techno" /></td>-->
+							<td><form:select path="TECHNOLOGIE[0].technologie"
+									id="techno">
+									<form:option value=""></form:option>
+									<form:options items="${technologies}" />
+								</form:select></td>
+							<td><label>Competence #1:</label></td>
+							<td><form:input path="COMPETENCE[0].competence" /></td>
+
+							<td><label>Niveau d'expertise:</label></td>
+							<td><form:select path="COMPETENCE[0].niveauExpertise"
+									id="nivExp">
+									<form:option value=""></form:option>
+									<form:option value="1">1</form:option>
+									<form:option value="2">2</form:option>
+									<form:option value="3">3</form:option>
+									<form:option value="4">4</form:option>
+									<form:option value="5">5</form:option>
+								</form:select></td>
+						</tr>
+					</table>
+					<input onclick="addTech();" type="button" value="Nouveau"
+						align="left" /> <input onclick="remove2();" type="button"
+						value="Annuler" align="left" id="removeTech" disabled="disabled" />
+				</div>
+			</fieldset>
 		</div>
 
 		<div class="form_page" id="page4">
-			<h2 style="color: maroon">Compte:</h2>
-			<table style="border-collapse: none;" align="center" id="tabcol">
-				<tr>
-					<td><label>Login:</label></td>
-					<td><form:input path="compte.login" id="login" size="50" /></td>
-				</tr>
-				<tr>
-					<td><label>Password:</label></td>
-					<td><form:input path="compte.password" id="password"
-							type="password" size="50" /></td>
-				</tr>
-				<tr>
-					<td><label>Confirm Password:</label></td>
-					<td><input id="Confirm_Password" type="password" size="50" /></td>
-				</tr>
-				<tr>
-					<td><label>Email:</label></td>
-					<td><form:input path="compte.email" id="email" size="50" /></td>
-				</tr>
-			</table>
+			<fieldset>
+				<legend>Compte: </legend>
+				<table style="border-collapse: none;" align="center" id="tabcol">
+					<tr>
+						<td><label>Login:</label></td>
+						<td><form:input path="compte.login" id="login" size="50" /></td>
+					</tr>
+					<tr>
+						<td><label>Password:</label></td>
+						<td><form:input path="compte.password" id="password"
+								type="password" size="50" /></td>
+					</tr>
+					<tr>
+						<td><label>Confirm Password:</label></td>
+						<td><input id="Confirm_Password" type="password" size="50" /></td>
+					</tr>
+					<tr>
+						<td><label>Email:</label></td>
+						<td><form:input path="compte.email" id="email" size="50" /></td>
+					</tr>
+				</table>
+				</fieldset>
 		</div>
 		<hr color="black" />
 	</form:form>

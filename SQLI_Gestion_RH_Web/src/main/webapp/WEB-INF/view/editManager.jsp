@@ -60,7 +60,8 @@
 	<p class="validateTips" style="color: red"></p>
 	<input type="button" value="Save" id="enregister">
 	<input type="button" value="Back" onclick="go('adminManagers');">
-	<br/><br/>
+	<br />
+	<br />
 	<form:form action="updateManager" method="post" id="ManagerForm"
 		commandName="editManager">
 		<div id="editCollabTabs">
@@ -124,6 +125,7 @@
 					<tr>
 						<td><label>Poste actuel (4):</label></td>
 						<td><form:input path="posteActuel4" id="poste_actuel4" /></td>
+						<td><form:hidden path="role" /></td>
 					</tr>
 				</table>
 			</div>
@@ -132,9 +134,10 @@
 				<c:if test="${diplomesSize!=0}">
 					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
-						<table 
-							style="border-collapse: none;" align="center" id="tabcol">
-
+						<table style="border-collapse: none;" align="center" id="tabcol">
+							<tr>
+								<form:hidden path="DIPLOME[${dipl}].id" />
+							</tr>
 							<tr>
 								<td><label>Titre:</label></td>
 								<td><form:input path="DIPLOME[${dipl}].nom" /></td>
@@ -160,7 +163,7 @@
 								<td><form:input path="DIPLOME[${dipl}].niveau" id="niveau" /></td>
 							</tr>
 						</table>
-					<hr width="200"/>
+						<hr width="200" />
 					</c:forEach>
 				</c:if>
 			</div>
@@ -169,22 +172,21 @@
 				<c:if test="${technologiesSize!=0}">
 					<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
 						<div id="itemTech">
-							<table 
-								style="border-collapse: none;" align="center" id="tabcol">
+							<table style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
+									<td><form:hidden path="TECHNOLOGIE[${tech}].id" /></td>
 									<td><label>Technologie:</label></td>
 									<td><form:input path="TECHNOLOGIE[${tech}].technologie" /></td>
-
+									<td><form:hidden path="COMPETENCE[${tech}].id" /></td>
 									<td><label>Competence #1:</label></td>
 									<td><form:input path="COMPETENCE[${tech}].competence" /></td>
 
 									<td><label>Niveau d'expertise:</label></td>
-									<td><form:input
-											path="COMPETENCE[${tech}].niveauExpertise"/></td>
+									<td><form:input path="COMPETENCE[${tech}].niveauExpertise" /></td>
 								</tr>
 							</table>
 						</div>
-						<hr width="200"/>
+						<hr width="200" />
 					</c:forEach>
 				</c:if>
 			</div>
@@ -203,6 +205,9 @@
 					<tr>
 						<td><label>Email:</label></td>
 						<td><form:input path="compte.email" id="email" /></td>
+					</tr>
+					<tr>
+						<form:hidden path="compte.active" />
 					</tr>
 				</table>
 			</div>

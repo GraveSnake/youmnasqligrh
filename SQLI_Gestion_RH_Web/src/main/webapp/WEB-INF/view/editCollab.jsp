@@ -59,15 +59,15 @@
 <body>
 
 	<p class="validateTips" style="color: red"></p>
-	<input type="button" value="Save" id="enregister">
-	<input type="button" value="Back" onclick="go('collaborators');">
+	<input type="button" value="Enregistrer" id="enregister">
+	<input type="button" value="Retour" onclick="go('collaborators');">
 	<br />
 	<br />
 	<form:form action="updateCollab" method="post" id="CollabForm"
 		commandName="editCollab">
 		<div id="editCollabTabs">
 			<ul>
-				<li><a href="#tabs-1">Donnees personelles</a></li>
+				<li><a href="#tabs-1">Données personelles</a></li>
 				<li><a href="#tabs-2">Diplomes</a></li>
 				<li><a href="#tabs-3">Technologies</a></li>
 				<li><a href="#tabs-4">Compte</a></li>
@@ -180,9 +180,9 @@
 
 						</c:forEach>
 					</c:if>
-					<input onclick="addRow();" type="button" value="Add row"
+					<input onclick="addRow();" type="button" value="Nouveau"
 						align="left" /> <input onclick="removeRow();" type="button"
-						value="Remove" align="left" id="removeDip" disabled="disabled" />
+						value="Annuler" align="left" id="removeDip" disabled="disabled" />
 				</div>
 			</div>
 			<div id="tabs-3">
@@ -244,9 +244,9 @@
 							</table>
 						</c:forEach>
 					</c:if>
-					<input onclick="addTech();" type="button" value="Add row"
+					<input onclick="addTech();" type="button" value="Nouveau"
 						align="left" /> <input onclick="remove2();" type="button"
-						value="Remove" align="left" id="removeTech" disabled="disabled" />
+						value="Annuler" align="left" id="removeTech" disabled="disabled" />
 				</div>
 			</div>
 			<div id="tabs-4">

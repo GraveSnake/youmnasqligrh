@@ -62,6 +62,8 @@ public class ManagerController {
 	@RequestMapping(value = "newManager", method = RequestMethod.GET)
 	public ModelAndView newManager() {
 		ModelAndView mav = new ModelAndView("admin_managers");
+		List<String> technologies=technologieService.technologies();
+		mav.addObject("technologies", technologies);
 		mav.addObject("newManager", new Collaborateur());
 		mav.addObject("VIEW", "new");
 		return mav;
@@ -163,8 +165,8 @@ public class ManagerController {
 			@ModelAttribute("editManager") Collaborateur manager) {
 
 		// saving a new account
-		//Compte compte = manager.getCompte();
-		//compteService.updateCompte(compte);
+		Compte compte = manager.getCompte();
+		compteService.updateCompte(compte);
 		// updating the new Manager
 		collaborateurService.updateCollaborateur(manager);
 

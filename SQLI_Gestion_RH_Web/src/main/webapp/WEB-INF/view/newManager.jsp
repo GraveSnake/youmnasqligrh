@@ -16,9 +16,9 @@
 		<br />
 
 
-		<input type="button" value="Save" id="enregister" />
-		<input type="button" value="Previous" id="previous" />
-		<input type="button" value="Next" id="next" />
+		<input type="button" value="Enregistrer" id="enregister" />
+		<input type="button" value="Précedent" id="previous" />
+		<input type="button" value="Suivant" id="next" />
 		<input type="button" value="Back" onclick="go('adminManagers');">
 		<hr color="black" />
 		<p class="validateTips" style="color: red"></p>
@@ -89,6 +89,7 @@
 						<td><form:input path="DIPLOME[0].ecole" /></td>
 						<td><label>Ecole type:</label></td>
 						<td><form:select path="DIPLOME[0].ecoleType" id="combobox">
+								<form:option value=""></form:option>
 								<form:option value="National">National</form:option>
 								<form:option value="International">International</form:option>
 							</form:select></td>
@@ -96,6 +97,7 @@
 					<tr>
 						<td><label>Diplome type:</label></td>
 						<td><form:select path="DIPLOME[0].diplomeType">
+								<form:option value=""></form:option>
 								<form:option value="etatique">etatique</form:option>
 								<form:option value="prive">prive</form:option>
 							</form:select></td>
@@ -105,9 +107,9 @@
 						<td><form:input path="DIPLOME[0].niveau" id="niveau" /></td>
 					</tr>
 				</table>
-				<input onclick="addRow();" type="button" value="Add row"
+				<input onclick="addRow();" type="button" value="Nouveau"
 					align="left" /> <input onclick="removeRow();" type="button"
-					value="Remove" align="left" id="removeDip" disabled="disabled" />
+					value="Annuler" align="left" id="removeDip" disabled="disabled" />
 			</div>
 		</div>
 
@@ -117,18 +119,30 @@
 				<table style="border-collapse: none;" align="center" id="tabcol">
 					<tr>
 						<td><label>Technologie:</label></td>
-						<td><form:input path="TECHNOLOGIE[0].technologie" id="techno" /></td>
+						<td><form:select path="TECHNOLOGIE[0].technologie"
+								id="techno">
+								<form:option value=""></form:option>
+								<form:options items="${technologies}" />
+							</form:select></td>
 
 						<td><label>Competence #1:</label></td>
 						<td><form:input path="COMPETENCE[0].competence" /></td>
 
 						<td><label>Niveau d'expertise:</label></td>
-						<td><form:input path="COMPETENCE[0].niveauExpertise"/></td>
+						<td><form:select path="COMPETENCE[0].niveauExpertise"
+								id="nivExp">
+								<form:option value=""></form:option>
+								<form:option value="1">1</form:option>
+								<form:option value="2">2</form:option>
+								<form:option value="3">3</form:option>
+								<form:option value="4">4</form:option>
+								<form:option value="5">5</form:option>
+							</form:select></td>
 					</tr>
 				</table>
-				<input onclick="addTech();" type="button" value="Add row"
+				<input onclick="addTech();" type="button" value="Nouveau"
 					align="left" /> <input onclick="remove2();" type="button"
-					value="Remove" align="left" id="removeTech" disabled="disabled" />
+					value="Annuler" align="left" id="removeTech" disabled="disabled" />
 			</div>
 		</div>
 

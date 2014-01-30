@@ -1,11 +1,11 @@
 fieldset {
-border: 2px solid #000000 ;
+border: 2px solid #FCDFA1 ;
 padding:2px;
 margin:2px;
 }
 legend {
 font-weight:bold;
-color:#FF0096;
+color:#785EFA;
 }
 input:focus { 
 background : #FFFDEA; 

@@ -16,13 +16,15 @@
 </script>
 <style>
 .ui-tabs-vertical {
-	width: 55em;
+	padding: 0;
+	width: 42em;
 }
 
 .ui-tabs-vertical .ui-tabs-nav {
 	padding: .2em .1em .2em .2em;
 	float: left;
 	width: 19em;
+	background: #0e69be;
 }
 
 .ui-tabs-vertical .ui-tabs-nav li {
@@ -35,13 +37,14 @@
 
 .ui-tabs-vertical .ui-tabs-nav li a {
 	display: block;
+	text-decoration: none;
+	font-weight: normal;
 }
 
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
 	padding-bottom: 0;
 	padding-right: .1em;
-	border-right-width: 1px;
-	border-right-width: 1px;
+	border-right-width: 15px;
 }
 
 .ui-tabs-vertical .ui-tabs-panel {
@@ -56,18 +59,19 @@
 	<div id="tabs">
 		<ul>
 			<li><a href="#tabs-1">Ratio F/M</a></li>
-			<li><a href="#tabs-2">Ratio recrus par année</a></li>
+			<li><a href="#tabs-2">Ratio nouveaux recrus par année</a></li>
+			<li><a href="#tabs-3">Pourcentage de chaque technologie</a></li>
 		</ul>
 		<div id="tabs-1">
-			<img alt="Ration F/M" src=${chartRatioUrl } align="top" />
+			<img alt="Ration F/M" src=${chartRatioUrl } align="right" />
 		</div>
 		<div id="tabs-2">
-			<img alt="Ratio recrus par année" src=${chartRatioRecrusUrl }
-				align="top" />
-			<table border="1" style="border-collapse: collapse;" align="right">
+			<img alt="Ratio recrus par année" src=${chartRatioRecrusUrl } align="right" />
+				<br/><br/> <br/>
+			<table border="1" style="border-collapse: collapse;" align="center">
 				<tr>
 					<td style="color: grey">Année</td>
-					<td style="color: grey">Nombre de recrutement</td>
+					<td style="color: grey">Nb. recrus</td>
 				</tr>
 				<c:forEach var="entry" items="${mapRec}">
 					<tr>
@@ -76,6 +80,9 @@
 					</tr>
 				</c:forEach>
 			</table>
+		</div>
+		<div id="tabs-3">
+			<img alt="Ration Technologie" src=${chartRatioTechUrl } align="right" />
 		</div>
 
 	</div>

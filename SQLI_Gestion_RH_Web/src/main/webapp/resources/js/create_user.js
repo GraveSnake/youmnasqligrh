@@ -24,14 +24,12 @@ function addRow() {
 
 	jQuery('#itemRows').append(row);
 	$("#removeDip").removeAttr('disabled').removeClass( 'ui-state-disabled' );
-	alert(rowNum);
 }
 
 
 function removeRow() {
 	jQuery('#rowNum' + rowNum).remove();
 	rowNum--;
-	alert(rowNum);
 	if(rowNum==$("#initDipl").text()){
 		$("#removeDip").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
 	}
@@ -57,7 +55,6 @@ function remove2() {
 	if(rowTech==$("#initTech").text()){
 		$("#removeTech").attr('disabled', 'disabled' ).addClass( 'ui-state-disabled' );
 	}
-	alert(rowTech);
 }
 
 function go(url) {
