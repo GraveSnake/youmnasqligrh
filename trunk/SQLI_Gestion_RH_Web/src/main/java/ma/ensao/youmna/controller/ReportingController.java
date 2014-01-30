@@ -95,11 +95,32 @@ public class ReportingController {
 				Color.LAVENDER, 100);
 		fillComp.addColorAndOffset(Color.WHITE, 0);
 		chartComp.setAreaFill(fillComp);
-
+		
+		// Evolution technology 
+		List<Slice> listTech=new ArrayList<Slice>();
+		Map<String, Long> techCount=technologieService.getCountTechnologie();
+		int somme=0;
+		for (Map.Entry entry : techCount.entrySet()) {
+			System.out.println("Key : " + entry.getKey() + " Value : "
+				+ entry.getValue());
+			somme+=(Long) entry.getValue();			
+		}
+		for (Map.Entry entry : techCount.entrySet()) {
+			
+			float percent=((Long) entry.getValue() *100)/somme;
+			listTech.add(Slice.newSlice((int) percent, String.valueOf(entry.getKey()+": "+percent + "% ")));
+		}
+		
+		PieChart chartTech = GCharts.newPieChart(listTech);
+		chartTech.setTitle("Evolution de la technologie", Color.BLACK, 16);
+		chartTech.setSize(500, 200);
+		chartTech.setThreeD(true);
+		
 		ModelAndView mav = new ModelAndView("reporting");
 		mav.addObject("mapRec", recrusByYear);
 		mav.addObject("chartRatioRecrusUrl", chartComp.toURLString());
 		mav.addObject("chartRatioUrl", chartpi.toURLString());
+		mav.addObject("chartRatioTechUrl", chartTech.toURLString());
 		return mav;
 
 	}

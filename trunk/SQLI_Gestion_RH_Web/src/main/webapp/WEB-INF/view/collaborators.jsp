@@ -43,7 +43,7 @@
 			<br />
 			<c:choose>
 				<c:when test="${VIEW=='show'}">
-					<input type="button" value="add new collab"
+					<input type="button" value="Nouveau collaborateur"
 						onclick="go('newColaborateur');" />
 					<br />
 					<br />

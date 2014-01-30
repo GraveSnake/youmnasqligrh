@@ -60,14 +60,14 @@ public class TechnologieDaoImpl implements TechnologieDao {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public Map<String, Integer> getCountTechnologie() {
-		Map<String, Integer> map= new HashMap<String, Integer>() ;
-		String SQL_QUERY = "select tech.technologie, count(tech.technologie) from Technologie tech, Collaborateur col group by tech.technologie";
+	public Map<String, Long> getCountTechnologie() {
+		Map<String, Long> map= new HashMap<String, Long>() ;
+		String SQL_QUERY = "select technologie.nom, count(technologie) from Technologie group by technologie";
 		Query query = sessionFactory.getCurrentSession().createQuery(SQL_QUERY);
 		 for (Iterator it = 
 				 query.iterate(); it.hasNext();) {
 				  Object[] row = (Object[]) it.next();
-				  map.put((String)row[0],Integer.valueOf((String) row[1]));
+				  map.put((String)row[0],(Long) row[1]);
 				  System.out.println("Invested Amount: " + row[0]);
 				  System.out.println("Insurance Name: " + row[1]);
 				   }

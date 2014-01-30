@@ -38,9 +38,12 @@
 
 	<div id="bodydiv">
 		<sec:authorize ifAllGranted='ROLE_ADMIN'>
-	
+		<fieldset>
+		<legend>Export: </legend>
+			<lebel>Exporter les données sous format Excel</lebel>
 			<input type="button" onclick="go('export');" value="Export"/>
 			<br />
+			</fieldset>
 		</sec:authorize>
 	</div>
 

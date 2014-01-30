@@ -42,7 +42,7 @@
 			<br />
 			<c:choose>
 				<c:when test="${VIEW=='show'}">
-					<input type="button" value="add new manager"
+					<input type="button" value="Nouveau manager"
 						onclick="go('newManager');" />
 					<br />
 					<br />

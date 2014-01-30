@@ -21,6 +21,6 @@ public interface TechnologieDao {
 	
 	List<String> technologies();
 	
-	Map<String , Integer> getCountTechnologie();
+	Map<String , Long> getCountTechnologie();
 	
 }
