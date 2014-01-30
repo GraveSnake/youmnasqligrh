@@ -50,13 +50,13 @@ public class TechnologieDaoImpl implements TechnologieDao {
 	}
 
 	public void updateTechnologie(Technologie technologie) {
-		sessionFactory.getCurrentSession().update(technologie);
+		sessionFactory.getCurrentSession().saveOrUpdate(technologie);
 		
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<String> technologies() {
-		return sessionFactory.getCurrentSession().createQuery("select nom from TechnoExist").list();
+		return sessionFactory.getCurrentSession().createQuery("select nom from TechnoExist order by nom asc").list();
 	}
 
 	@SuppressWarnings("rawtypes")

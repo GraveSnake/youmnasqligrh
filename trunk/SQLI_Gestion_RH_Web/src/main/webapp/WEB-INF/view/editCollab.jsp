@@ -142,64 +142,112 @@
 			</div>
 			<div id="tabs-2">
 				<h2 style="color: maroon">Diplome:</h2>
-				<c:if test="${diplomesSize!=0}">
-					<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
+				<div id=itemRows>
+					<c:if test="${diplomesSize!=0}">
+						<c:forEach var="dipl" begin="0" end="${diplomesSize - 1}">
 
-						<table style="border-collapse: none;" align="center" id="tabcol">
-							<tr>
-								<form:hidden path="DIPLOME[${dipl}].id" />
-							</tr>
-							<tr>
-								<td><label>Titre:</label></td>
-								<td><form:input path="DIPLOME[${dipl}].nom" /></td>
-								<td><label>Ecole:</label></td>
-								<td><form:input path="DIPLOME[${dipl}].ecole" /></td>
-								<td><label>Ecole type:</label></td>
-								<td><form:select path="DIPLOME[${dipl}].ecoleType"
-										id="combobox">
-										<form:option value="National">National</form:option>
-										<form:option value="International">International</form:option>
-									</form:select></td>
-							</tr>
-							<tr>
-								<td><label>Diplome type:</label></td>
-								<td><form:select path="DIPLOME[${dipl}].diplomeType">
-										<form:option value="etatique">etatique</form:option>
-										<form:option value="prive">prive</form:option>
-									</form:select></td>
-								<td><label>Promotion:</label></td>
-								<td><form:input path="DIPLOME[${dipl}].promotion"
-										id="promotion" /></td>
-								<td><label>Niveau:</label></td>
-								<td><form:input path="DIPLOME[${dipl}].niveau" id="niveau" /></td>
-							</tr>
-						</table>
+							<table style="border-collapse: none;" align="center" id="tabcol">
+								<tr>
+									<form:hidden path="DIPLOME[${dipl}].id" />
+								</tr>
+								<tr>
+									<td><label>Titre:</label></td>
+									<td><form:input path="DIPLOME[${dipl}].nom" /></td>
+									<td><label>Ecole:</label></td>
+									<td><form:input path="DIPLOME[${dipl}].ecole" /></td>
+									<td><label>Ecole type:</label></td>
+									<td><form:select path="DIPLOME[${dipl}].ecoleType"
+											id="combobox">
+											<form:option value=""></form:option>
+											<form:option value="National">National</form:option>
+											<form:option value="International">International</form:option>
+										</form:select></td>
+								</tr>
+								<tr>
+									<td><label>Diplome type:</label></td>
+									<td><form:select path="DIPLOME[${dipl}].diplomeType">
+											<form:option value=""></form:option>
+											<form:option value="etatique">etatique</form:option>
+											<form:option value="prive">prive</form:option>
+										</form:select></td>
+									<td><label>Promotion:</label></td>
+									<td><form:input path="DIPLOME[${dipl}].promotion"
+											id="promotion" /></td>
+									<td><label>Niveau:</label></td>
+									<td><form:input path="DIPLOME[${dipl}].niveau" id="niveau" /></td>
+								</tr>
+							</table>
 
-					</c:forEach>
-				</c:if>
+						</c:forEach>
+					</c:if>
+					<input onclick="addRow();" type="button" value="Add row"
+						align="left" /> <input onclick="removeRow();" type="button"
+						value="Remove" align="left" id="removeDip" disabled="disabled" />
+				</div>
 			</div>
 			<div id="tabs-3">
 				<h2 style="color: maroon">Technologie:</h2>
-				<c:if test="${technologiesSize!=0}">
-					<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
-						<div id="itemTech">
+				<div id="itemTech">
+					<c:if test="${technologiesSize!=0}">
+						<c:forEach var="tech" begin="0" end="${technologiesSize - 1}">
+
 							<table style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
 									<td><form:hidden path="TECHNOLOGIE[${tech}].id" /></td>
 									<td><label>Technologie:</label></td>
-									<td><form:input path="TECHNOLOGIE[${tech}].technologie" /></td>
+									<c:choose>
+										<c:when test="${tech==1}">
+											<td><form:select path="TECHNOLOGIE[${tech}].technologie"
+													id="techno">
+													<form:option value=""></form:option>
+													<form:options items="${technologies}" />
+												</form:select></td>
+										</c:when>
 
+										<c:otherwise>
+											<td><form:select path="TECHNOLOGIE[${tech}].technologie">
+													<form:option value=""></form:option>
+													<form:options items="${technologies}" />
+												</form:select></td>
+										</c:otherwise>
+									</c:choose>
 									<td><form:hidden path="COMPETENCE[${tech}].id" /></td>
 									<td><label>Competence #1:</label></td>
 									<td><form:input path="COMPETENCE[${tech}].competence" /></td>
 
 									<td><label>Niveau d'expertise:</label></td>
-									<td><form:input path="COMPETENCE[${tech}].niveauExpertise" /></td>
+									<c:choose>
+										<c:when test="${tech==1}">
+											<td><form:select
+													path="COMPETENCE[${tech}].niveauExpertise" id="nivExp">
+													<form:option value=""></form:option>
+													<form:option value="1">1</form:option>
+													<form:option value="2">2</form:option>
+													<form:option value="3">3</form:option>
+													<form:option value="4">4</form:option>
+													<form:option value="5">5</form:option>
+												</form:select></td>
+										</c:when>
+										<c:otherwise>
+											<td><form:select
+													path="COMPETENCE[${tech}].niveauExpertise">
+													<form:option value=""></form:option>
+													<form:option value="1">1</form:option>
+													<form:option value="2">2</form:option>
+													<form:option value="3">3</form:option>
+													<form:option value="4">4</form:option>
+													<form:option value="5">5</form:option>
+												</form:select></td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</table>
-						</div>
-					</c:forEach>
-				</c:if>
+						</c:forEach>
+					</c:if>
+					<input onclick="addTech();" type="button" value="Add row"
+						align="left" /> <input onclick="remove2();" type="button"
+						value="Remove" align="left" id="removeTech" disabled="disabled" />
+				</div>
 			</div>
 			<div id="tabs-4">
 				<h2 style="color: maroon">Compte:</h2>
@@ -225,6 +273,8 @@
 
 		</div>
 	</form:form>
+	<label id="initDipl">${diplomesSize-1}</label>
+	<label id="initTech">${technologiesSize-1}</label>
 </body>
 
 

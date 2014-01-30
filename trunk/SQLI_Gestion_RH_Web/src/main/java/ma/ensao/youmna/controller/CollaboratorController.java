@@ -88,6 +88,8 @@ public class CollaboratorController {
 		mav.addObject("managers", managers);
 		mav.addObject("newCollab", new Collaborateur());
 		mav.addObject("VIEW", "new");
+		mav.addObject("initDipl", 0);
+		mav.addObject("initTech", 0);
 		return mav;
 	}
 
@@ -174,6 +176,8 @@ public class CollaboratorController {
 		mav.addObject("editCollab", collaborateur);
 		mav.addObject("technologiesSize", technologies.size());
 		mav.addObject("diplomesSize", diplomes.size());
+		List<String> technologieExist=technologieService.technologies();
+		mav.addObject("technologies", technologieExist);
 		mav.addObject("VIEW", "edit");
 		return mav;
 	}
