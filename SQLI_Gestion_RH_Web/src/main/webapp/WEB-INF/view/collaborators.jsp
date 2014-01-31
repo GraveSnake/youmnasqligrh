@@ -22,7 +22,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/button.js">
 	
 </script>
-<title><spring:message code="menu.home" /></title>
+<title>Collaborateur</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/main_style.css"
 	rel="stylesheet" />

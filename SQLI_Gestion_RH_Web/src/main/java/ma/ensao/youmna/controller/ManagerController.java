@@ -241,7 +241,7 @@ public class ManagerController {
 	
 	@RequestMapping(value = "desactivateManager", method = RequestMethod.GET)
 	public ModelAndView desactivateManager(@RequestParam("MANAGER_ID") String COLLAB_ID) {
-		Collaborateur coll=collaborateurService.getCollaborateurByLogin(COLLAB_ID);
+		Collaborateur coll=collaborateurService.getCollaborateurById(COLLAB_ID);
 		System.out.println(coll.getNom());
 		Compte compte=coll.getCompte();
 		compte.setActive(false);
@@ -252,7 +252,7 @@ public class ManagerController {
 	
 	@RequestMapping(value = "activateManager", method = RequestMethod.GET)
 	public ModelAndView activateManager(@RequestParam("MANAGER_ID") String COLLAB_ID) {
-		Collaborateur coll=collaborateurService.getCollaborateurByLogin(COLLAB_ID);
+		Collaborateur coll=collaborateurService.getCollaborateurById(COLLAB_ID);
 		System.out.println(coll.getNom());
 		Compte compte=coll.getCompte();
 		compte.setActive(true);

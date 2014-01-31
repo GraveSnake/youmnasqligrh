@@ -58,8 +58,8 @@
 </head>
 <body>
 	<p class="validateTips" style="color: red"></p>
-	<input type="button" value="Save" id="enregister">
-	<input type="button" value="Back" onclick="go('adminManagers');">
+	<input type="button" value="Enregistrer" id="enregister">
+	<input type="button" value="Retour" onclick="go('adminManagers');">
 	<br />
 	<br />
 	<form:form action="updateManager" method="post" id="ManagerForm"
@@ -176,7 +176,7 @@
 								<tr>
 									<td><form:hidden path="TECHNOLOGIE[${tech}].id" /></td>
 									<td><label>Technologie:</label></td>
-									<td><form:input path="TECHNOLOGIE[${tech}].technologie" /></td>
+									<td><form:input path="TECHNOLOGIE[${tech}].technologie.nom" /></td>
 									<td><form:hidden path="COMPETENCE[${tech}].id" /></td>
 									<td><label>Competence #1:</label></td>
 									<td><form:input path="COMPETENCE[${tech}].competence" /></td>
