@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SQLI RH</string>
-    <string name="BaseURL">http://192.168.1.1/rest</string>
+    <string name="app_name">GRH SQLi</string>
     <string name="invalidLogin">Login invalid !</string>
     <string name="settings">Paramètres</string>
     <string name="disconnect">Se déconnecter</string>

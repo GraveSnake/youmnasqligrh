@@ -1,5 +1,7 @@
 package ma.ensao.youmna.util;
 
+import android.graphics.Color;
+
 public class Constants {
 //	Login And Accounts
 	public static final int TABS_COUNT = 3;
@@ -37,5 +39,7 @@ public class Constants {
 	public static final int TIMEOUT = 3;
 	public static final int EXCEPTION = 4;
 	
-	
+//	Colors
+	public static final int COLOR_ORANGE = Color.parseColor("#ff6c0a");
+	public static final int COLOR_BLUE = Color.parseColor("#23bae9");
 }
