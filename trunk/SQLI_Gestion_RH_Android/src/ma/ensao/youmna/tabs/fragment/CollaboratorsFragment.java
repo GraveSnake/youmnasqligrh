@@ -85,10 +85,10 @@ public class CollaboratorsFragment extends ListFragment {
 				NetworkUtils.account, Constants.LAST_NAME_KEY);
 		
 		if ((Constants.ROLE_MAN).equals(role)) {
-			CollabThread count = new CollabThread(getActivity(), name);
-			count.execute();
+			CollabThread getCollabs = new CollabThread(getActivity(), name);
+			getCollabs.execute();
 			try {
-				count.get(10, TimeUnit.SECONDS);
+				getCollabs.get(10, TimeUnit.SECONDS);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (ExecutionException e) {
