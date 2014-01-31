@@ -97,9 +97,9 @@ $(function() {
 								&& checkRegexp(bap, /^[a-zA-Z]+$/,
 										"Mois bap est un text");
 										
-						bValid = bValid
-								&& checkRegexp(niveau, /^(BAC\s\+[0-9])?$/,
-										"Niveau commence par BAC +");
+//						bValid = bValid
+//								&& checkRegexp(niveau, /^(BAC\s\+[0-9])?$/,
+//										"Niveau commence par BAC +");
 										
 						bValid = bValid
 								&& checkRegexp(email, /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$/,

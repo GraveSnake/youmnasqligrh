@@ -188,7 +188,6 @@ public class CollaboratorController {
 	@RequestMapping(value = "updateCollab", method = RequestMethod.POST)
 	public ModelAndView update(
 			@ModelAttribute("editCollab") Collaborateur collaborateur) {
-		ModelAndView mav = new ModelAndView("redirect:/collaborators");
 		Compte compte = collaborateur.getCompte();
 		compteService.updateCompte(compte);
 
@@ -238,8 +237,9 @@ public class CollaboratorController {
 			}
 
 		}
-		mav.addObject("VIEW", "show");
-		return mav;
+
+		return new ModelAndView("redirect:/collaborators");
+
 	}
 
 	/*

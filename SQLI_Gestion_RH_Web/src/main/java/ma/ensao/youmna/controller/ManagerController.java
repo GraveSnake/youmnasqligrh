@@ -75,7 +75,6 @@ public class ManagerController {
 	@RequestMapping(value = "newManager", method = RequestMethod.POST)
 	public ModelAndView saveManager(
 			@ModelAttribute("newManager") Collaborateur manager) {
-
 		// saving a new account
 		Compte compte = manager.getCompte();
 		manager.setRole("Manager");
@@ -129,7 +128,7 @@ public class ManagerController {
 
 		}
 
-		return new ModelAndView("redirect:/admin_managers");
+		return new ModelAndView("redirect:/adminManagers");
 	}
 
 	/*
