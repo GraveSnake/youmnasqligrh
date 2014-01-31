@@ -152,7 +152,7 @@
 							<table style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
 									<td><label>Technologie:</label></td>
-									<td><c:out value="${TECHNOLOGIE[tech].technologie}" /></td>
+									<td><c:out value="${TECHNOLOGIE[tech].technologie.nom}" /></td>
 
 									<td><label>Competence #1:</label></td>
 									<td><c:out value="${COMPETENCE[tech].competence}" /></td>
@@ -215,7 +215,7 @@
 
 		</div>
 	</form:form>
-	<input type="button" value="Back" onclick="go('collaborators');">
+	<input type="button" value="Retour" onclick="go('collaborators');">
 </body>
 
 

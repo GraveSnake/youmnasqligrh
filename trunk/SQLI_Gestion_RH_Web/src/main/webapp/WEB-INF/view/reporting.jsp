@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title><spring:message code="menu.home" /></title>
+<title>Reporting</title>
 <link
 	href="${pageContext.request.contextPath}/resources/css/main_style.css"
 	rel="stylesheet" />

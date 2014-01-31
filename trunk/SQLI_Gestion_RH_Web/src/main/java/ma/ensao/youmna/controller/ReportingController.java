@@ -46,12 +46,12 @@ public class ReportingController {
 		float malePercent = (male * 100) / (male + female);
 		float femalePercent = (female * 100) / (male + female);
 		Slice s1 = Slice.newSlice((int) malePercent, Color.newColor("CACACA"),
-				String.valueOf(malePercent + "% "), "Male");
+				String.valueOf(malePercent + "% "), "Masculin");
 		Slice s2 = Slice.newSlice((int) femalePercent,
 				Color.newColor("DF7417"), String.valueOf(femalePercent + "% "),
-				"Female");
+				"Féminin");
 		PieChart chartpi = GCharts.newPieChart(s1, s2);
-		chartpi.setTitle("Ratio Female Male", Color.BLACK, 16);
+		chartpi.setTitle("Ratio Féminin Masculin", Color.BLACK, 16);
 		chartpi.setSize(500, 200);
 		chartpi.setThreeD(true);
 
@@ -71,9 +71,9 @@ public class ReportingController {
 				Color.BLUEVIOLET);
 		AxisStyle axisStyle = AxisStyle.newAxisStyle(Color.BLACK, 13,
 				AxisTextAlignment.CENTER);
-		AxisLabels number = AxisLabelsFactory.newAxisLabels("Number", 50.0);
+		AxisLabels number = AxisLabelsFactory.newAxisLabels("Nombre recrus", 50.0);
 		number.setAxisStyle(axisStyle);
-		AxisLabels year = AxisLabelsFactory.newAxisLabels("Year", 50.0);
+		AxisLabels year = AxisLabelsFactory.newAxisLabels("Année", 50.0);
 		year.setAxisStyle(axisStyle);
 
 		BarChart chartComp = GCharts.newBarChart(team1);
@@ -87,7 +87,7 @@ public class ReportingController {
 		chartComp.setBarWidth(BarChart.AUTO_RESIZE);
 		chartComp.setSpaceWithinGroupsOfBars(20);
 		chartComp.setDataStacked(true);
-		chartComp.setTitle("Ratio", Color.BLACK, 16);
+		chartComp.setTitle("Ratio nouveaux recrus par année", Color.BLACK, 16);
 		// chartComp.setGrid(10, 600,3, 2);
 		chartComp.setGrid(100, 10, 3, 2);
 		chartComp.setBackgroundFill(Fills.newSolidFill(Color.ALICEBLUE));
@@ -112,7 +112,7 @@ public class ReportingController {
 		}
 		
 		PieChart chartTech = GCharts.newPieChart(listTech);
-		chartTech.setTitle("Evolution de la technologie", Color.BLACK, 16);
+		chartTech.setTitle("Pourcentage de chaque technologie", Color.BLACK, 16);
 		chartTech.setSize(500, 200);
 		chartTech.setThreeD(true);
 		

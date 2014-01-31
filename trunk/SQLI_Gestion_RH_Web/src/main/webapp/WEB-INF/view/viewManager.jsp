@@ -58,7 +58,6 @@
 				<li><a href="#tabs-1">Données personelles</a></li>
 				<li><a href="#tabs-2">Diplomes</a></li>
 				<li><a href="#tabs-3">Technologies</a></li>
-				<li><a href="#tabs-4">Reporting</a></li>
 			</ul>
 			<div id="tabs-1">
 				<h2 style="color: maroon">Données personelles:</h2>
@@ -151,7 +150,7 @@
 								style="border-collapse: none;" align="center" id="tabcol">
 								<tr>
 									<td ><label>Technologie:</label></td>
-									<td><c:out value="${TECHNOLOGIE[tech].technologie}"/></td>
+									<td><c:out value="${TECHNOLOGIE[tech].technologie.nom}"/></td>
 
 									<td><label>Competence #1:</label></td>
 									<td><c:out value="${COMPETENCE[tech].competence}"/></td>
@@ -185,10 +184,8 @@
 				</c:if>
 			</div>
 
-			<div id="tabs-4">Reporting</div>
-
 		</div>
-	<input type="button" value="Back" onclick="go('adminManagers');">
+	<input type="button" value="Retour" onclick="go('adminManagers');">
 </body>
 
 

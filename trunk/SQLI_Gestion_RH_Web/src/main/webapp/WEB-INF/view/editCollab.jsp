@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Edit collaborateur</title>
+<title>Editer collaborateur</title>
 </head>
 <link
 	href="${pageContext.request.contextPath}/resources/css/createUser_style.css"
@@ -197,7 +197,7 @@
 									<td><label>Technologie:</label></td>
 									<c:choose>
 										<c:when test="${tech==1}">
-											<td><form:select path="TECHNOLOGIE[${tech}].technologie"
+											<td><form:select path="TECHNOLOGIE[${tech}].technologie.nom"
 													id="techno">
 													<form:option value=""></form:option>
 													<form:options items="${technologies}" />
@@ -205,7 +205,7 @@
 										</c:when>
 
 										<c:otherwise>
-											<td><form:select path="TECHNOLOGIE[${tech}].technologie">
+											<td><form:select path="TECHNOLOGIE[${tech}].technologie.nom">
 													<form:option value=""></form:option>
 													<form:options items="${technologies}" />
 												</form:select></td>
